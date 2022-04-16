@@ -1,0 +1,15 @@
+D:\C#\WPF\MyTasks\MyTasks\bin\Debug\MyTasks.exe.config
+D:\C#\WPF\MyTasks\MyTasks\bin\Debug\MyTasks.exe
+D:\C#\WPF\MyTasks\MyTasks\bin\Debug\MyTasks.pdb
+D:\C#\WPF\MyTasks\MyTasks\obj\Debug\MyTasks.csproj.AssemblyReference.cache
+D:\C#\WPF\MyTasks\MyTasks\obj\Debug\MainWindow.g.cs
+D:\C#\WPF\MyTasks\MyTasks\obj\Debug\App.g.cs
+D:\C#\WPF\MyTasks\MyTasks\obj\Debug\MyTasks_MarkupCompile.cache
+D:\C#\WPF\MyTasks\MyTasks\obj\Debug\MyTasks_MarkupCompile.lref
+D:\C#\WPF\MyTasks\MyTasks\obj\Debug\MainWindow.baml
+D:\C#\WPF\MyTasks\MyTasks\obj\Debug\MyTasks.g.resources
+D:\C#\WPF\MyTasks\MyTasks\obj\Debug\MyTasks.Properties.Resources.resources
+D:\C#\WPF\MyTasks\MyTasks\obj\Debug\MyTasks.csproj.GenerateResource.cache
+D:\C#\WPF\MyTasks\MyTasks\obj\Debug\MyTasks.csproj.CoreCompileInputs.cache
+D:\C#\WPF\MyTasks\MyTasks\obj\Debug\MyTasks.exe
+D:\C#\WPF\MyTasks\MyTasks\obj\Debug\MyTasks.pdb

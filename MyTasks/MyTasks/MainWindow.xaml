@@ -1,0 +1,19 @@
+﻿<Window x:Class="MyTasks.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MyTasks"
+        mc:Ignorable="d"
+        Title="MyTasks" Height="450" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <DataGrid x:Name="ListOfTasks" FontSize="16" FontWeight="Bold" Margin="10" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding ="{Binding Path = CreationData}" IsReadOnly="True" Header="CreationDate" Width="180"/>
+                <DataGridCheckBoxColumn Binding ="{Binding Path = IsDone}" IsReadOnly="False" Header="Done" Width="80"/>
+                <DataGridTextColumn Binding ="{Binding Path = Text}" IsReadOnly ="False" Header="Task" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Window>
