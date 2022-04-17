@@ -10,7 +10,7 @@
         <DataGrid x:Name="ListOfTasks" FontSize="16" FontWeight="Bold" Margin="10" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding ="{Binding Path = CreationData}" IsReadOnly="True" Header="CreationDate" Width="180"/>
-                <DataGridCheckBoxColumn Binding ="{Binding Path = IsDone}" IsReadOnly="False" Header="Done" Width="80"/>
+                <DataGridCheckBoxColumn Binding ="{Binding Path = IsDone, UpdateSourceTrigger=PropertyChanged}"  IsReadOnly="False" Header="Done" Width="80"/>
                 <DataGridTextColumn Binding ="{Binding Path = Text}" IsReadOnly ="False" Header="Task" Width="*"/>
             </DataGrid.Columns>
         </DataGrid>

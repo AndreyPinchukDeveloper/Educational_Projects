@@ -1,4 +1,5 @@
 ﻿using MyTasks.Models;
+using MyTasks.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -22,7 +23,9 @@ namespace MyTasks
     /// </summary>
     public partial class MainWindow : Window
     {
-        private BindingList<TaskModel> _taskData;
+        private readonly string PATH = $"{Environment.CurrentDirectory}\\taskDataList.json";
+        private BindingList<TaskModel> _taskDataList;
+        private FileInputOutputService _fileInputOutputService;
 
         public MainWindow()
         {
@@ -31,14 +34,40 @@ namespace MyTasks
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _taskData = new BindingList<TaskModel>()
+            _fileInputOutputService = new FileInputOutputService(PATH);
+            
+            try
             {
-                new TaskModel(){Text = "Test"},
-                new TaskModel(){Text = "Test"},
-                new TaskModel(){Text = "Tdfv"}
-            };
+                _taskDataList = _fileInputOutputService.LoadData();
+            }
+            catch (Exception ex)
+            {
 
-            ListOfTasks.ItemsSource = _taskData;
+                MessageBox.Show(ex.Message);
+                Close();
+            }
+
+            ListOfTasks.ItemsSource = _taskDataList;
+            _taskDataList.ListChanged += _taskDataList_ListChanged;
+        }
+
+        private void _taskDataList_ListChanged(object sender, ListChangedEventArgs e)
+        {
+            if (e.ListChangedType == ListChangedType.ItemAdded || 
+                e.ListChangedType == ListChangedType.ItemDeleted || 
+                e.ListChangedType == ListChangedType.ItemChanged)
+            {
+                try
+                {
+                    _fileInputOutputService.SaveData(sender);
+                }
+                catch (Exception ex)
+                {
+
+                    MessageBox.Show(ex.Message);
+                    Close();
+                }
+            }
         }
     }
 }
