@@ -1,0 +1,7 @@
+D:\Project\Educational_Projects\Neural_Network\Neural_Network\bin\Debug\Neural_Network.exe.config
+D:\Project\Educational_Projects\Neural_Network\Neural_Network\bin\Debug\Neural_Network.exe
+D:\Project\Educational_Projects\Neural_Network\Neural_Network\bin\Debug\Neural_Network.pdb
+D:\Project\Educational_Projects\Neural_Network\Neural_Network\obj\Debug\Neural_Network.csproj.AssemblyReference.cache
+D:\Project\Educational_Projects\Neural_Network\Neural_Network\obj\Debug\Neural_Network.csproj.CoreCompileInputs.cache
+D:\Project\Educational_Projects\Neural_Network\Neural_Network\obj\Debug\Neural_Network.exe
+D:\Project\Educational_Projects\Neural_Network\Neural_Network\obj\Debug\Neural_Network.pdb
