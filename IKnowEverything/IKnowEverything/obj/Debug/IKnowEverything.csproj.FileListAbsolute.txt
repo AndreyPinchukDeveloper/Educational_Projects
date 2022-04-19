@@ -1,10 +1,13 @@
 D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\bin\Debug\IKnowEverything.exe.config
 D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\bin\Debug\IKnowEverything.exe
 D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\bin\Debug\IKnowEverything.pdb
-D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\obj\Debug\IKnowEverything.csproj.AssemblyReference.cache
 D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\obj\Debug\IKnowEverything.Form1.resources
 D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\obj\Debug\IKnowEverything.Properties.Resources.resources
 D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\obj\Debug\IKnowEverything.csproj.GenerateResource.cache
 D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\obj\Debug\IKnowEverything.csproj.CoreCompileInputs.cache
 D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\obj\Debug\IKnowEverything.exe
 D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\obj\Debug\IKnowEverything.pdb
+D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\bin\Debug\predictionConfiguration.json
+D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\bin\Debug\Newtonsoft.Json.dll
+D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\bin\Debug\Newtonsoft.Json.xml
+D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\obj\Debug\IKnowEverything.csproj.CopyComplete
