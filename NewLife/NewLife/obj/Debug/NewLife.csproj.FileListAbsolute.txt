@@ -1,0 +1,10 @@
+D:\Project\Educational_Projects\NewLife\NewLife\bin\Debug\NewLife.exe.config
+D:\Project\Educational_Projects\NewLife\NewLife\bin\Debug\NewLife.exe
+D:\Project\Educational_Projects\NewLife\NewLife\bin\Debug\NewLife.pdb
+D:\Project\Educational_Projects\NewLife\NewLife\obj\Debug\NewLife.csproj.AssemblyReference.cache
+D:\Project\Educational_Projects\NewLife\NewLife\obj\Debug\NewLife.Form1.resources
+D:\Project\Educational_Projects\NewLife\NewLife\obj\Debug\NewLife.Properties.Resources.resources
+D:\Project\Educational_Projects\NewLife\NewLife\obj\Debug\NewLife.csproj.GenerateResource.cache
+D:\Project\Educational_Projects\NewLife\NewLife\obj\Debug\NewLife.csproj.CoreCompileInputs.cache
+D:\Project\Educational_Projects\NewLife\NewLife\obj\Debug\NewLife.exe
+D:\Project\Educational_Projects\NewLife\NewLife\obj\Debug\NewLife.pdb
