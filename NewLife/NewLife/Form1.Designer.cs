@@ -103,6 +103,11 @@ namespace NewLife
             // 
             this.numDensity.Location = new System.Drawing.Point(29, 156);
             this.numDensity.Margin = new System.Windows.Forms.Padding(4);
+            this.numDensity.Maximum = new decimal(new int[] {
+            25,
+            0,
+            0,
+            0});
             this.numDensity.Minimum = new decimal(new int[] {
             2,
             0,
@@ -113,7 +118,7 @@ namespace NewLife
             this.numDensity.TabIndex = 3;
             this.numDensity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numDensity.Value = new decimal(new int[] {
-            2,
+            25,
             0,
             0,
             0});

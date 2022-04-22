@@ -12,13 +12,14 @@ namespace NewLife
         private bool[,] field;
         private readonly int rows;
         private readonly int columns;
-        private Random random = new Random();
 
         public GameEngine(int rows, int columns, int density)
         {
             this.rows = rows;
             this.columns = columns;
             field = new bool[columns, rows];
+            Random random = new Random();
+
             for (int x = 0; x < rows; x++)
             {
                 for (int y = 0; y < columns; y++)
@@ -89,6 +90,29 @@ namespace NewLife
                 }
             }
             return count;
+        }
+
+        private bool ValidateCellPosition(int x, int y)
+        {
+            return x > 0 && y > 0 && x < columns && y < rows;
+        }
+
+        private void UpdateCell(int x, int y, bool state)
+        {
+            if (ValidateCellPosition(x, y))
+            {
+                field[x, y] = state;
+            }
+        }
+
+        public void AddCell(int x, int y)
+        {
+            UpdateCell(x, y, state: true);
+        }
+
+        public void RemoveCell(int x, int y)
+        {
+            UpdateCell(x, y, state: false);
         }
     }
 }
