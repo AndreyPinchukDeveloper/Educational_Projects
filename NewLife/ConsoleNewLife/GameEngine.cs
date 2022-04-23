@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Threading;
 
-namespace NewLife
+namespace ConsoleNewLife
 {
     public class GameEngine
     {
@@ -43,7 +42,7 @@ namespace NewLife
 
                     if (!hasLife && neighborsCount == 3)
                     {
-                        newField[x, y] = true;                      
+                        newField[x, y] = true;
                     }
                     else if (hasLife && (neighborsCount < 2 || neighborsCount > 3))
                     {
@@ -53,7 +52,7 @@ namespace NewLife
                     {
                         newField[x, y] = field[x, y];
                     }
-                    
+
                 }
             }
             //Thread.Sleep(400);

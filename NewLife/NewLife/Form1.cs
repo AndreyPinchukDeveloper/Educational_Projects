@@ -15,19 +15,18 @@ namespace NewLife
         private Graphics graphics;
         private int resolution;
         private GameEngine gameEngine;
-
+        
 
         public Form1()
         {
             InitializeComponent();
         }
-
+        
         private void StartGame()
         {
             if (timer1.Enabled)
             {
                 return;//exit from this method
-
             }
             
             numResolution.Enabled = false;
@@ -38,7 +37,7 @@ namespace NewLife
             (
                 rows: pictureBox1.Width / resolution, 
                 columns: pictureBox1.Height / resolution,
-                density: (int)numDensity.Minimum + (int)numDensity.Minimum - (int)numDensity.Value
+                density: (int)(numDensity.Minimum) + (int)numDensity.Maximum - (int)numDensity.Value
             );
             
             this.Text = $"Generation {gameEngine.CurrentGeneration}";
@@ -58,7 +57,7 @@ namespace NewLife
                 {
                     if (field[x,y])
                     {
-                        graphics.FillRectangle(Brushes.Crimson, x * resolution, y * resolution, resolution, resolution);
+                        graphics.FillRectangle(Brushes.Crimson, x * resolution, y * resolution, resolution-1, resolution-1);
                     }
                 }
             }
@@ -69,13 +68,13 @@ namespace NewLife
 
         private void StopGame()
         {
-            if (timer1.Enabled)
+            if (!timer1.Enabled)
             {
                 return;
             }
             timer1.Stop();
-            numResolution.Enabled = false;
-            numDensity.Enabled = false;
+            numResolution.Enabled = true;
+            numDensity.Enabled = true;
         }
 
 
@@ -117,8 +116,5 @@ namespace NewLife
                 gameEngine.RemoveCell(x,y);
             }
         }
-
-        
-
     }
 }

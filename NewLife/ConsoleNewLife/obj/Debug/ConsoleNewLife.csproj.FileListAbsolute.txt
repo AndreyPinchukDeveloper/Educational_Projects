@@ -1,0 +1,7 @@
+D:\Project\Educational_Projects\NewLife\ConsoleNewLife\bin\Debug\ConsoleNewLife.exe.config
+D:\Project\Educational_Projects\NewLife\ConsoleNewLife\bin\Debug\ConsoleNewLife.exe
+D:\Project\Educational_Projects\NewLife\ConsoleNewLife\bin\Debug\ConsoleNewLife.pdb
+D:\Project\Educational_Projects\NewLife\ConsoleNewLife\obj\Debug\ConsoleNewLife.csproj.AssemblyReference.cache
+D:\Project\Educational_Projects\NewLife\ConsoleNewLife\obj\Debug\ConsoleNewLife.csproj.CoreCompileInputs.cache
+D:\Project\Educational_Projects\NewLife\ConsoleNewLife\obj\Debug\ConsoleNewLife.exe
+D:\Project\Educational_Projects\NewLife\ConsoleNewLife\obj\Debug\ConsoleNewLife.pdb

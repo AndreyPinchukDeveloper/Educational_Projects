@@ -55,7 +55,6 @@ namespace NewLife
             this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainer1.IsSplitterFixed = true;
             this.splitContainer1.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer1.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainer1.Name = "splitContainer1";
             // 
             // splitContainer1.Panel1
@@ -70,18 +69,16 @@ namespace NewLife
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.pictureBox1);
-            this.splitContainer1.Size = new System.Drawing.Size(1067, 554);
+            this.splitContainer1.Size = new System.Drawing.Size(800, 450);
             this.splitContainer1.SplitterDistance = 157;
-            this.splitContainer1.SplitterWidth = 5;
             this.splitContainer1.TabIndex = 0;
             // 
             // buttonStop
             // 
             this.buttonStop.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonStop.Location = new System.Drawing.Point(61, 268);
-            this.buttonStop.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonStop.Location = new System.Drawing.Point(46, 218);
             this.buttonStop.Name = "buttonStop";
-            this.buttonStop.Size = new System.Drawing.Size(100, 28);
+            this.buttonStop.Size = new System.Drawing.Size(75, 23);
             this.buttonStop.TabIndex = 5;
             this.buttonStop.Text = "Stop";
             this.buttonStop.UseVisualStyleBackColor = true;
@@ -90,10 +87,9 @@ namespace NewLife
             // buttonStart
             // 
             this.buttonStart.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonStart.Location = new System.Drawing.Point(61, 210);
-            this.buttonStart.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonStart.Location = new System.Drawing.Point(46, 171);
             this.buttonStart.Name = "buttonStart";
-            this.buttonStart.Size = new System.Drawing.Size(100, 28);
+            this.buttonStart.Size = new System.Drawing.Size(75, 23);
             this.buttonStart.TabIndex = 4;
             this.buttonStart.Text = "Start";
             this.buttonStart.UseVisualStyleBackColor = true;
@@ -101,8 +97,7 @@ namespace NewLife
             // 
             // numDensity
             // 
-            this.numDensity.Location = new System.Drawing.Point(29, 156);
-            this.numDensity.Margin = new System.Windows.Forms.Padding(4);
+            this.numDensity.Location = new System.Drawing.Point(22, 127);
             this.numDensity.Maximum = new decimal(new int[] {
             25,
             0,
@@ -114,11 +109,11 @@ namespace NewLife
             0,
             0});
             this.numDensity.Name = "numDensity";
-            this.numDensity.Size = new System.Drawing.Size(160, 22);
+            this.numDensity.Size = new System.Drawing.Size(120, 20);
             this.numDensity.TabIndex = 3;
             this.numDensity.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numDensity.Value = new decimal(new int[] {
-            25,
+            3,
             0,
             0,
             0});
@@ -127,33 +122,31 @@ namespace NewLife
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(25, 119);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(19, 97);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(73, 20);
+            this.label2.Size = new System.Drawing.Size(60, 16);
             this.label2.TabIndex = 2;
             this.label2.Text = "Density";
             // 
             // numResolution
             // 
-            this.numResolution.Location = new System.Drawing.Point(29, 55);
-            this.numResolution.Margin = new System.Windows.Forms.Padding(4);
+            this.numResolution.Location = new System.Drawing.Point(22, 45);
             this.numResolution.Maximum = new decimal(new int[] {
             25,
             0,
             0,
             0});
             this.numResolution.Minimum = new decimal(new int[] {
-            1,
+            2,
             0,
             0,
             0});
             this.numResolution.Name = "numResolution";
-            this.numResolution.Size = new System.Drawing.Size(160, 22);
+            this.numResolution.Size = new System.Drawing.Size(120, 20);
             this.numResolution.TabIndex = 1;
             this.numResolution.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.numResolution.Value = new decimal(new int[] {
-            3,
+            7,
             0,
             0,
             0});
@@ -162,10 +155,9 @@ namespace NewLife
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(25, 18);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(19, 15);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 20);
+            this.label1.Size = new System.Drawing.Size(82, 16);
             this.label1.TabIndex = 0;
             this.label1.Text = "Resolution";
             // 
@@ -173,9 +165,8 @@ namespace NewLife
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(901, 550);
+            this.pictureBox1.Size = new System.Drawing.Size(635, 446);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             this.pictureBox1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pictureBox1_MouseMove);
@@ -187,11 +178,10 @@ namespace NewLife
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.splitContainer1);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Form1";
             this.Text = "New Life";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
