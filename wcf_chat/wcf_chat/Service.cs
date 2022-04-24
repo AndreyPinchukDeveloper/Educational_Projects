@@ -39,7 +39,7 @@ namespace wcf_chat
 
         public void SendMessage(string message, int id)
         {
-            
+            string a = message;
         }
     }
 }

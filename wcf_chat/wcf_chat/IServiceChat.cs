@@ -18,6 +18,6 @@ namespace wcf_chat
         void Disconnect(int id);
 
         [OperationContract(IsOneWay = true)]
-        void SendMessage(string message);
+        void SendMessage(string message, int id);
     }
 }
