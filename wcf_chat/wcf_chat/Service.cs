@@ -39,7 +39,19 @@ namespace wcf_chat
 
         public void SendMessage(string message, int id)
         {
-            string a = message;
+            foreach (var item in users)
+            {
+                string answer = DateTime.Now.ToShortDateString();
+
+                var user = users.FirstOrDefault(i => i.ID == id);
+                if (user != null)
+                {
+                    answer += ": " + user.Name + " ";
+                }
+                answer += message;
+
+                item.operationContext.GetCallbackChannel<IServerChatCallback>().MessageCallback(answer);
+            }
         }
     }
 }
