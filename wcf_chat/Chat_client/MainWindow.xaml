@@ -5,8 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Chat_client"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="248*"/>
+            <ColumnDefinition Width="545*"/>
+        </Grid.ColumnDefinitions>
+        <TextBox x:Name="UserName" HorizontalAlignment="Left" Height="37" Margin="48.8,56,0,0" TextWrapping="Wrap" Text="User's name" VerticalAlignment="Top" Width="424" Grid.Column="1"/>
+        <Button x:Name="ConnectButton" Content="Connect" HorizontalAlignment="Left" Margin="69,25,0,0" VerticalAlignment="Top" Width="155" Height="51" Click="ConnectButton_Click"/>
+        <ListBox x:Name="listBoxChat" HorizontalAlignment="Left" Height="113" Margin="69,143,0,0" VerticalAlignment="Top" Width="652" Grid.ColumnSpan="2"/>
+        <TextBox HorizontalAlignment="Left" Height="115" Margin="69,280,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="652" Grid.ColumnSpan="2"/>
+        <Button x:Name="DisconnectButton" Content="Disconnect" HorizontalAlignment="Left" Margin="69,87,0,0" VerticalAlignment="Top" Width="155" Height="51" Click="DisconnectButton_Click"/>
+
     </Grid>
 </Window>
