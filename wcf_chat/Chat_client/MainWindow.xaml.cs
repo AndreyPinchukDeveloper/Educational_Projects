@@ -33,24 +33,26 @@ namespace Chat_client
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            client = new ServiceChatClient(new System.ServiceModel.InstanceContext(this));
+            
         }
 
-        void ConnectUser()
+        void DisconnectUser()
         {
             if (isConnected)
             {
                 client.Disconnect(ID);
+                client = null;
                 UserName.IsEnabled = true;
                 ConnectButton.Content = "Connect";
                 isConnected = false;
             }
         }
 
-        void DisconnectUser()
+        void ConnectUser()
         {
             if (!isConnected)
             {
+                client = new ServiceChatClient(new System.ServiceModel.InstanceContext(this));
                 ID = client.Connect(UserName.Text);
                 UserName.IsEnabled = false;
                 DisconnectButton.Content = "Disconnect";
@@ -71,6 +73,24 @@ namespace Chat_client
         public void MessageCallback(string message)
         {
             listBoxChat.Items.Add(message);
+            listBoxChat.ScrollIntoView(listBoxChat.Items[listBoxChat.Items.Count-1]);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            DisconnectUser();
+        }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                if (client != null)
+                {
+                    client.SendMessage(textboxMessage.Text, ID);
+                    textboxMessage.Text = string.Empty;
+                }
+            }
         }
     }
 }

@@ -22,7 +22,7 @@ namespace wcf_chat
             };
 
             nextId++;
-            SendMessage(userToAdd.Name + "was connected.", userToAdd.ID);
+            SendMessage(": " + userToAdd.Name + "has connected.", userToAdd.ID);
             users.Add(userToAdd);//adding new user in list
             return userToAdd.ID;
         }
@@ -33,7 +33,7 @@ namespace wcf_chat
             if (userToRemove != null)
             {
                 users.Remove(userToRemove);
-                SendMessage(userToRemove.Name + "has left.", userToRemove.ID);
+                SendMessage(": " + userToRemove.Name + "has left.", userToRemove.ID);
             }
         }
 
