@@ -15,6 +15,7 @@ namespace ScreenSaver
         private Star[] stars = new Star[1500];
         private Random random = new Random();
         private Graphics graphics;
+        private Star starToDraw = new Star();
 
         public Form1()
         {
@@ -23,7 +24,13 @@ namespace ScreenSaver
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            graphics.Clear(Color.Black);
+            foreach (var star in stars)
+            {
+                starToDraw.DrawStar(star, pictureBox1.Width, pictureBox1.Height, graphics);
+                starToDraw.MoveStar(star, random, pictureBox1.Width, pictureBox1.Height);
+            }
+            pictureBox1.Refresh();
         }
 
         private void Form1_Load(object sender, EventArgs e)
