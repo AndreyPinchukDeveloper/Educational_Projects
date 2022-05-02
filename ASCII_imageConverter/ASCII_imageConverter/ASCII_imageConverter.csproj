@@ -45,10 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BitmapToAscii.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="OpenImage.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ResizeImage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
