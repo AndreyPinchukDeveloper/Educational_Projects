@@ -14,7 +14,7 @@ namespace ManagePixelesOnPicture
     public partial class Form1 : Form
     {
         private List<Bitmap> _bitmaps = new List<Bitmap>();
-        private Random _random;
+        private Random _random = new Random();
         public Form1()
         {
             InitializeComponent();

@@ -11,3 +11,4 @@ D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\bin\Debug\predic
 D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\bin\Debug\Newtonsoft.Json.dll
 D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\bin\Debug\Newtonsoft.Json.xml
 D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\obj\Debug\IKnowEverything.csproj.CopyComplete
+D:\Project\Educational_Projects\IKnowEverything\IKnowEverything\obj\Debug\IKnowEverything.csproj.AssemblyReference.cache
