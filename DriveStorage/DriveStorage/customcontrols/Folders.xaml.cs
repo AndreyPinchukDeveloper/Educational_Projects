@@ -16,15 +16,14 @@ using System.Windows.Shapes;
 namespace DriveStorage.customcontrols
 {
     /// <summary>
-    /// Interaction logic for MenuButton.xaml
+    /// Interaction logic for Folders.xaml
     /// </summary>
-    public partial class MenuButton : UserControl
+    public partial class Folders : UserControl
     {
-        public MenuButton()
+        public Folders()
         {
             InitializeComponent();
         }
-
         public PathGeometry Icon
         {
             get { return (PathGeometry)GetValue(IconProperty); }
