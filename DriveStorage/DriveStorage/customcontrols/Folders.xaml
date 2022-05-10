@@ -90,6 +90,13 @@
                                 <Path Data="{Binding FolderIcon, ElementName=this, 
                                     FallbackValue={StaticResource DefaultIcon}, 
                                     TargetNullValue={StaticResource DefaultIcon}}"/>
+                                
+                                <!--shared with-->
+                                <TextBlock Style="{StaticResource TitleText}" Text="SHARED WITH" Margin="30,45" VerticalAlignment="Top"/>
+                                <!--profile images-->
+                                <StackPanel Orientation="Horizontal" Margin="28,65" HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    
+                                </StackPanel>
                             </Grid>
                         </Border>
                         <ControlTemplate.Triggers>

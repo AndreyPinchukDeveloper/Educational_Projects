@@ -29,19 +29,18 @@ namespace DriveStorage.customcontrols
             get { return (PathGeometry)GetValue(FolderIconProperty); }
             set { SetValue(FolderIconProperty, value); }
         }
-
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FolderIconProperty =
-            DependencyProperty.Register("FolderIcon", typeof(PathGeometry), typeof(MenuButton));
+            DependencyProperty.Register("FolderIcon", typeof(PathGeometry), typeof(Folders));
 
-        public string Text
+        public string FolderName
         {
-            get { return (string)GetValue(TextProperty); }
-            set { SetValue(TextProperty, value); }
+            get { return (string)GetValue(FolderNameProperty); }
+            set { SetValue(FolderNameProperty, value); }
         }
+        public static readonly DependencyProperty FolderNameProperty =
+            DependencyProperty.Register("FolderName", typeof(Thickness), typeof(Folders));
 
-
-        //since padding is already a property and we are using the same name here
         public new Thickness Padding
         {
             get { return (Thickness)GetValue(PaddingProperty); }
@@ -50,23 +49,16 @@ namespace DriveStorage.customcontrols
 
         // Using a DependencyProperty as the backing store for Padding.  This enables animation, styling, binding, etc...
         public new static readonly DependencyProperty PaddingProperty =
-            DependencyProperty.Register("Padding", typeof(Thickness), typeof(MenuButton));
-
-
-
-        // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
-        public static readonly DependencyProperty TextProperty =
-            DependencyProperty.Register("Text", typeof(string), typeof(MenuButton));
+            DependencyProperty.Register("Padding", typeof(Thickness), typeof(Folders));
 
         public bool IsSelected
         {
             get { return (bool)GetValue(IsSelectedProperty); }
             set { SetValue(IsSelectedProperty, value); }
         }
-
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IsSelectedProperty =
-            DependencyProperty.Register("MyProperty", typeof(bool), typeof(MenuButton));
+            DependencyProperty.Register("MyProperty", typeof(bool), typeof(Folders));
 
         public string GroupName
         {
@@ -76,7 +68,7 @@ namespace DriveStorage.customcontrols
 
         // Using a DependencyProperty as the backing store for GroupName.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty GroupNameProperty =
-            DependencyProperty.Register("GroupName", typeof(string), typeof(MenuButton));
+            DependencyProperty.Register("GroupName", typeof(string), typeof(Folders));
 
     }
 }
