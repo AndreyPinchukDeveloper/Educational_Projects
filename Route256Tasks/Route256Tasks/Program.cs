@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Route256Tasks
 {
@@ -7,18 +8,29 @@ namespace Route256Tasks
         
         static void Main(string[] args)
         {
-            int firstValue = 0;
-            int secondValue = 0;
-            while (true)
+            var testCaseCount = int.Parse(Console.ReadLine());
+            for (var i = 0; i < testCaseCount; i++)
             {
-                int value = Convert.ToInt32(Console.ReadLine());
-                firstValue = value;
-                int second = Convert.ToInt32(Console.ReadLine());
-                secondValue = value;
-                SumOfTwoNumbers(firstValue,secondValue);
+                var collection = Console.ReadLine().Split(' ').Select(it => int.Parse(it)).ToArray();
+                Console.WriteLine(collection.Sum());
             }
-        }
 
+            /*int secondValue = 0;
+            try
+            {
+                while (secondValue >= -1000 && secondValue >= 1000)
+                {
+                    int firstValue = Convert.ToInt32(Console.ReadLine());
+                    secondValue = Convert.ToInt32(Console.ReadLine());
+                    SumOfTwoNumbers(firstValue, secondValue);
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }*/
+
+        }
         private static int SumOfTwoNumbers(int first, int second)
         {
             int sum = 0 ;
@@ -26,7 +38,5 @@ namespace Route256Tasks
             Console.WriteLine(sum);
             return sum;
         }
-
-        
     } 
 }
