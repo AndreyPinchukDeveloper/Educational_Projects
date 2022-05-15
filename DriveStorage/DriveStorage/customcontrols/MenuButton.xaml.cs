@@ -24,7 +24,6 @@ namespace DriveStorage.customcontrols
         {
             InitializeComponent();
         }
-
         public PathGeometry Icon
         {
             get { return (PathGeometry)GetValue(IconProperty); }
@@ -34,7 +33,6 @@ namespace DriveStorage.customcontrols
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.Register("Icon", typeof(PathGeometry), typeof(MenuButton));
-
         public string Text
         {
             get { return (string)GetValue(TextProperty); }
@@ -44,7 +42,6 @@ namespace DriveStorage.customcontrols
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TextProperty =
             DependencyProperty.Register("Text", typeof(string), typeof(MenuButton));
-
 
         //since padding is already a property and we are using the same name here
         public new Thickness Padding

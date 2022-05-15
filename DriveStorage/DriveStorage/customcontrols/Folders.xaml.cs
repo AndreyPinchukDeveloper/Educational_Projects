@@ -24,11 +24,13 @@ namespace DriveStorage.customcontrols
         {
             InitializeComponent();
         }
+
         public PathGeometry FolderIcon
         {
             get { return (PathGeometry)GetValue(FolderIconProperty); }
             set { SetValue(FolderIconProperty, value); }
         }
+
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty FolderIconProperty =
             DependencyProperty.Register("FolderIcon", typeof(PathGeometry), typeof(Folders));
