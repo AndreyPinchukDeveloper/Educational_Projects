@@ -33,6 +33,7 @@ namespace DriveStorage.customcontrols
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.Register("Icon", typeof(PathGeometry), typeof(MenuButton));
+
         public string Text
         {
             get { return (string)GetValue(TextProperty); }

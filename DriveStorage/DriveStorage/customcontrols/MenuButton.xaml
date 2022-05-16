@@ -4,8 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DriveStorage.customcontrols"
-             mc:Ignorable="d" x:Name="this" Background="White"
-    d:DesignHeight="45" Width="110">
+             mc:Ignorable="d" x:Name="this" Background="White">
     <UserControl.Resources>
         
         <!--Setting default icon if we didn't bind any icon in MainWindow-->
