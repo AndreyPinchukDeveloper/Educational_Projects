@@ -14,48 +14,74 @@ namespace WindowsFormTest
     {
         Guy Joe = new Guy() { name = "Joe", cash = 50 };
         Guy Bob = new Guy() { name = "Bob", cash = 100 };
-        public int sum = 10;
+        Bank Bank = new Bank { name = "Bank", cash = 100 };
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void GiveButton_Click(object sender, EventArgs e)
+        private void JoeGivesToBob_Click(object sender, EventArgs e)
         {
-            GiveCash(sum, Bob.cash);
-             
-        }
-
-        private void RecieveButton_Click(object sender, EventArgs e)
-        {
-            RecieveCash(Joe.cash, Bob.cash);
-        }
-
-        public void GiveCash(int firstValue, int secondValue)
-        {
-            if (secondValue >= 10)
+            if (Joe.cash>=10)
             {
-                firstValue += 10;
-                secondValue -= 10;
-
+                Joe.cash -= 10;
+                Bob.cash += 10;
+                UpdateForm();
             }
             else
             {
-                MessageBox.Show("Im sorry ! But Bob has only " + secondValue + " $ !");
+                MessageBox.Show("My pockets are empty !");
             }
         }
 
-        public void RecieveCash(int firstValue, int secondValue)
+        private void BobGivesToJoe_Click(object sender, EventArgs e)
         {
-            if (secondValue >= 5)
+            if (Bob.cash >= 5)
             {
-                secondValue -= 5;
-                firstValue += 5;
+                Bob.cash -= 5;
+                Joe.cash += 5;
+                UpdateForm();
             }
             else
             {
-                MessageBox.Show("Im sorry ! But Joe has only " + firstValue + " $ !");
+                MessageBox.Show("My pockets are empty !");
             }
+        }
+
+        private void BankGivesJoe_Click(object sender, EventArgs e)
+        {
+            if (Bank.cash>=10)
+            {
+                Bank.cash -= 10;
+                Joe.cash += 10;
+            }
+            else
+            {
+                MessageBox.Show("Tha bank don't have any money yet !");
+            }
+            UpdateForm();
+        }
+
+        private void BankGivesToBob_Click(object sender, EventArgs e)
+        {
+            if (Bob.cash >= 5)
+            {
+                Bank.cash += 5;
+                Bob.cash -= 5;
+            }
+            else
+            {
+                MessageBox.Show("Tha bank don't have any money yet !");
+            }
+            UpdateForm();
+        }
+
+        private void UpdateForm()
+        {
+            MoneyOfJoe.Text = "Joe has $ "+ Joe.cash.ToString();
+            MoneyOfBob.Text = "Bob has $ " + Bob.cash.ToString();
+            MoneyOfBank.Text = "The Bank has $ " + Bank.cash.ToString();
         }
     }
 }
