@@ -91,9 +91,15 @@
             <TextBlock Text="Recently Used" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="60,85,0,0" FontSize="18" FontWeight="SemiBold"/>
             
             <StackPanel Orientation="Horizontal" Margin="0,139,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <customcontrols:Folders FolderIcon="{StaticResource SoBigFolder}"  GroupName ="FolderButtons" FolderName="Designs"/>
-                
+                <customcontrols:Folders FolderIcon="{StaticResource SoBigFolder}" FolderName="Designs" GroupName ="FolderButtons" IsSelected="True"/>
+                <customcontrols:Folders FolderIcon="{StaticResource SoBigFolder}" FolderName="Designs Sprint 2.0" GroupName ="FolderButtons" Margin="25,0"/>
+                <customcontrols:Folders FolderIcon="{StaticResource SoBigFolder}" FolderName="Designs" GroupName ="FolderButtons"/>
+
             </StackPanel>
+
+            <TextBlock Text="New files" HorizontalAlignment="Left" Margin="60,380,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="SemiBold"/>
+
+            <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,360,67,0" Content="VEW ALL" Width="80" Height="27" Style="{StaticResource SecondaryButton}"/>
         </Grid>
     </Grid>
 </Window>
