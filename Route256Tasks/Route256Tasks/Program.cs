@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Route256Tasks
+namespace BinarySearch
 {
     class Program
     {
