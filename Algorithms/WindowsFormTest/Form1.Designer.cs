@@ -29,98 +29,139 @@ namespace WindowsFormTest
         /// </summary>
         private void InitializeComponent()
         {
-            this.MoneyOfJoe = new System.Windows.Forms.Label();
-            this.MoneyOfBob = new System.Windows.Forms.Label();
-            this.BankGivesJoe = new System.Windows.Forms.Button();
-            this.BankGivesToBob = new System.Windows.Forms.Button();
-            this.MoneyOfBank = new System.Windows.Forms.Label();
-            this.JoeGivesToBob = new System.Windows.Forms.Button();
-            this.BobGivesToJoe = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.calculate_Button = new System.Windows.Forms.Button();
+            this.money = new System.Windows.Forms.Label();
+            this.MileageOnStart = new System.Windows.Forms.NumericUpDown();
+            this.MileageOnEnd = new System.Windows.Forms.NumericUpDown();
+            this.display_miles = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.MileageOnStart)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MileageOnEnd)).BeginInit();
             this.SuspendLayout();
             // 
-            // MoneyOfJoe
+            // label1
             // 
-            this.MoneyOfJoe.AutoSize = true;
-            this.MoneyOfJoe.Location = new System.Drawing.Point(22, 9);
-            this.MoneyOfJoe.Name = "MoneyOfJoe";
-            this.MoneyOfJoe.Size = new System.Drawing.Size(68, 13);
-            this.MoneyOfJoe.TabIndex = 0;
-            this.MoneyOfJoe.Text = "Joe has 50 $";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(86, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Startring Mileage";
             // 
-            // MoneyOfBob
+            // label2
             // 
-            this.MoneyOfBob.AutoSize = true;
-            this.MoneyOfBob.Location = new System.Drawing.Point(22, 33);
-            this.MoneyOfBob.Name = "MoneyOfBob";
-            this.MoneyOfBob.Size = new System.Drawing.Size(76, 13);
-            this.MoneyOfBob.TabIndex = 1;
-            this.MoneyOfBob.Text = "Bob has 100 $";
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 81);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Ending Mileage";
             // 
-            // BankGivesJoe
+            // label3
             // 
-            this.BankGivesJoe.Location = new System.Drawing.Point(23, 89);
-            this.BankGivesJoe.Name = "BankGivesJoe";
-            this.BankGivesJoe.Size = new System.Drawing.Size(103, 48);
-            this.BankGivesJoe.TabIndex = 2;
-            this.BankGivesJoe.Text = "Give 10$ to Joe";
-            this.BankGivesJoe.UseVisualStyleBackColor = true;
-            this.BankGivesJoe.Click += new System.EventHandler(this.BankGivesJoe_Click);
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(28, 124);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(80, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Amount Owned";
             // 
-            // BankGivesToBob
+            // calculate_Button
             // 
-            this.BankGivesToBob.Location = new System.Drawing.Point(198, 89);
-            this.BankGivesToBob.Name = "BankGivesToBob";
-            this.BankGivesToBob.Size = new System.Drawing.Size(100, 48);
-            this.BankGivesToBob.TabIndex = 3;
-            this.BankGivesToBob.Text = "Recieve 5$ from Bob";
-            this.BankGivesToBob.UseVisualStyleBackColor = true;
-            this.BankGivesToBob.Click += new System.EventHandler(this.BankGivesToBob_Click);
+            this.calculate_Button.Location = new System.Drawing.Point(46, 171);
+            this.calculate_Button.Name = "calculate_Button";
+            this.calculate_Button.Size = new System.Drawing.Size(75, 23);
+            this.calculate_Button.TabIndex = 3;
+            this.calculate_Button.Text = "Calculate";
+            this.calculate_Button.UseVisualStyleBackColor = true;
+            this.calculate_Button.Click += new System.EventHandler(this.calculate_Button_Click);
             // 
-            // MoneyOfBank
+            // money
             // 
-            this.MoneyOfBank.AutoSize = true;
-            this.MoneyOfBank.Location = new System.Drawing.Point(22, 57);
-            this.MoneyOfBank.Name = "MoneyOfBank";
-            this.MoneyOfBank.Size = new System.Drawing.Size(104, 13);
-            this.MoneyOfBank.TabIndex = 4;
-            this.MoneyOfBank.Text = "The Bank has: 100$";
+            this.money.AutoSize = true;
+            this.money.Font = new System.Drawing.Font("Perpetua Titling MT", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.money.Location = new System.Drawing.Point(137, 123);
+            this.money.Name = "money";
+            this.money.Size = new System.Drawing.Size(51, 13);
+            this.money.TabIndex = 4;
+            this.money.Text = "label4";
             // 
-            // JoeGivesToBob
+            // MileageOnStart
             // 
-            this.JoeGivesToBob.Location = new System.Drawing.Point(25, 158);
-            this.JoeGivesToBob.Name = "JoeGivesToBob";
-            this.JoeGivesToBob.Size = new System.Drawing.Size(103, 48);
-            this.JoeGivesToBob.TabIndex = 5;
-            this.JoeGivesToBob.Text = "Joe gives $10 to Bob";
-            this.JoeGivesToBob.UseVisualStyleBackColor = true;
-            this.JoeGivesToBob.Click += new System.EventHandler(this.JoeGivesToBob_Click);
+            this.MileageOnStart.Location = new System.Drawing.Point(137, 28);
+            this.MileageOnStart.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
+            this.MileageOnStart.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.MileageOnStart.Name = "MileageOnStart";
+            this.MileageOnStart.Size = new System.Drawing.Size(120, 20);
+            this.MileageOnStart.TabIndex = 5;
+            this.MileageOnStart.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
-            // BobGivesToJoe
+            // MileageOnEnd
             // 
-            this.BobGivesToJoe.Location = new System.Drawing.Point(198, 158);
-            this.BobGivesToJoe.Name = "BobGivesToJoe";
-            this.BobGivesToJoe.Size = new System.Drawing.Size(103, 48);
-            this.BobGivesToJoe.TabIndex = 6;
-            this.BobGivesToJoe.Text = "Bob gives $5 to Joe";
-            this.BobGivesToJoe.UseVisualStyleBackColor = true;
-            this.BobGivesToJoe.Click += new System.EventHandler(this.BobGivesToJoe_Click);
+            this.MileageOnEnd.Location = new System.Drawing.Point(137, 73);
+            this.MileageOnEnd.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
+            this.MileageOnEnd.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.MileageOnEnd.Name = "MileageOnEnd";
+            this.MileageOnEnd.Size = new System.Drawing.Size(120, 20);
+            this.MileageOnEnd.TabIndex = 6;
+            this.MileageOnEnd.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // display_miles
+            // 
+            this.display_miles.Location = new System.Drawing.Point(201, 171);
+            this.display_miles.Name = "display_miles";
+            this.display_miles.Size = new System.Drawing.Size(90, 23);
+            this.display_miles.TabIndex = 7;
+            this.display_miles.Text = "Display Miles";
+            this.display_miles.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.display_miles.UseVisualStyleBackColor = true;
+            this.display_miles.Click += new System.EventHandler(this.display_miles_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(336, 238);
-            this.Controls.Add(this.BobGivesToJoe);
-            this.Controls.Add(this.JoeGivesToBob);
-            this.Controls.Add(this.MoneyOfBank);
-            this.Controls.Add(this.BankGivesToBob);
-            this.Controls.Add(this.BankGivesJoe);
-            this.Controls.Add(this.MoneyOfBob);
-            this.Controls.Add(this.MoneyOfJoe);
+            this.Controls.Add(this.display_miles);
+            this.Controls.Add(this.MileageOnEnd);
+            this.Controls.Add(this.MileageOnStart);
+            this.Controls.Add(this.money);
+            this.Controls.Add(this.calculate_Button);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Money Barter";
+            this.Text = "Mileage Calculator";
+            ((System.ComponentModel.ISupportInitialize)(this.MileageOnStart)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.MileageOnEnd)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -128,13 +169,14 @@ namespace WindowsFormTest
 
         #endregion
 
-        private System.Windows.Forms.Label MoneyOfJoe;
-        private System.Windows.Forms.Label MoneyOfBob;
-        private System.Windows.Forms.Button BankGivesJoe;
-        private System.Windows.Forms.Button BankGivesToBob;
-        private System.Windows.Forms.Label MoneyOfBank;
-        private System.Windows.Forms.Button JoeGivesToBob;
-        private System.Windows.Forms.Button BobGivesToJoe;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button calculate_Button;
+        private System.Windows.Forms.Label money;
+        private System.Windows.Forms.NumericUpDown MileageOnStart;
+        private System.Windows.Forms.NumericUpDown MileageOnEnd;
+        private System.Windows.Forms.Button display_miles;
     }
 }
 
