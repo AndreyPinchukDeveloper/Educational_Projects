@@ -34,16 +34,18 @@ namespace Permutations
                 }
             }
 
+            Array.Reverse(charArray);
+            AddToList(charArray, repeat);
+
             for (var i = 0; i < stringLength; i++)
             {
-                char[] newArray = (char[])charArray.Reverse();
                 var temp = charArray[stringLength - 1];
                 for (var j = stringLength - 1; j > 0; j--)
                 {
                     charArray[j] = charArray[j - 1];
                 }
                 charArray[0] = temp;
-                if (i < stringLength)
+                if (i < stringLength-1)
                 {
                     AddToList(charArray, repeat);
                 }
