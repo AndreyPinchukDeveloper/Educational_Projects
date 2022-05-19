@@ -23,6 +23,7 @@ namespace DriveStorage.customcontrols
         public CustomList()
         {
             InitializeComponent();
+            DataContext = new MyFileViewModel();
         }
 
 

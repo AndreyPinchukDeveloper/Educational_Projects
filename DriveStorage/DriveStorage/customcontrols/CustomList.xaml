@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DriveStorage.customcontrols"
-             mc:Ignorable="d" HorizontalAlignment="Stretch">
+             mc:Ignorable="d" x:Name="this" HorizontalAlignment="Stretch">
     <!--New files ListBox-->
     <UserControl.Resources>
         <Style x:Key="LBText" TargetType="{x:Type TextBlock}">
@@ -42,6 +42,15 @@
                                 <!--Icon-->
                                 <Path Width="36" Data="{Binding FileThumb}" Fill="{Binding Fill, TargetNullValue=#C2C3C3, FallbackValue=#C2C3C3}"
                                       HorizontalAlignment="Center" VerticalAlignment="Center" Style="{StaticResource LBPath}"/>
+                                
+                                <TextBlock Grid.Column="1" Text="{Binding FileName}" Style="{StaticResource LBText}"/>
+                                <TextBlock Grid.Column="2" Text="{Binding FileProgram}" Style="{StaticResource LBText}"/>
+                                <TextBlock Grid.Column="3" Text="{Binding ModifieOn}" Style="{StaticResource LBText}"/>
+                                <TextBlock Grid.Column="4" Text="{Binding FileType}" Style="{StaticResource LBText}"/>
+
+                                <Path Grid.Column="5" Data="{DynamicResource more}" Style="{StaticResource LBText}" Width="15"/>
+                                <Path Grid.Column="6" Data="{DynamicResource plus}" Style="{StaticResource LBText}" Width="15"/>
+                                <Path Grid.Column="7" Data="{DynamicResource Shared}" Style="{StaticResource LBText}" Width="15"/>
                             </Grid>
                         </Border>
                     </ControlTemplate>
@@ -49,7 +58,5 @@
             </Setter>
         </Style>
     </UserControl.Resources>
-    <Grid>
-            
-    </Grid>
+    <ListBox Height="{Binding Height, ElementName=this}" Width="{Binding Width, ElementName=this}" ItemsSource="{Binding getFileDetails}" Background="" 
 </UserControl>
