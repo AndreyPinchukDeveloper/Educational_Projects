@@ -12,23 +12,32 @@ namespace WindowsFormTest
 {
     public partial class Form1 : Form
     {
-        private decimal price = 39;
-        private decimal miles = 0;
+        Elephant lloyd = new Elephant() { EarSize = 40, Name = "Lloyd" };
+        Elephant lucinda = new Elephant() { EarSize = 33, Name = "Lucinda" };
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void calculate_Button_Click(object sender, EventArgs e)
+        private void Lloyd_Click(object sender, EventArgs e)
         {
-            decimal count = (MileageOnEnd.Value - MileageOnStart.Value)*price;
-            money.Text = count.ToString()+" $";
+            WhoAmI(lloyd);
         }
 
-        private void display_miles_Click(object sender, EventArgs e)
+        private void Lucinda_Click(object sender, EventArgs e)
         {
-            miles = MileageOnEnd.Value - MileageOnStart.Value;
-            MessageBox.Show(miles.ToString());
+            WhoAmI(lucinda);
+        }
+
+        private void Swap_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        public void WhoAmI(Elephant elephant)
+        {
+            
         }
     }
 }

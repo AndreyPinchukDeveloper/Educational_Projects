@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace WindowsFormTest
 {
-    public class Guy
+    class Elephant
     {
-        public string name { get; set; }
-        public int cash { get; set; }
+        public int EarSize{get; set;}
+
+        public string Name { get; set; }
     }
 }
