@@ -7,12 +7,20 @@ namespace Permutations
 {
     class Program
     {
-        public static string a = "tes";
-        private static List<string> _permutationsList = new List<string>() {a};
+        private static List<string> _permutationsList = new List<string>() {};
+
         static void Main(string[] args)
         {
-            char[] newArray = a.ToCharArray();
-            RecPermutation(newArray);        
+            string andre = "as";
+            SinglePermutations(andre);
+            Console.ReadLine();
+        }
+
+        public static List<string> SinglePermutations(string s)
+        {
+            char[] newArray = s.ToCharArray();
+            RecPermutation(newArray);
+            return _permutationsList;
         }
 
         public static void RecPermutation(char[] charArray)
