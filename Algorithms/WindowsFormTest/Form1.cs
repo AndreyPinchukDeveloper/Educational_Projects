@@ -14,7 +14,7 @@ namespace WindowsFormTest
     {
         Elephant lloyd = new Elephant() { EarSize = 40, Name = "Lloyd" };
         Elephant lucinda = new Elephant() { EarSize = 33, Name = "Lucinda" };
-
+        Elephant iAmThird = new Elephant() { EarSize = 0, Name = "NoName" };
         public Form1()
         {
             InitializeComponent();
@@ -22,22 +22,35 @@ namespace WindowsFormTest
 
         private void Lloyd_Click(object sender, EventArgs e)
         {
-            WhoAmI(lloyd);
+            lloyd.WhoAmI(lloyd);
         }
 
         private void Lucinda_Click(object sender, EventArgs e)
         {
-            WhoAmI(lucinda);
+            lucinda.WhoAmI(lucinda);
         }
 
         private void Swap_Click(object sender, EventArgs e)
         {
-
-        }
-
-        public void WhoAmI(Elephant elephant)
-        {
+            switch (lloyd.EarSize)
+            {
+                case 40:
+                    iAmThird = lloyd;
+                    lloyd = lucinda;
+                    lucinda = iAmThird;
+                    MessageBox.Show("References has been chenged");
+                    break;
+                case 33:
+                    iAmThird = lloyd;
+                    lloyd = lucinda;
+                    lucinda = iAmThird;
+                    MessageBox.Show("References has been chenged");
+                    break;
+                default:
+                    break;
+            }
             
         }
+
     }
 }
