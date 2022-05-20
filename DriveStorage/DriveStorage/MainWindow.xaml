@@ -102,7 +102,15 @@
             <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,360,67,0" Content="VEW ALL" Style="{StaticResource SecondaryButton}"/>
             
             <!--we'll create custom list-->
-            <customcontrols:CustomList Margin="0,425,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <customcontrols:CustomList Margin="0,425,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+            
+            <TextBlock Text="Shared with me" HorizontalAlignment="Left" Margin="60,660,0,0" VerticalAlignment="Top" FontSize="18" FontWeight="SemiBold"/>
+            <Button HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,660,67,0" Content="VEW ALL" Style="{StaticResource SecondaryButton}"/>
+
+            <!--Medium Cards-->
+            <StackPanel CanHorizontallyScroll="True" Orientation="Horizontal" Margin="58,0,0,64" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
+                
+            </StackPanel>
         </Grid>
     </Grid>
 </Window>

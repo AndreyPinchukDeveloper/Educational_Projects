@@ -22,8 +22,13 @@ namespace DriveStorage.customcontrols
             {
                 return new ObservableCollection<GetFileDetails>
                 {
-                    new GetFileDetails() { FileThumb=(PathGeometry)dict["Pdf"], FileName="File 1", Fill="Red", FileProgram = "Adobe Acrobat", ModifiedOn="19.05.2022"
-                }};
+                    new GetFileDetails() { FileThumb=(PathGeometry)dict["Pdf"], FileName="File 1", Fill="Red", FileProgram = "Adobe Acrobat", ModifiedOn="19.05.2022", FileType=".pdf"
+                },  new GetFileDetails() { FileThumb=(PathGeometry)dict["Png"], FileName="File 2", Fill="Green", FileProgram = "Photo Viewer", ModifiedOn="19.05.2022", FileType=".png"
+                }, new GetFileDetails() { FileThumb=(PathGeometry)dict["txt"], FileName="File 3", Fill="CadetBlue", FileProgram = "Notepad", ModifiedOn="19.05.2022", FileType=".txt"
+                }, new GetFileDetails() { FileThumb=(PathGeometry)dict["Pdf"], FileName="File 4", Fill="Green", FileProgram = "Adobe Acrobat", ModifiedOn="19.05.2022", FileType=".pdf"
+                }
+
+                };
             }
                
         }

@@ -21,7 +21,7 @@
         <!--List box item style-->
         <Style TargetType="{x:Type ListBoxItem}">
             <Setter Property="Height" Value="50"/>
-            <Setter Property="Width" Value="740"/>
+            <Setter Property="Width" Value="780"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type ListBoxItem}">
@@ -45,18 +45,30 @@
                                 
                                 <TextBlock Grid.Column="1" Text="{Binding FileName}" Style="{StaticResource LBText}"/>
                                 <TextBlock Grid.Column="2" Text="{Binding FileProgram}" Style="{StaticResource LBText}"/>
-                                <TextBlock Grid.Column="3" Text="{Binding ModifieOn}" Style="{StaticResource LBText}"/>
+                                <TextBlock Grid.Column="3" Text="{Binding ModifiedOn}" Style="{StaticResource LBText}"/>
                                 <TextBlock Grid.Column="4" Text="{Binding FileType}" Style="{StaticResource LBText}"/>
 
-                                <Path Grid.Column="5" Data="{DynamicResource more}" Style="{StaticResource LBText}" Width="15"/>
-                                <Path Grid.Column="6" Data="{DynamicResource plus}" Style="{StaticResource LBText}" Width="15"/>
-                                <Path Grid.Column="7" Data="{DynamicResource Shared}" Style="{StaticResource LBText}" Width="15"/>
+                                <Path Grid.Column="5" Data="{DynamicResource more}" Style="{StaticResource LBPath}" Width="15"/>
+                                <Path Grid.Column="6" Data="{DynamicResource plus}" Style="{StaticResource LBPath}" Width="15"/>
+                                <Path Grid.Column="7" Data="{DynamicResource Shared}" Style="{StaticResource LBPath}" Width="15"/>
                             </Grid>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="White"/>
+
+                                <!--optional triggers, :P-->
+                                <Setter Property="Width" Value="800"/>
+                            </Trigger>
+                            
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="White"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
     </UserControl.Resources>
-    <ListBox Height="{Binding Height, ElementName=this}" Width="{Binding Width, ElementName=this}" ItemsSource="{Binding getFileDetails}" Background="" 
+    <ListBox Height="{Binding Height, ElementName=this}" Width="{Binding Width, ElementName=this}" ItemsSource="{Binding getFileDetails}" Background="Transparent" BorderThickness="0"/>
 </UserControl>

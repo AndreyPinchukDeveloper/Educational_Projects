@@ -63,6 +63,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="customcontrols\MediumCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="customcontrols\MenuButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -80,6 +84,9 @@
     </Compile>
     <Compile Include="customcontrols\Folders.xaml.cs">
       <DependentUpon>Folders.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="customcontrols\MediumCard.xaml.cs">
+      <DependentUpon>MediumCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="customcontrols\MenuButton.xaml.cs">
       <DependentUpon>MenuButton.xaml</DependentUpon>
