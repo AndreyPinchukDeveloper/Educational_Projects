@@ -8,10 +8,10 @@ namespace Permutations
     class Program
     {
         private static List<string> _permutationsList = new List<string>() {};
-
+        Random random = new Random();
         static void Main(string[] args)
         {
-            string andre = "as";
+            string andre = "aabb";
             SinglePermutations(andre);
             Console.ReadLine();
         }
@@ -19,6 +19,7 @@ namespace Permutations
         public static List<string> SinglePermutations(string s)
         {
             char[] newArray = s.ToCharArray();
+            AddToList(newArray);
             RecPermutation(newArray);
             return _permutationsList;
         }
@@ -43,7 +44,7 @@ namespace Permutations
             }
 
             Array.Reverse(charArray);
-            AddToList(charArray, repeat);
+            AddToList(charArray);
 
             for (var i = 0; i < stringLength; i++)
             {
@@ -71,10 +72,16 @@ namespace Permutations
             {
                 bufer.Append(charArray[i]);
             }
-            if (repeat || !_permutationsList.Contains(bufer.ToString()))
+            if (repeat && !_permutationsList.Contains(bufer.ToString()))
             {
                 _permutationsList.Add(bufer.ToString());
             }
+
+        }
+
+        //new method to shuffle all elements
+        private void ShuffleArray()
+        {
 
         }
     }
