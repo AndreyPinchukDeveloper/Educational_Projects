@@ -13,9 +13,15 @@
             </Grid.RowDefinitions>
             
             <!--File Icon-->
-            <Path Data="{Binding ElementName=this, FileIcon}" F>
-                
-            </Path>
+            <Path Data="{Binding FileIcon, ElementName=this}" Fill="{Binding Fill, ElementName=this, FallbackValue=#C2C3C3, TargetNullValue=#C2C3C3 }" 
+                  Stretch="Uniform" HorizontalAlignment="Left" Height="50" Margin="10"/>
+            
+            <!--Text-->
+            <TextBlock Grid.Row="1" Style="{StaticResource MainText}" Margin="10">
+                <Run Text="{Binding Text1, ElementName=this, FallbackValue=Text1, TargetNullValue=Text1}"/>
+                <LineBreak/>
+                <Run Text="{Binding Text2, ElementName=this, FallbackValue=Text2, TargetNullValue=Text2}"/>
+            </TextBlock>
         </Grid>
     </Border>
     

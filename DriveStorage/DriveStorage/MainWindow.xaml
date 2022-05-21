@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DriveStorage"
         mc:Ignorable="d"
-        Title="MainWindow" Height="900" Width="1438" WindowStartupLocation="CenterScreen">
+        Title="MainWindow" Height="900" Width="1438" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -27,7 +27,7 @@
                            HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="21"
                            FontFamily ="Arial Rounded MT Bold"/>
                 <!--e need to set padding for inside controls in radio button-->
-                <customcontrols:MenuButton Margin="0,53,0,0" Padding="0,0,0,0" 
+                <customcontrols:MenuButton Margin="20,53,0,0" Padding="0,0,0,0" 
                 Icon="{StaticResource MyDrive}" IsSelected="True" Text="My drive" GroupName="MenuButton"/>
 
                 <!--#region Menu Buttons Files Section-->
@@ -35,13 +35,13 @@
                     <TextBlock Margin="65,27,0,0" Text="FILES" Style="{StaticResource TitleText}"/>
                     <!--We only want to select one button at the time...
                     for that we will use radio button-->
-                    <customcontrols:MenuButton Padding="5,0,0,0" 
+                    <customcontrols:MenuButton Padding="20,0,0,0" 
                       Icon="{StaticResource MyFilesFolder}" Text="My files" GroupName="MenuButton"/>
-                    <customcontrols:MenuButton Padding="5,0,0,0" 
+                    <customcontrols:MenuButton Padding="20,0,0,0" 
                       Icon="{StaticResource Shared}" Text="Sharing" GroupName="MenuButton"/>
-                    <customcontrols:MenuButton Padding="5,0,0,0" 
+                    <customcontrols:MenuButton Padding="20,0,0,0" 
                       Icon="{StaticResource Filerequest}" Text="File requests" GroupName="MenuButton"/>
-                    <customcontrols:MenuButton Padding="5,0,0,0" 
+                    <customcontrols:MenuButton Padding="20,0,0,0" 
                       Icon="{StaticResource Trash}" Text="Delete files" GroupName="MenuButton"/>
                 </StackPanel>
 
@@ -49,11 +49,11 @@
                     <TextBlock Margin="65,27,0,0" Text="MY PLACES" Style="{StaticResource TitleText}"/>
                     <!--We only want to select one button at the time...
                     for that we will use radio button-->
-                    <customcontrols:MenuButton Padding="5,0,0,0" 
+                    <customcontrols:MenuButton Padding="20,0,0,0" 
                       Icon="{StaticResource Folders}" Text="Designs" GroupName="MenuButton"/>
-                    <customcontrols:MenuButton Padding="5,0,0,0" 
+                    <customcontrols:MenuButton Padding="20,0,0,0" 
                       Icon="{StaticResource Folders}" Text="Music" GroupName="MenuButton"/>
-                    <customcontrols:MenuButton Padding="5,0,0,0" 
+                    <customcontrols:MenuButton Padding="20,0,0,0" 
                       Icon="{StaticResource Folders}" Text="Design Sprint" GroupName="MenuButton"/>
                 </StackPanel>
                 <!--#endregion-->
@@ -109,7 +109,12 @@
 
             <!--Medium Cards-->
             <StackPanel CanHorizontallyScroll="True" Orientation="Horizontal" Margin="58,0,0,64" HorizontalAlignment="Stretch" VerticalAlignment="Bottom">
-                
+                <customcontrols:MediumCard FileIcon="{StaticResource Pdf}" Fill="Red" Text1="Manual" Text2="GuideLines"/>
+                <customcontrols:MediumCard FileIcon="{StaticResource Png}" Fill="CadetBlue" Text1="Manual" Text2="GuideLines" Margin="28,0,0,0"/>
+                <customcontrols:MediumCard FileIcon="{StaticResource txt}" Fill="Green" Text1="Manual" Text2="GuideLines" Margin="28,0,0,0"/>
+                <customcontrols:MediumCard FileIcon="{StaticResource Pdf}" Fill="Red" Text1="Manual" Text2="GuideLines" Margin="28,0,0,0"/>
+                <customcontrols:MediumCard FileIcon="{StaticResource Pdf}" Fill="Red" Text1="Manual" Text2="GuideLines" Margin="28,0,0,0"/>
+                <customcontrols:MediumCard FileIcon="{StaticResource Png}" Fill="CadetBlue" Text1="Manual" Text2="GuideLines" Margin="28,0,0,0"/>
             </StackPanel>
         </Grid>
     </Grid>
