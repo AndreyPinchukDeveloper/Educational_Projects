@@ -61,5 +61,23 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        
+        <!--Drop shadow effect (optional)-->
+        <DropShadowBitmapEffect x:Key="DropShadowButton" Softness="2" ShadowDepth="5" Color="LightGray" Direction="260"/>
+
+        <!--Search button style-->
+        <Style x:Key="SearchButton" TargetType="{x:Type Button}" BasedOn="{StaticResource PrimaryButton}">
+            <Setter Property="BitmapEffect" Value="{StaticResource DropShadowButton}"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="18" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                            <Path Data="{DynamicResource Search}" Fill="white" Width="15" Stretch="Uniform"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Application.Resources>
 </Application>
