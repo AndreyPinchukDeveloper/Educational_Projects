@@ -23,6 +23,7 @@ namespace WindowsFormTest
         private void Lloyd_Click(object sender, EventArgs e)
         {
             lloyd.WhoAmI(lloyd);
+            lloyd.TellMe("Hi everyone !", lucinda);
         }
 
         private void Lucinda_Click(object sender, EventArgs e)

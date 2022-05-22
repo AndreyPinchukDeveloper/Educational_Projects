@@ -36,9 +36,10 @@ namespace WindowsFormTest
             // 
             // Lloyd
             // 
-            this.Lloyd.Location = new System.Drawing.Point(112, 47);
+            this.Lloyd.Location = new System.Drawing.Point(84, 38);
+            this.Lloyd.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Lloyd.Name = "Lloyd";
-            this.Lloyd.Size = new System.Drawing.Size(87, 49);
+            this.Lloyd.Size = new System.Drawing.Size(65, 40);
             this.Lloyd.TabIndex = 0;
             this.Lloyd.Text = "Lloyd";
             this.Lloyd.UseVisualStyleBackColor = true;
@@ -46,9 +47,10 @@ namespace WindowsFormTest
             // 
             // Lucinda
             // 
-            this.Lucinda.Location = new System.Drawing.Point(255, 47);
+            this.Lucinda.Location = new System.Drawing.Point(191, 38);
+            this.Lucinda.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Lucinda.Name = "Lucinda";
-            this.Lucinda.Size = new System.Drawing.Size(97, 49);
+            this.Lucinda.Size = new System.Drawing.Size(73, 40);
             this.Lucinda.TabIndex = 1;
             this.Lucinda.Text = "Lucinda";
             this.Lucinda.UseVisualStyleBackColor = true;
@@ -56,9 +58,10 @@ namespace WindowsFormTest
             // 
             // Swap
             // 
-            this.Swap.Location = new System.Drawing.Point(172, 121);
+            this.Swap.Location = new System.Drawing.Point(129, 98);
+            this.Swap.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Swap.Name = "Swap";
-            this.Swap.Size = new System.Drawing.Size(120, 55);
+            this.Swap.Size = new System.Drawing.Size(90, 45);
             this.Swap.TabIndex = 2;
             this.Swap.Text = "Swap!";
             this.Swap.UseVisualStyleBackColor = true;
@@ -66,13 +69,12 @@ namespace WindowsFormTest
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(448, 293);
+            this.ClientSize = new System.Drawing.Size(336, 238);
             this.Controls.Add(this.Swap);
             this.Controls.Add(this.Lucinda);
             this.Controls.Add(this.Lloyd);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
