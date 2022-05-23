@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:DriveStorage.customcontrols"
              mc:Ignorable="d" x:Name="this" HorizontalAlignment="Stretch">
+    
     <!--New files ListBox-->
     <UserControl.Resources>
         <Style x:Key="LBText" TargetType="{x:Type TextBlock}">
