@@ -27,11 +27,18 @@ namespace CatchAletter
                 listBox1.Items.Clear();
                 listBox1.Items.Add("The game is over!");
                 timer1.Stop();
+                MessageBox.Show("Press OK to start a new game !");
+                NewGame();
                 
             }
         }
 
-        //new method to start new game
+        private void NewGame()
+        {
+            timer1.Interval = 1500;
+            listBox1.Items.Clear();
+            timer1.Start();
+        }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {

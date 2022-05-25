@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.32413.511
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormTest", "WindowsFormTest\WindowsFormTest.csproj", "{316D872A-177C-4EB7-9CB1-D86FC905B2AC}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RandomMenu", "RandomMenu\RandomMenu.csproj", "{D64A3540-5CB7-433B-842B-CD3348355CD6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CatchAletter", "CatchAletter\CatchAletter.csproj", "{01A2B589-11E8-431F-AF0A-8B01672645CD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Party_Planner", "Party_Planner\Party_Planner.csproj", "{D57C254E-B4EA-43E8-97BB-6A133E389DBA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{01A2B589-11E8-431F-AF0A-8B01672645CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01A2B589-11E8-431F-AF0A-8B01672645CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01A2B589-11E8-431F-AF0A-8B01672645CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D57C254E-B4EA-43E8-97BB-6A133E389DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D57C254E-B4EA-43E8-97BB-6A133E389DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D57C254E-B4EA-43E8-97BB-6A133E389DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D57C254E-B4EA-43E8-97BB-6A133E389DBA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
