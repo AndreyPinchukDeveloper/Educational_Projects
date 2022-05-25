@@ -55,7 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="customcontrols\CircularProgressBar.xaml">
+    <Page Include="customcontrols\CircleProgressBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -83,8 +83,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="customcontrols\CircularProgressBar.xaml.cs">
-      <DependentUpon>CircularProgressBar.xaml</DependentUpon>
+    <Compile Include="customcontrols\CircleProgressBar.xaml.cs">
+      <DependentUpon>CircleProgressBar.xaml</DependentUpon>
     </Compile>
     <Compile Include="customcontrols\CustomList.xaml.cs">
       <DependentUpon>CustomList.xaml</DependentUpon>

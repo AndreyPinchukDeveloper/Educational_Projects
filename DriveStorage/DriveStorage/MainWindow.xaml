@@ -145,8 +145,8 @@
                     <LineBreak/>
                     <Run Text="this week"/>
                 </TextBlock>
-                
-                <ProgressBar/>
+
+                <customcontrols:CircleProgressBar HorizontalAlignment="Center" Value="69" ArcThickness="2" IndicatorBrush="#6D78CB"/>
 
                 <TextBlock HorizontalAlignment="Right" FontSize="14" VerticalAlignment="Center" Foreground="Black" Margin="0,0,24,0">
                     <Run Text="perday"/>
