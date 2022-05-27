@@ -12,29 +12,47 @@ namespace Party_Planner
 {
     public partial class PartyPlanner : Form
     {
-
-        int mumberOfPeople = 0;
-        double cost = 0;
-
+        
         public PartyPlanner()
         {
             InitializeComponent();
+            
         }
-
+        
         private void Button_Calculate_Click(object sender, EventArgs e)
         {
-
+            double people = (double)numericUpDown1.Value;
+            Calculate(people, CheckBox__Healthy_Options.Checked, CheckBox__Fancy_Decorations.Checked);
         }
 
-        private double Calculate(int guests, bool fancyDecorations, bool healthyOptions)
+        private void Calculate(double guests, bool healthyOptions, bool fancyDecorations)
         {
             double calculatedCost = 0;
 
             if (fancyDecorations && healthyOptions)
             {
-
+                calculatedCost = guests * 5 + guests * 15 + 50;
+                calculatedCost *=  0.95;
             }
-            return calculatedCost;
+            else if (fancyDecorations && !healthyOptions)
+            {
+                calculatedCost = guests * 20 + guests * 15 + 50;
+            }
+            else if (!fancyDecorations && healthyOptions)
+            {
+                calculatedCost = guests * 5 + guests * 7.5 + 30;
+                calculatedCost *= 0.95;
+            }
+            else if (!fancyDecorations && !healthyOptions)
+            {
+                calculatedCost = guests * 20 + guests * 7.5 + 30;
+            }
+            textBox1.Text = calculatedCost + " $";
         }
+
+        /*public void UpdateFields()
+        {
+            textBox1.Text = 
+        }*/
     }
 }
