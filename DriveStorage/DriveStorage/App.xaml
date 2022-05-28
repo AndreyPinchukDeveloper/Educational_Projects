@@ -19,8 +19,10 @@
             <Setter Property="FontWeight" Value="Normal"/>
             <Setter Property="Margin" Value="11,0"/>
         </Style>
-
+        
+        <DropShadowBitmapEffect x:Key="DropShadowButton" Softness="2" ShadowDepth="5" Color="LightGray" Direction="260"/>
         <Style x:Key="PrimaryButton" TargetType="{x:Type Button}">
+            <Setter Property="BitmapEffect" Value="{StaticResource DropShadowButton}"/>
             <Setter Property="Background" Value="#6D78CB"/>
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="Width" Value="174"/>
@@ -62,12 +64,8 @@
             </Setter>
         </Style>
         
-        <!--Drop shadow effect (optional)-->
-        <DropShadowBitmapEffect x:Key="DropShadowButton" Softness="2" ShadowDepth="5" Color="LightGray" Direction="260"/>
-
         <!--Search button style-->
         <Style x:Key="SearchButton" TargetType="{x:Type Button}" BasedOn="{StaticResource PrimaryButton}">
-            <Setter Property="BitmapEffect" Value="{StaticResource DropShadowButton}"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Template">
                 <Setter.Value>

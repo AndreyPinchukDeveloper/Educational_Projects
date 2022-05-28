@@ -18,9 +18,11 @@
             <Setter Property="Stretch" Value="Uniform"/>
             <Setter Property="Height" Value="25"/>
         </Style>
-        
+
+        <DropShadowBitmapEffect x:Key="DropShadowListItem" Softness="2" ShadowDepth="5" Color="LightGray" Direction="260"/>
         <!--List box item style-->
         <Style TargetType="{x:Type ListBoxItem}">
+            <Setter Property="BitmapEffect" Value="{StaticResource DropShadowListItem}"/>
             <Setter Property="Height" Value="50"/>
             <Setter Property="Width" Value="780"/>
             <Setter Property="Template">

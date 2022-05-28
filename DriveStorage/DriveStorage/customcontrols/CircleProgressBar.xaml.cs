@@ -60,7 +60,7 @@ namespace DriveStorage.customcontrols
 
         // Using a DependencyProperty as the backing store for PFontColor.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty PFontColorProperty =
-            DependencyProperty.Register("PFontColor", typeof(Brush), typeof(Brush));
+            DependencyProperty.Register("PFontColor", typeof(Brush), typeof(CircleProgressBar));
 
 
 

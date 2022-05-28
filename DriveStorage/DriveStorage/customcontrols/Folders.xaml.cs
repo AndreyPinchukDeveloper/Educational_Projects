@@ -41,7 +41,7 @@ namespace DriveStorage.customcontrols
             set { SetValue(FolderNameProperty, value); }
         }
         public static readonly DependencyProperty FolderNameProperty =
-            DependencyProperty.Register("FolderName", typeof(Thickness), typeof(Folders));
+            DependencyProperty.Register("FolderName", typeof(string), typeof(Folders));
 
         public new Thickness Padding
         {
