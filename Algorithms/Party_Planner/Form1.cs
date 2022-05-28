@@ -12,7 +12,8 @@ namespace Party_Planner
 {
     public partial class PartyPlanner : Form
     {
-        
+        DinnerParty 
+
         public PartyPlanner()
         {
             InitializeComponent();
