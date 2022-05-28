@@ -8,8 +8,7 @@ namespace Party_Planner
 {
     class DinnerParty
     {
-
-        private double Calculate(double guests, bool healthyOptions, bool fancyDecorations)
+        public double Calculate(double guests, bool healthyOptions, bool fancyDecorations)
         {
             double calculatedCost = 0;
 
