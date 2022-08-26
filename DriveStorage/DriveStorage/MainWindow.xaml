@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:DriveStorage"
         mc:Ignorable="d"
         Title="MainWindow" Height="900" Width="1438" WindowStartupLocation="CenterScreen" Background="Transparent" WindowStyle="None" ResizeMode="NoResize" AllowsTransparency="True">
+    
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
