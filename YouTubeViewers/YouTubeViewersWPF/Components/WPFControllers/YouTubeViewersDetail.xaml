@@ -8,9 +8,10 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <Border 
-            BorderBrush="Gray" 
+            BorderBrush="{StaticResource BorderPrimary}" 
             BorderThickness="1"
             CornerRadius="5"
+            SnapsToDevicePixels="True"
             Padding="28">
             
             <!--IsSHaredSizeScope provides us to any entity became lined up(alignment)-->

@@ -26,9 +26,8 @@
             
             <Button Content="Add" 
                     Grid.Column="1"
-                    VerticalAlignment="Center"
-                    Padding="20 10"
-                    FontSize="11"/>
+                    FontSize="11"
+                    Command="{Binding AddYouTubeViewersCommand}"/>
             
         </Grid>
 
@@ -38,8 +37,11 @@
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
 
-            <wpfcontrollers:YouTubeViewerListing/>
-            <wpfcontrollers:YouTubeViewersDetail Margin="10 0 0 0" Grid.Column="1"/>
+            <wpfcontrollers:YouTubeViewerListing DataContext="{Binding YouTubeViewersListingViewModel}"/>
+            <wpfcontrollers:YouTubeViewersDetail 
+                Margin="10 0 0 0" 
+                Grid.Column="1"
+                DataContext="{Binding YouTubeViewersDetailsViewModel}"/>
         </Grid>
     </Grid> 
 </UserControl>
