@@ -17,6 +17,7 @@
 
             <ListView 
                 BorderThickness="0"
+                SelectedItem="{Binding SelectedYouTubeViewersListingItemViewModels}"
                 ItemsSource="{Binding YouTubeViewersListingItemViewModels}">
 
                 <ListView.ItemContainerStyle>
@@ -94,8 +95,8 @@
                                                 </Style>
                                             </StackPanel.Resources>
                                             
-                                            <Button Content="Edit"/>
-                                            <Button Content="Delete"/>
+                                            <Button Content="Edit" Command="{Binding EditCommand}"/>
+                                            <Button Content="Delete" Command="{Binding DeleteCommand}"/>
                                         </StackPanel>
 
                                     </Border>

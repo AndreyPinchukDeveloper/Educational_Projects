@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using YouTubeViewersWPF.Stores;
 using YouTubeViewersWPF.ViewModels.Base;
 
 namespace YouTubeViewersWPF.ViewModels
@@ -12,7 +13,16 @@ namespace YouTubeViewersWPF.ViewModels
         //YouTubeViewersListingItemViewModels bind with ListView Listing controller
         public IEnumerable<YouTubeViewersListingItemViewModel> YouTubeViewersListingItemViewModels =>
             _youTubeViewersListingItemViewModels;
-        public YouTubeViewersListingViewModel()
+
+        private YouTubeViewersListingItemViewModel myVar;
+
+        public YouTubeViewersListingItemViewModel MyPropSelectedYouTubeViewersListingItemViewModelserty
+        {
+            get { return myVar; }
+            set { myVar = value; }
+        }
+
+        public YouTubeViewersListingViewModel(SelectedYouTubeViewerStore selectedYouTubeViewerStore)
         {
             _youTubeViewersListingItemViewModels = new ObservableCollection<YouTubeViewersListingItemViewModel>();
             _youTubeViewersListingItemViewModels.Add(new YouTubeViewersListingItemViewModel("Inessa"));

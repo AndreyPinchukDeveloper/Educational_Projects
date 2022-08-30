@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using YouTubeViewersWPF.Stores;
 using YouTubeViewersWPF.ViewModels;
 
 namespace YouTubeViewersWPF
@@ -14,11 +9,18 @@ namespace YouTubeViewersWPF
     /// </summary>
     public partial class App : Application
     {
+        private readonly SelectedYouTubeViewerStore _selectedYouTubeViewersStore;
+
+        public App()
+        {
+            _selectedYouTubeViewersStore = new SelectedYouTubeViewerStore();
+        }
+
         protected override void OnStartup(StartupEventArgs e)
         {
             MainWindow = new MainWindow()
             {
-                DataContext = new YouTubeViewersViewModel()
+                DataContext = new YouTubeViewersViewModel(_selectedYouTubeViewersStore)
             };
             MainWindow.Show();
             base.OnStartup(e);
