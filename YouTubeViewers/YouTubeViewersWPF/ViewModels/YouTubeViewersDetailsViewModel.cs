@@ -9,6 +9,9 @@ using YouTubeViewersWPF.ViewModels.Base;
 
 namespace YouTubeViewersWPF.ViewModels
 {
+    /// <summary>
+    /// This view model rerpresent us information about viewer
+    /// </summary>
     public class YouTubeViewersDetailsViewModel:ViewModelBase
     {
         private readonly SelectedYouTubeViewerStore _selectedYouTubeViewerStore;
@@ -21,7 +24,27 @@ namespace YouTubeViewersWPF.ViewModels
         
         public YouTubeViewersDetailsViewModel(SelectedYouTubeViewerStore selectedYouTubeViewerStore)
         {
-            selectedYouTubeViewerStore = _selectedYouTubeViewerStore;
+            _selectedYouTubeViewerStore = selectedYouTubeViewerStore;
+
+            _selectedYouTubeViewerStore.SelectedYouTubeViewerChanged += SelectedYouTubeViewerStore_SelectedYouTubeViewerChanged;
+        }
+
+
+        protected override void Dispose()
+        {
+            _selectedYouTubeViewerStore.SelectedYouTubeViewerChanged -= SelectedYouTubeViewerStore_SelectedYouTubeViewerChanged;
+            base.Dispose();
+        }
+
+        /// <summary>
+        /// This method refresh data if there was any changes
+        /// </summary>
+        private void SelectedYouTubeViewerStore_SelectedYouTubeViewerChanged()
+        {
+            OnPropertyChanged(nameof(HasSelectedYouTubeViewer));
+            OnPropertyChanged(nameof(Username));
+            OnPropertyChanged(nameof(IsSubscribedDisplay));
+            OnPropertyChanged(nameof(IsMemberDisplay));
         }
     }
 }
