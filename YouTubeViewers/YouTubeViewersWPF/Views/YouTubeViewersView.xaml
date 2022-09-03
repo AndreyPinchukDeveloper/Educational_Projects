@@ -22,7 +22,7 @@
             <TextBlock 
                 Grid.Column="0" 
                 Text="YouTubeViewrs"
-                FontSize="28"/>
+                Style="{StaticResource PageHeader}"/>
             
             <Button Content="Add" 
                     Grid.Column="1"
