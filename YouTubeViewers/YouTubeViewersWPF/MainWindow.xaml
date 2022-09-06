@@ -3,11 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:YouTubeViewersWPF" xmlns:views="clr-namespace:YouTubeViewersWPF.Views"
+        xmlns:local="clr-namespace:YouTubeViewersWPF" 
+        xmlns:views="clr-namespace:YouTubeViewersWPF.Views"
         mc:Ignorable="d"
         FontSize="14"
         Title="YouTube Viewrs" Height="450" Width="800">
-    <Grid Margin="20">
-        <views:YouTubeViewersView/>
-    </Grid>
+    
+    <!--scrollWiewer make our window be able to scrollong up and down-->
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel Margin="20">
+            <views:YouTubeViewersView/>
+            <views:EditYouTubeViewerView/>
+        </StackPanel>
+    </ScrollViewer>
+    
 </Window>

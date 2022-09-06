@@ -24,7 +24,7 @@
                 <Grid.ColumnDefinitions>
                     <!--SHaredSizeGroup must be identified-->
                     <ColumnDefinition Width="auto" SharedSizeGroup="Label"/>
-                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*" MinWidth="250"/>
                 </Grid.ColumnDefinitions>
 
                 <TextBlock 
@@ -32,7 +32,7 @@
                         FontWeight="Bold"
                         Text="Username"/>
 
-                <TextBlock 
+                <TextBox 
                         Grid.Column="1"
                         Text="{Binding Username}"
                         Margin="20 0 0 0"/>
@@ -76,9 +76,10 @@
             </Grid>
         </Grid>
 
-        <WrapPanel Grid.Row="1" Margin="0 0 20 0">
+        <WrapPanel Grid.Row="1" Margin="0 0 30 0">
             <Button 
-                Content="Submit" 
+                Content="Submit"
+                IsEnabled="{Binding CanSubmit}"
                 Command="{Binding SubmitCommand}" 
                 Margin="0 0 10 0"/>
             
