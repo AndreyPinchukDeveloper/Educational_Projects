@@ -20,6 +20,9 @@ namespace YouTubeViewersWPF.Stores
                 CurrentViewModelChanged?.Invoke();
             }
         }
+
+        public bool IsOpen => CurrentViewModel != null;
+
         //TODO - check here(previous view model)
         public event Action CurrentViewModelChanged;
     }
