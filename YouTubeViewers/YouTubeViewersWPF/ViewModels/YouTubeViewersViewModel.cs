@@ -4,11 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using YouTubeViewersWPF.Commands;
 using YouTubeViewersWPF.Stores;
 using YouTubeViewersWPF.ViewModels.Base;
 
 namespace YouTubeViewersWPF.ViewModels
 {
+    /// <summary>
+    /// This VM is binding with main window, it shows list of users and details about them
+    /// also this VM is binding with Open AddCommand for button
+    /// </summary>
     public class YouTubeViewersViewModel:ViewModelBase
     {
         /// <summary>
@@ -18,10 +23,11 @@ namespace YouTubeViewersWPF.ViewModels
         public YouTubeViewersDetailsViewModel YouTubeViewersDetailsViewModel { get; }
         public ICommand AddYouTubeViewersCommand { get; }
 
-        public YouTubeViewersViewModel(SelectedYouTubeViewerStore selectedYouTubeViewerStore)
+        public YouTubeViewersViewModel(SelectedYouTubeViewerStore selectedYouTubeViewerStore, ModalNavigationStore modalNavigationStore)
         {
             YouTubeViewersListingViewModel = new YouTubeViewersListingViewModel(selectedYouTubeViewerStore);
             YouTubeViewersDetailsViewModel = new YouTubeViewersDetailsViewModel(selectedYouTubeViewerStore);
+            AddYouTubeViewersCommand = new OpenAddYouTubeViewerCommand(modalNavigationStore);
         }
     }
 }

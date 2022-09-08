@@ -20,7 +20,7 @@ namespace YouTubeViewersWPF
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            YouTubeViewersViewModel youTubeViewersViewModel = new YouTubeViewersViewModel(_selectedYouTubeViewersStore);
+            YouTubeViewersViewModel youTubeViewersViewModel = new YouTubeViewersViewModel(_selectedYouTubeViewersStore, _modalNavigationStore);
 
             MainWindow = new MainWindow()
             {

@@ -23,7 +23,8 @@ namespace YouTubeViewersWPF.Stores
 
         /// <summary>
         /// This delegate need us to notify our view if SelectedYouTubeViewer was changed
-        /// Action don't return a value, unlike Func
+        /// 
+        /// note: Action don't return a value, unlike Func
         /// </summary>
         public event Action SelectedYouTubeViewerChanged;
     }

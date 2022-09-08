@@ -5,18 +5,27 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YouTubeViewersWPF" 
         xmlns:views="clr-namespace:YouTubeViewersWPF.Views"
+        xmlns:viewModels="clr-namespace:YouTubeViewersWPF.ViewModels"
         xmlns:modalcontrol="clr-namespace:ModalControl;assembly=ModalControl"
         mc:Ignorable="d"
         FontSize="14"
         Title="YouTube Viewrs" Height="450" Width="800">
-    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type viewModels:AddYouTubeViewerViewModel}">
+            <views:AddYouTubeViewerView/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModels:EditYouTubeViewerViewModel}">
+            <views:EditYouTubeViewerView/>
+        </DataTemplate>
+    </Window.Resources>
     <!--scrollWiewer make our window be able to scrollong up and down-->
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid>
-            <modalcontrol:Modal IsOpen="{Binding IsModalOpen}">
-                <ContentControl Content="{Binding CurrentViewModelBase}"/>
+            <modalcontrol:Modal Panel.ZIndex="1" IsOpen="{Binding IsModalOpen}">
+                <ContentControl Margin="50 25" Content="{Binding CurrentViewModelBase}"/>
             </modalcontrol:Modal>
-            <views:YouTubeViewersView DataContext="{Binding YouTubeViewersViewModel}"/>
+            <views:YouTubeViewersView Margin="25" DataContext="{Binding YouTubeViewersViewModel}"/>
         </Grid>
     </ScrollViewer>
     

@@ -17,7 +17,7 @@
 
             <ListView 
                 BorderThickness="0"
-                SelectedItem="{Binding SelectedYouTubeViewersListingItemViewModels}"
+                SelectedItem="{Binding SelectedYouTubeViewersListingItemViewModel}"
                 ItemsSource="{Binding YouTubeViewersListingItemViewModels}">
 
                 <ListView.ItemContainerStyle>
