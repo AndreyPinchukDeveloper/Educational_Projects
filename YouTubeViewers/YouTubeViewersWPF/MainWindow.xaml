@@ -10,6 +10,7 @@
         mc:Ignorable="d"
         FontSize="14"
         Title="YouTube Viewrs" Height="450" Width="800">
+    
     <Window.Resources>
         <DataTemplate DataType="{x:Type viewModels:AddYouTubeViewerViewModel}">
             <views:AddYouTubeViewerView/>
@@ -23,10 +24,10 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid>
             <modalcontrol:Modal Panel.ZIndex="1" IsOpen="{Binding IsModalOpen}">
-                <ContentControl Margin="50 25" Content="{Binding CurrentViewModelBase}"/>
+                <ContentControl Margin="50 25" Content="{Binding CurrentModalViewModel}"/>
             </modalcontrol:Modal>
             <views:YouTubeViewersView Margin="25" DataContext="{Binding YouTubeViewersViewModel}"/>
         </Grid>
     </ScrollViewer>
-    
+
 </Window>

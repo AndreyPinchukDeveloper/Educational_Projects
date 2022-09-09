@@ -18,6 +18,9 @@
             Style="{StaticResource PageHeader}"
             Text="Edit YouTube Viewer"/>
 
-        <wpfcontrollers:YouTubeViewerDetailsForm Grid.Row="1" Margin="0 30 0 0"/>
+        <wpfcontrollers:YouTubeViewerDetailsForm 
+            Grid.Row="1" 
+            Margin="0 30 0 0"
+            DataContext="{Binding YouTubeViewerDetailsFormViewModel}"/>
     </Grid>
 </UserControl>

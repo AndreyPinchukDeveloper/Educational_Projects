@@ -16,8 +16,10 @@
         <TextBlock
             Grid.Row="0"
             Style="{StaticResource PageHeader}"
-            Text="Add YouTubeViewer"/>
+            Text="Add YouTube Viewer"/>
 
-        <wpfcontrollers:YouTubeViewerDetailsForm Margin="0 20 0 0"/>
+        <wpfcontrollers:YouTubeViewerDetailsForm 
+            Margin="0 20 0 0"
+            DataContext="{Binding YouTubeViewerDetailsFormViewModel}"/>
     </Grid>
 </UserControl>

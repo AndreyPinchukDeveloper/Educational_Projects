@@ -15,9 +15,11 @@
             CornerRadius="5"
             SnapsToDevicePixels="True">
 
+            <!--when we press selected item(the name of subscriber) 
+            right window show us information about them-->
             <ListView 
                 BorderThickness="0"
-                SelectedItem="{Binding SelectedYouTubeViewersListingItemViewModel}"
+                SelectedItem="{Binding SelectedYouTubeViewerListingItemViewModel}"
                 ItemsSource="{Binding YouTubeViewersListingItemViewModels}">
 
                 <ListView.ItemContainerStyle>

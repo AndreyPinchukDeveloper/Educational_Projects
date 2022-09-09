@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using YouTubeViewersWPF.Models;
 
 namespace YouTubeViewersWPF.Stores
@@ -10,7 +6,7 @@ namespace YouTubeViewersWPF.Stores
     public class SelectedYouTubeViewerStore
     {
         private YouTubeViewer _selectedYouTubeViewer;
-
+        
         public YouTubeViewer SelectedYouTubeViewer
         {
             get { return _selectedYouTubeViewer; }

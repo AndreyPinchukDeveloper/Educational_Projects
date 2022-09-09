@@ -1,4 +1,4 @@
-﻿using System.Windows;
+﻿ using System.Windows;
 using YouTubeViewersWPF.Stores;
 using YouTubeViewersWPF.ViewModels;
 
@@ -14,8 +14,9 @@ namespace YouTubeViewersWPF
 
         public App()
         {
-            _selectedYouTubeViewersStore = new SelectedYouTubeViewerStore();
             _modalNavigationStore = new ModalNavigationStore();
+            _selectedYouTubeViewersStore = new SelectedYouTubeViewerStore();
+            
         }
 
         protected override void OnStartup(StartupEventArgs e)
