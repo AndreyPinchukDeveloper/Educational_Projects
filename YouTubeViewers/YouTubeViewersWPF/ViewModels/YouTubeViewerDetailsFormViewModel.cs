@@ -42,5 +42,12 @@ namespace YouTubeViewersWPF.ViewModels
         public bool CanSubmit => !string.IsNullOrEmpty(Username);
         public ICommand SubmitCommand { get; set; }
         public ICommand CancelCommand { get; set; }
+
+        public YouTubeViewerDetailsFormViewModel(ICommand submitCommand, ICommand cancelCommand)
+        {
+            SubmitCommand = submitCommand;
+            CancelCommand = cancelCommand;
+        }
+
     }
 }

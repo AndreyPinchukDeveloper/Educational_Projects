@@ -21,6 +21,13 @@ namespace YouTubeViewersWPF.Stores
             }
         }
 
+        //only for this assembly
+        //if it would was internal protected -  for all into hierarchy
+        internal void Close()
+        {
+            CurrentViewModel = null;
+        }
+
         public bool IsOpen => CurrentViewModel != null;
 
         //TODO - check here(previous view model)

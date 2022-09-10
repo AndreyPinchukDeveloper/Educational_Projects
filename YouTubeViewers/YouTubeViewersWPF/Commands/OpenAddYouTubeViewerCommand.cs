@@ -15,7 +15,7 @@ namespace YouTubeViewersWPF.Commands
 
         public override void Execute(object? parameter)
         {
-            AddYouTubeViewerViewModel addYouTubeViewerViewModel = new AddYouTubeViewerViewModel();
+            AddYouTubeViewerViewModel addYouTubeViewerViewModel = new AddYouTubeViewerViewModel(_modalNavigationStore);
             _modalNavigationStore.CurrentViewModel = addYouTubeViewerViewModel;
         }
     }
