@@ -11,17 +11,21 @@ namespace YouTubeViewersWPF
     {
         private readonly SelectedYouTubeViewerStore _selectedYouTubeViewersStore;
         private readonly ModalNavigationStore _modalNavigationStore;
+        private readonly YouTubeViewerStore _youTubeViewerStore;
 
         public App()
         {
             _modalNavigationStore = new ModalNavigationStore();
             _selectedYouTubeViewersStore = new SelectedYouTubeViewerStore();
-            
+            _youTubeViewerStore = new YouTubeViewerStore();
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
-            YouTubeViewersViewModel youTubeViewersViewModel = new YouTubeViewersViewModel(_selectedYouTubeViewersStore, _modalNavigationStore);
+            YouTubeViewersViewModel youTubeViewersViewModel = new YouTubeViewersViewModel(
+                _youTubeViewerStore,
+                _selectedYouTubeViewersStore, 
+                _modalNavigationStore);
 
             MainWindow = new MainWindow()
             {

@@ -13,10 +13,10 @@ namespace YouTubeViewersWPF.ViewModels
     public class AddYouTubeViewerViewModel:ViewModelBase
     {
         public YouTubeViewerDetailsFormViewModel YouTubeViewerDetailsFormViewModel { get;}
-        public AddYouTubeViewerViewModel(ModalNavigationStore modalNavigationStore)
+        public AddYouTubeViewerViewModel(YouTubeViewerStore youTubeViewerStore, ModalNavigationStore modalNavigationStore)
         {
             ICommand cancelCommand = new CloseModalCommand(modalNavigationStore);
-            ICommand submitCommand = new SubmitAddYouTubeViewerCommand(modalNavigationStore);
+            ICommand submitCommand = new AddYouTubeViewerCommand(this, youTubeViewerStore, modalNavigationStore);
             YouTubeViewerDetailsFormViewModel = new YouTubeViewerDetailsFormViewModel(submitCommand, cancelCommand);
         }
     }

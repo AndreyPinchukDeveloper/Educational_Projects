@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using YouTubeViewersWPF.Commands;
@@ -10,7 +11,9 @@ namespace YouTubeViewersWPF.ViewModels
 {
     public class YouTubeViewersListingViewModel:ViewModelBase
     {
+        private readonly YouTubeViewerStore _youTubeViewerStore;
         private readonly SelectedYouTubeViewerStore _selectedYouTubeViewerStore;
+        private readonly ModalNavigationStore _modalNavigationStore;
 
         //ObservableCollection notify otside objects that collection was changed
         //our UI automaticly update while we add or remove oblects
@@ -34,18 +37,39 @@ namespace YouTubeViewersWPF.ViewModels
             }
         }
 
-        public YouTubeViewersListingViewModel(SelectedYouTubeViewerStore selectedYouTubeViewerStore, ModalNavigationStore modalNavigationStore)
+        public YouTubeViewersListingViewModel(YouTubeViewerStore youTubeViewerStore, SelectedYouTubeViewerStore selectedYouTubeViewerStore, ModalNavigationStore modalNavigationStore)
         {
+            _youTubeViewerStore = youTubeViewerStore;
             _selectedYouTubeViewerStore = selectedYouTubeViewerStore;
+            _modalNavigationStore = modalNavigationStore;
             _youTubeViewersListingItemViewModels = new ObservableCollection<YouTubeViewersListingItemViewModel>();
 
-            AddYouTubeViewer(new YouTubeViewer("Andre", true, false), modalNavigationStore);
-            AddYouTubeViewer(new YouTubeViewer("Inessa", false, true), modalNavigationStore);
+            _youTubeViewerStore.YouTubeViewerAdded += YouTubeViewerStore_YouTubeViewerAdded;
+        _youTubeViewerStore.YouTubeViewerUpdated += YouTubeViewerStore_YouTubeViewerUpdated;
         }
 
-        private void AddYouTubeViewer(YouTubeViewer youTubeViewer, ModalNavigationStore modalNavigationStore)
+        protected override void Dispose()
         {
-            ICommand editCommand = new OpenEditYouTubeViewerCommand(modalNavigationStore, youTubeViewer);
+            _youTubeViewerStore.YouTubeViewerAdded -= YouTubeViewerStore_YouTubeViewerAdded;
+            _youTubeViewerStore.YouTubeViewerUpdated -= YouTubeViewerStore_YouTubeViewerUpdated;
+
+            base.Dispose();
+        }
+
+        private void YouTubeViewerStore_YouTubeViewerAdded(YouTubeViewer youTubeViewer)
+        {
+            AddYouTubeViewer(youTubeViewer);
+        }
+
+
+        private void YouTubeViewerStore_YouTubeViewerUpdated(YouTubeViewer youTubeViewer)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void AddYouTubeViewer(YouTubeViewer youTubeViewer)
+        {
+            ICommand editCommand = new OpenEditYouTubeViewerCommand(_modalNavigationStore, youTubeViewer);
             _youTubeViewersListingItemViewModels.Add(new YouTubeViewersListingItemViewModel(youTubeViewer, editCommand));
         }
     }
