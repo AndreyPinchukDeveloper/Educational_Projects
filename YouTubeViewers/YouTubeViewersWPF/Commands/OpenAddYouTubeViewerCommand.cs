@@ -1,4 +1,5 @@
 ﻿using YouTubeViewersWPF.Commands.Base;
+using YouTubeViewersWPF.Models;
 using YouTubeViewersWPF.Stores;
 using YouTubeViewersWPF.ViewModels;
 
@@ -9,7 +10,9 @@ namespace YouTubeViewersWPF.Commands
         private readonly YouTubeViewerStore _youTubeViewerStore;
         private readonly ModalNavigationStore _modalNavigationStore;
 
-        public OpenAddYouTubeViewerCommand(YouTubeViewerStore youTubeViewerStore, ModalNavigationStore modalNavigationStore)
+        public OpenAddYouTubeViewerCommand(
+            YouTubeViewerStore youTubeViewerStore, 
+            ModalNavigationStore modalNavigationStore)
         {
             _youTubeViewerStore = youTubeViewerStore;
             _modalNavigationStore = modalNavigationStore;
@@ -19,6 +22,7 @@ namespace YouTubeViewersWPF.Commands
         {
             AddYouTubeViewerViewModel addYouTubeViewerViewModel = new AddYouTubeViewerViewModel(_youTubeViewerStore, _modalNavigationStore);
             _modalNavigationStore.CurrentViewModel = addYouTubeViewerViewModel;
+            
         }
     }
 }

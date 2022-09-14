@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Windows.Input;
 using YouTubeViewersWPF.Commands;
 using YouTubeViewersWPF.Models;
@@ -45,7 +46,7 @@ namespace YouTubeViewersWPF.ViewModels
             _youTubeViewersListingItemViewModels = new ObservableCollection<YouTubeViewersListingItemViewModel>();
 
             _youTubeViewerStore.YouTubeViewerAdded += YouTubeViewerStore_YouTubeViewerAdded;
-        _youTubeViewerStore.YouTubeViewerUpdated += YouTubeViewerStore_YouTubeViewerUpdated;
+            _youTubeViewerStore.YouTubeViewerUpdated += YouTubeViewerStore_YouTubeViewerUpdated;
         }
 
         protected override void Dispose()
@@ -64,13 +65,19 @@ namespace YouTubeViewersWPF.ViewModels
 
         private void YouTubeViewerStore_YouTubeViewerUpdated(YouTubeViewer youTubeViewer)
         {
-            throw new NotImplementedException();
+            YouTubeViewersListingItemViewModel youTubeViewerViewModel =
+                _youTubeViewersListingItemViewModels.FirstOrDefault(y => y.YouTubeViewer.Id == youTubeViewer.Id);
+
+            if (youTubeViewerViewModel != null)
+            {
+                youTubeViewerViewModel.Update(youTubeViewer);
+            }
         }
 
         private void AddYouTubeViewer(YouTubeViewer youTubeViewer)
         {
-            ICommand editCommand = new OpenEditYouTubeViewerCommand(_modalNavigationStore, youTubeViewer);
-            _youTubeViewersListingItemViewModels.Add(new YouTubeViewersListingItemViewModel(youTubeViewer, editCommand));
+            YouTubeViewersListingItemViewModel itemViewModel = new YouTubeViewersListingItemViewModel(youTubeViewer, _youTubeViewerStore, _modalNavigationStore);
+            _youTubeViewersListingItemViewModels.Add(itemViewModel);
         }
     }
 }

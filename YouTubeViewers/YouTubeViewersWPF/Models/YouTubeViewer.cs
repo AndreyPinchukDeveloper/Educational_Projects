@@ -11,7 +11,7 @@ namespace YouTubeViewersWPF.Models
 
         public YouTubeViewer(Guid id, string username, bool isSubscribed, bool isMember)
         {
-            Id = id,
+            Id = id;
             Username = username;
             IsSubscribed = isSubscribed;
             IsMember = isMember;
