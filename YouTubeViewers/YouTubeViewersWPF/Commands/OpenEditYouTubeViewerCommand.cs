@@ -12,9 +12,10 @@ namespace YouTubeViewersWPF.Commands
 {
     public class OpenEditYouTubeViewerCommand:BaseCommand
     {
-        private readonly ModalNavigationStore _modalNavigationStore;
         private readonly YouTubeViewersListingItemViewModel _youTubeViewersListingItemViewModel;
         private readonly YouTubeViewerStore _youTubeViewerStore;
+        private readonly ModalNavigationStore _modalNavigationStore; 
+        
 
         public OpenEditYouTubeViewerCommand(
             YouTubeViewersListingItemViewModel youTubeViewersListingItemViewModel,

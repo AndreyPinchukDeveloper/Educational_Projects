@@ -18,9 +18,10 @@ namespace YouTubeViewersWPF.Commands
 
         public AddYouTubeViewerCommand(AddYouTubeViewerViewModel addYouTubeViewerViewModel, YouTubeViewerStore youTubeViewerStore, ModalNavigationStore modalNavigationStore)
         {
+            _modalNavigationStore = modalNavigationStore;
             _addYouTubeViewerViewModel = addYouTubeViewerViewModel;
             _youTubeViewerStore = youTubeViewerStore;
-            _modalNavigationStore = modalNavigationStore;
+            
         }
         public override async Task ExecuteAsync(object parameter)
         {

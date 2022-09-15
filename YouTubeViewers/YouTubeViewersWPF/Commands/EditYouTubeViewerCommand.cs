@@ -35,6 +35,7 @@ namespace YouTubeViewersWPF.Commands
                 await _youTubeViewerStore.Update(youTubeViewer);
                 _modalNavigationStore.Close();
             }
+
             catch (Exception)
             {
                 throw;

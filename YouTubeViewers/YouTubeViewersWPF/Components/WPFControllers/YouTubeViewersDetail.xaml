@@ -88,7 +88,7 @@
 
                         <TextBlock 
                         Grid.Column="1"
-                        Text="{Binding IsMemberdDisplay}" 
+                        Text="{Binding IsMemberDisplay}" 
                         Margin="20 0 0 0"/>
                     </Grid>
                 </Grid>
