@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using YouTubeViewersWPF.Commands.Base;
-using YouTubeViewersWPF.Models;
+using YouTubeViewersDomain.Models;
 using YouTubeViewersWPF.Stores;
 using YouTubeViewersWPF.ViewModels;
 

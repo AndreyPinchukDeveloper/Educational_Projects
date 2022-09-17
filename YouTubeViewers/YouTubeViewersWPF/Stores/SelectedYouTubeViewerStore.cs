@@ -1,5 +1,5 @@
 ﻿using System;
-using YouTubeViewersWPF.Models;
+using YouTubeViewersDomain.Models;
 
 namespace YouTubeViewersWPF.Stores
 {

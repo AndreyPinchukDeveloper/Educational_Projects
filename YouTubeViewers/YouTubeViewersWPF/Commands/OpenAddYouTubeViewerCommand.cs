@@ -1,5 +1,5 @@
 ﻿using YouTubeViewersWPF.Commands.Base;
-using YouTubeViewersWPF.Models;
+using YouTubeViewersDomain.Models;
 using YouTubeViewersWPF.Stores;
 using YouTubeViewersWPF.ViewModels;
 
