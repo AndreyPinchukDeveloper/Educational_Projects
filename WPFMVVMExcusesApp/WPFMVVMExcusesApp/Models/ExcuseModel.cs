@@ -10,13 +10,13 @@ namespace WPFMVVMExcusesApp.Models
     {
         public string ExcuseName { get; }
         public string ExcuseResult { get; }
-        public DateTime StartDate { get; }
+        public DateTime LastUsed { get; }
         public DateTime SaveToDbDate { get; }
-        public ExcuseModel(string excuseName, string excuseResult, DateTime startDate, DateTime saveToDbDate)
+        public ExcuseModel(string excuseName, string excuseResult, DateTime lastUsed, DateTime saveToDbDate)
         {
             ExcuseName = excuseName;
             ExcuseResult = excuseResult;
-            StartDate = startDate;
+            LastUsed = lastUsed;
             SaveToDbDate = saveToDbDate;
         }
     }

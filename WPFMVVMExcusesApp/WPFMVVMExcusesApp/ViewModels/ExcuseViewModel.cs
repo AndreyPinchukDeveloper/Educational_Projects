@@ -14,7 +14,7 @@ namespace WPFMVVMExcusesApp.ViewModels
 
         public string ExcuseName => _excuseModel.ExcuseName;
         public string ExcuseResult => _excuseModel.ExcuseResult;
-        public DateTime StartDate => _excuseModel.StartDate;
+        public DateTime LastUsed => _excuseModel.LastUsed;
         public DateTime SaveToDbDate => _excuseModel.SaveToDbDate;
 
         public ExcuseViewModel(ExcuseModel excuseModel)
