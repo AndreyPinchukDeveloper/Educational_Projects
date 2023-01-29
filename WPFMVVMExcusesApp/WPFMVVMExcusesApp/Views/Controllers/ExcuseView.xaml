@@ -12,6 +12,7 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Grid x:Name="ExcuseRow"  Grid.Row="0" Margin="10 10 10 10">
@@ -25,7 +26,7 @@
                 Grid.Column="1" 
                 Margin="10 0 0 0"
                 Width="150"
-                Text="{Binding ExcuseName}"/>
+                Text="{Binding ExcuseName, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
 
         <Grid x:Name="ResultRow"  Grid.Row="1" Margin="10 10 10 10">
@@ -39,7 +40,7 @@
                 Grid.Column="1" 
                 Margin="10 0 0 0"
                 Width="150"
-                Text="{Binding ExcuseResult}"/>
+                Text="{Binding ExcuseResult, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
 
         <Grid x:Name="LastUsed"  Grid.Row="2" Margin="10 10 10 10">
@@ -53,7 +54,7 @@
                 Grid.Column="1" 
                 Margin="10 0 0 0"
                 Width="150"
-                Text="{Binding LastUsed}"/>
+                Text="{Binding LastUsed, UpdateSourceTrigger=PropertyChanged}"/>
             
         </Grid>
 
@@ -68,8 +69,21 @@
                 Grid.Column="1" 
                 Margin="10 0 0 0"
                 Width="150"
-                Text="{Binding SaveToDbDate}"/>
+                Text="{Binding SaveToDbDate, UpdateSourceTrigger=PropertyChanged}"/>
         </Grid>
-        
+
+        <Grid x:Name="Buttons"  Grid.Row="4" Margin="10 10 10 10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Content="Folder" Width="50" Margin="5" Command="{Binding OpenFolderCommand}"/>
+            <Button Grid.Column="1" Content="Folder" Width="50" Margin="5" Command="{Binding OpenFolderCommand}"/>
+            <Button Grid.Column="2" Content="Folder" Width="50" Margin="5" Command="{Binding OpenFolderCommand}"/>
+            <Button Grid.Column="3" Content="Folder" Width="50" Margin="5" Command="{Binding OpenFolderCommand}"/>
+        </Grid>
     </Grid>
 </UserControl>

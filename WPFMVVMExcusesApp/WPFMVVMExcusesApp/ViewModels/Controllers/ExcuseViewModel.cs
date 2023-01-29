@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WPFMVVMExcusesApp.Models;
 using WPFMVVMExcusesApp.ViewModels.Base;
 
-namespace WPFMVVMExcusesApp.ViewModels
+namespace WPFMVVMExcusesApp.ViewModels.Controllers
 {
     public class ExcuseViewModel:ViewModelBase
     {

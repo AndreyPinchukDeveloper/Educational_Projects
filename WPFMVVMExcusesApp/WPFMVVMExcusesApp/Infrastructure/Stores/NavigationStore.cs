@@ -24,7 +24,7 @@ namespace WPFMVVMExcusesApp.Infrastructure.Stores
             }
         }
 
-        private event Action CurrentViewModelChanged;
+        public event Action CurrentViewModelChanged;
         /// <summary>
         /// This method invoke method given from another class by using delegate 
         /// </summary>

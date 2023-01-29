@@ -4,9 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPFMVVMExcusesApp"
+        xmlns:vms="clr-namespace:WPFMVVMExcusesApp.ViewModels.Controllers"
+        xmlns:views="clr-namespace:WPFMVVMExcusesApp.Views.Controllers"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Excuse Manager" Height="450" Width="800">
     <Grid>
+        <Grid Margin="20">
+            
+            <Grid.Resources>
+                <DataTemplate DataType="{x:Type vms:ExcuseViewModel}">
+                    <views:ExcuseView/>
+                </DataTemplate>
+            </Grid.Resources>
 
+            <ContentControl Content="{Binding CurrentViewModel}"/>
+            
+        </Grid>
     </Grid>
 </Window>
