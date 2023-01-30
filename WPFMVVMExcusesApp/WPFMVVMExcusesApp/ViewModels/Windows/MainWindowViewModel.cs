@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WPFMVVMExcusesApp.Infrastructure.Stores;
 using WPFMVVMExcusesApp.ViewModels.Base;
+using WPFMVVMExcusesApp.ViewModels.Controllers;
 
 namespace WPFMVVMExcusesApp.ViewModels.Windows
 {
@@ -16,6 +17,7 @@ namespace WPFMVVMExcusesApp.ViewModels.Windows
         public MainWindowViewModel(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
+            CurrentViewModel = new ExcuseViewModel();
             _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 

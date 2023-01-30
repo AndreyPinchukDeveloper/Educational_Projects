@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using WPFMVVMExcusesApp.ViewModels.Windows;
 
 namespace WPFMVVMExcusesApp
 {
@@ -15,8 +16,13 @@ namespace WPFMVVMExcusesApp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            MainWindow = new MainWindow();
+            MainWindow = new MainWindow()
+            {
+                DataContext = new MainWindowViewModel()
+            };
             MainWindow.Show();
+
+            base.OnStartup(e);
         }
     }
 }
