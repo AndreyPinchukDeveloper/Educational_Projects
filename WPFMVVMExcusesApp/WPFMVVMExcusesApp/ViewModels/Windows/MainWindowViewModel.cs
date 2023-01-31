@@ -17,7 +17,6 @@ namespace WPFMVVMExcusesApp.ViewModels.Windows
         public MainWindowViewModel(NavigationStore navigationStore)
         {
             _navigationStore = navigationStore;
-            CurrentViewModel = new ExcuseViewModel();
             _navigationStore.CurrentViewModelChanged += OnCurrentViewModelChanged;
         }
 

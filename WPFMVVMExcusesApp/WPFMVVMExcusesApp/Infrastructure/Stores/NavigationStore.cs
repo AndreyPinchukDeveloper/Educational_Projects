@@ -8,7 +8,7 @@ using WPFMVVMExcusesApp.ViewModels.Base;
 namespace WPFMVVMExcusesApp.Infrastructure.Stores
 {
     /// <summary>
-    /// This class is store current view model for application
+    /// This class stores current view model for application
     /// </summary>
     public class NavigationStore
     {
