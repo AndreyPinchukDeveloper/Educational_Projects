@@ -12,7 +12,7 @@
         <Grid Margin="20">
             
             <Grid.Resources>
-                <DataTemplate DataType="{x:Type vms:ExcuseViewModel}">
+                <DataTemplate DataType="{x:Type vms:OperateExcuseViewModel}">
                     <views:ExcuseView/>
                 </DataTemplate>
             </Grid.Resources>
