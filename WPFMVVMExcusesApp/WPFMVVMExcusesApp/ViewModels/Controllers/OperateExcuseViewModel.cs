@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using WPFMVVMExcusesApp.Infrastructure.Commands;
 using WPFMVVMExcusesApp.ViewModels.Base;
 
 namespace WPFMVVMExcusesApp.ViewModels.Controllers
@@ -39,7 +41,12 @@ namespace WPFMVVMExcusesApp.ViewModels.Controllers
             get => _saveToDbDate;
             set => Set(ref _saveToDbDate, value);
         }
-
         #endregion
+
+        public ICommand OpenFolderCommand { get; }
+        public OperateExcuseViewModel()
+        {
+            OpenFolderCommand = new OpenFolderCommand();
+        }
     }
 }
