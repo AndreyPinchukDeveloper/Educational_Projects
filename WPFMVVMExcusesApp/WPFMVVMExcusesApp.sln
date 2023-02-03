@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPFMVVMExcusesApp", "WPFMVVMExcusesApp\WPFMVVMExcusesApp.csproj", "{7C2593E2-7B31-4424-AB9C-9A8EA6EBEF9D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPFMVVMExcusesApp", "WPFMVVMExcusesApp\WPFMVVMExcusesApp.csproj", "{7C2593E2-7B31-4424-AB9C-9A8EA6EBEF9D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileExplorerMVVM", "FileExplorerMVVM\FileExplorerMVVM.csproj", "{2F509D2E-3832-4F1F-A680-5232BADEEB2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7C2593E2-7B31-4424-AB9C-9A8EA6EBEF9D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C2593E2-7B31-4424-AB9C-9A8EA6EBEF9D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C2593E2-7B31-4424-AB9C-9A8EA6EBEF9D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F509D2E-3832-4F1F-A680-5232BADEEB2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F509D2E-3832-4F1F-A680-5232BADEEB2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F509D2E-3832-4F1F-A680-5232BADEEB2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F509D2E-3832-4F1F-A680-5232BADEEB2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
