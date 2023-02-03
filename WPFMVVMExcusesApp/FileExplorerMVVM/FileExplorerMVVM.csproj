@@ -12,6 +12,7 @@
     <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\Controllers\" />
+    <Folder Include="Views\Resources\Styles\" />
   </ItemGroup>
 
 </Project>
