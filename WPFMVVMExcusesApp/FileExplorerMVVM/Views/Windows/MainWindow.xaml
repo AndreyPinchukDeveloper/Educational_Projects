@@ -63,15 +63,15 @@
                                                 Orientation="Horizontal">
                                         <Button x:Name="MinimizeButton"
                                                 Command="{Binding DoSomething}"
-                                                Content="dfsg"
+                                                Content="&#xE921;"
                                                 FontSize="11"/>
                                         <Button x:Name="MaximizeButton"
                                                 Command="{Binding DoSomething}"
-                                                Content="dfsg"
+                                                Content="&#xE922;"
                                                 FontSize="11"/>
                                         <Button x:Name="CloseButton"
                                                 Command="{Binding DoSomething}"
-                                                Content="dfsg"
+                                                Content="&#xE888;"
                                                 FontSize="11"/>
 
                                     </StackPanel>
