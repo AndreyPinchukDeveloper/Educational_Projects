@@ -29,12 +29,33 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type Button}" x:Key="WindowChromeRestoreButtonStyle">
+    <Style TargetType="{x:Type Button}" 
+           x:Key="WindowChromeRestoreButtonStyle"
+           BasedOn="{StaticResource WindowChromeButtonStyle}">
         <Setter Property="Content" Value="&#x922;"/>
         <Style.Triggers>
-            <DataTrigger>
-                
+            <DataTrigger Binding="{Binding WindowState, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                         Value="Maximized">
+                <Setter Property="Content" Value="&#xE923;"/>
             </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="{x:Type Button}" 
+           x:Key="WindowChromeCloseButtonStyle"
+           BasedOn="{StaticResource WindowChromeButtonStyle}">
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="true"/>
+                    <Condition Property="IsMouseCaptured" Value="False"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="Red"/>
+            </MultiTrigger>
+
+            <Trigger Property="IsPressed" Value="True">
+                <Setter Property="Background" Value="AliceBlue"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
 </ResourceDictionary>

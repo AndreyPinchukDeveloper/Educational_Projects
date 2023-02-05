@@ -63,16 +63,19 @@
                                                 Orientation="Horizontal">
                                         <Button x:Name="MinimizeButton"
                                                 Command="{Binding DoSomething}"
-                                                Content="&#xE921;"
-                                                FontSize="11"/>
+                                                Content="Min"
+                                                FontSize="11"
+                                                Style="{StaticResource WindowChromeButtonStyle}"/>
                                         <Button x:Name="MaximizeButton"
                                                 Command="{Binding DoSomething}"
-                                                Content="&#xE922;"
-                                                FontSize="11"/>
+                                                Content="Max"
+                                                FontSize="11"
+                                                Style="{StaticResource WindowChromeRestoreButtonStyle}"/>
                                         <Button x:Name="CloseButton"
                                                 Command="{Binding DoSomething}"
-                                                Content="&#xE888;"
-                                                FontSize="11"/>
+                                                Content="Close"
+                                                FontSize="11"
+                                                Style="{StaticResource WindowChromeCloseButtonStyle}"/>
 
                                     </StackPanel>
                                 </Grid>

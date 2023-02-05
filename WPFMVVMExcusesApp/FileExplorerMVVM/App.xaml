@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:FileExplorerMVVM"
              StartupUri="Views/Windows/MainWindow.xaml">
     <Application.Resources>
-        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Views/Resources/Styles/Buttons.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
