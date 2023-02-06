@@ -10,6 +10,15 @@
         MinHeight="760" MinWidth="864"
         WindowStartupLocation="CenterScreen"
         x:Name="MyMainWindow">
+    
+    <Window.Resources>
+        <BitmapImage x:Key="Image_1" UriSource="Castle.jpg"/>
+        <BitmapImage x:Key="Image_2" UriSource="Ice.jpg"/>
+        <BitmapImage x:Key="Image_3" UriSource="Ivasik.jpg"/>
+        <BitmapImage x:Key="Image_4" UriSource="Mount.jpg"/>
+        <BitmapImage x:Key="Image_5" UriSource="Sun.jpg"/>
+    </Window.Resources>
+    
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="AllowsTransparency" Value="True"/>
@@ -79,8 +88,65 @@
 
                                     </StackPanel>
                                 </Grid>
+                                <!--#endregion-->
+                                
+                                <!--#region Window Content-->
+                                <Grid
+                                    Grid.RowSpan="2"
+                                    Grid.Column="0">
+                                    <Grid.Background>
+                                        <ImageBrush
+                                            x:Name="ImageBrush"                                           
+                                            Stretch="UniformToFill"
+                                            />
+                                    </Grid.Background>
+                                    <Border Name="Border">
+                                        <Border.Background>
+                                            <SolidColorBrush
+                                                Color="Black"
+                                                Opacity=".55"/>
+                                        </Border.Background>
+                                    </Border>
+                                </Grid>
+                                <Grid 
+                                    Grid.ColumnSpan="2"
+                                    Grid.Row="2">
+                                    <AdornerDecorator>
+                                        <ContentPresenter/>
+                                    </AdornerDecorator>
+                                </Grid>
+                                <!--#endregion-->
                             </Grid>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <EventTrigger RoutedEvent="Loaded">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ObjectAnimationUsingKeyFrames
+                                            Storyboard.TargetName="ImageBrush"
+                                            Storyboard.TargetProperty="ImageSource"
+                                            Duration="0:0:30"
+                                            RepeatBehavior="Forever">
+                                            <DiscreteObjectKeyFrame
+                                                Value="{StaticResource Image_1}"
+                                                KeyTime="0:0:0"/>
+                                            <DiscreteObjectKeyFrame
+                                                Value="{StaticResource Image_2}"
+                                                KeyTime="0:0:15"/>
+                                            <DiscreteObjectKeyFrame
+                                                Value="{StaticResource Image_3}"
+                                                KeyTime="0:0:20"/>
+                                            <DiscreteObjectKeyFrame
+                                                Value="{StaticResource Image_4}"
+                                                KeyTime="0:0:25"/>
+                                            <DiscreteObjectKeyFrame
+                                                Value="{StaticResource Image_5}"
+                                                KeyTime="0:0:30"/>
+                                        </ObjectAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
