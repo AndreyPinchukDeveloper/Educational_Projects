@@ -17,6 +17,11 @@
         <BitmapImage x:Key="Image_3" UriSource="Ivasik.jpg"/>
         <BitmapImage x:Key="Image_4" UriSource="Mount.jpg"/>
         <BitmapImage x:Key="Image_5" UriSource="Sun.jpg"/>
+
+        <DropShadowEffect
+            x:Key="DropShadowEffect"
+            BlurRadius="4"
+            ShadowDepth="0"/>
     </Window.Resources>
     
     <Window.Style>
@@ -41,7 +46,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
                         <Border
-                            x:Name="RooBorder"
+                            x:Name="RootBorder"
                             BorderBrush="Firebrick"
                             BorderThickness="0"
                             Background="{TemplateBinding Background}">
@@ -146,6 +151,11 @@
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
+
+                            <Trigger Property="WindowState" Value="Maximized">
+                                <Setter TargetName="RootBorder" Property="BorderBrush" Value="Transparent"/>
+                                <Setter TargetName="RootBorder" Property="Padding" Value="7"/>
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -153,5 +163,43 @@
         </Style>
     </Window.Style>
 
-    <Grid/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="280"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--#region Left Navigation-->
+        <Grid>
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="95"/>
+            </Grid.RowDefinitions>
+
+            <ScrollViewer 
+                Grid.Row="0"
+                Margin="25,0"
+                VerticalScrollBarVisibility="Auto"
+                HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+                    <StackPanel.Resources>
+                        <Style TargetType="{x:Type TextBlock}">
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="Foreground" Value="Aqua"/>
+                            <Setter Property="Effect" Value="{StaticResource DropShadowEffect}"/>
+                        </Style>
+                    </StackPanel.Resources>
+                    <TextBlock Text="Favorites"/>
+                    <ItemsControl Margin="0 0 0 17">
+                        
+                    </ItemsControl>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <!--#endregion-->
+    </Grid>
+    
+    
 </Window>
