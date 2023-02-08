@@ -11,8 +11,6 @@ namespace FileExplorerMVVM.Infrastructure.CustomControls
 {
     class NavigationMenuButton:RadioButton
     {
-
-
         public PathGeometry Icon
         {
             get { return (PathGeometry)GetValue(IconProperty); }
