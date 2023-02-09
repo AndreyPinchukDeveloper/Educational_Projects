@@ -76,6 +76,37 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
+
+                        <Border Name="bgBorder"
+                                Grid.ColumnSpan="1"
+                                BorderBrush="Gray"
+                                BorderThickness="1"
+                                Opacity=".2"
+                                Visibility="Collapsed">
+                            <Rectangle Fill="Aqua"
+                                       Opacity=".2"/>
+                        </Border>
+
+                        <Path Grid.Column="0"
+                              Data="{StaticResource Folder}"
+                              Stretch="Uniform"
+                              Fill="Aqua"
+                              Height="5"
+                              Width="20"
+                              Effect="{DynamicResource DropShadowEffect}"/>
+
+                        <ContentPresenter Grid.Column="1"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          Effect="{DynamicResource DropShadowEffect}"/>
+                        
+                        <!--Unpin button-->
+                        <Button
+                            Name="UnPinButton"
+                            Grid.Column="2"
+                            Width="40"
+                            Foreground="Aqua"
+                            
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

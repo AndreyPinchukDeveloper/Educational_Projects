@@ -17,11 +17,6 @@
         <BitmapImage x:Key="Image_3" UriSource="Ivasik.jpg"/>
         <BitmapImage x:Key="Image_4" UriSource="Mount.jpg"/>
         <BitmapImage x:Key="Image_5" UriSource="Sun.jpg"/>
-
-        <DropShadowEffect
-            x:Key="DropShadowEffect"
-            BlurRadius="4"
-            ShadowDepth="0"/>
     </Window.Resources>
     
     <Window.Style>
