@@ -7,7 +7,7 @@
         xmlns:vms="clr-namespace:WPFMVVMExcusesApp.ViewModels.Controllers"
         xmlns:views="clr-namespace:WPFMVVMExcusesApp.Views.Controllers"
         mc:Ignorable="d"
-        Title="Excuse Manager" Height="450" Width="800"
+        Title="Excuse Manager" Height="450" Width="800">
     <Grid>
         <Grid Margin="20">
            

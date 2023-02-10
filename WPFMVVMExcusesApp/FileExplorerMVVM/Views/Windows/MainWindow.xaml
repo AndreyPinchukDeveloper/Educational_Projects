@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileExplorerMVVM"
+        xmlns:cc="clr-namespace:FileExplorerMVVM.Infrastructure.CustomControls"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="782" Width="1235"
@@ -186,14 +187,111 @@
                             <Setter Property="Effect" Value="{StaticResource DropShadowEffect}"/>
                         </Style>
                     </StackPanel.Resources>
-                    <TextBlock Text="Favorites"/>
+                    
+                    <TextBlock 
+                        Text="Favorites"/>
                     <ItemsControl Margin="0 0 0 17">
-                        
+                        <cc:NavigationMenuButton Content="Games"
+                            Icon="{StaticResource Folder}"
+                            Margin="0 5 0 0"/>
                     </ItemsControl>
+
+                    <TextBlock 
+                        Text="Remote"/>
+                    <ItemsControl Margin="0 0 0 17">
+                        <cc:NavigationMenuButton Content="OneDrive"
+                            Icon="{StaticResource OneDrive}"
+                            Margin="0 5 0 0"/>
+                        <cc:NavigationMenuButton Content="Google Drive"
+                            Icon="{StaticResource GoogleDrive}"
+                            Margin="0 5 0 0"/>
+                        <cc:NavigationMenuButton Content="Dropbox"
+                            Icon="{StaticResource Dropbox}"
+                            Margin="0 5 0 0"/>
+                    </ItemsControl>
+
+                    <TextBlock 
+                        Text="Libraries"/>
+                    <ItemsControl Margin="0 0 0 17">
+                        <cc:NavigationMenuButton Content="Desktop"
+                            Icon="{StaticResource DesktopFolder}"
+                            Margin="0 5 0 0"/>
+                        <cc:NavigationMenuButton Content="Documents"
+                            Icon="{StaticResource DocumentsFolder}"
+                            Margin="0 5 0 0"/>
+                        <cc:NavigationMenuButton Content="Downloads"
+                            Icon="{StaticResource DownloadsFolder}"
+                            Margin="0 5 0 0"/>
+                        <cc:NavigationMenuButton Content="Pictures"
+                            Icon="{StaticResource PicturesFolder}"
+                            Margin="0 5 0 0"/>
+                        <cc:NavigationMenuButton Content="Videos"
+                            Icon="{StaticResource VideosFolder}"
+                            Margin="0 5 0 0"/>
+                        <cc:NavigationMenuButton Content="Music"
+                            Icon="{StaticResource MusicsFolder}"
+                            Margin="0 5 0 0"/>
+                    </ItemsControl>
+
+                    <TextBlock 
+                        Text="Devices"/>
+                    <ItemsControl Margin="0 17 0 0">
+                        <cc:NavigationMenuButton Content="Local disk (C:)"
+                            Icon="{StaticResource CDrive}"
+                            Margin="0 5 0 0"/>
+                        <cc:NavigationMenuButton Content="Local disk (D:)"
+                            Icon="{StaticResource NormalDrive}"
+                            Margin="0 5 0 0"/>
+                        <cc:NavigationMenuButton Content="Local disk (E:)"
+                            Icon="{StaticResource NormalDrive}"/>
+                    </ItemsControl>
+                        
                 </StackPanel>
             </ScrollViewer>
+
+            <StackPanel
+                Grid.Row="1"
+                Grid.Column="0">
+                <cc:NavigationMenuButton
+                    Content="Andre Corporation"
+                    Icon="{StaticResource User}"
+                    Margin="20 5 0 15"/>
+                <cc:NavigationMenuButton
+                    Content="Settings"
+                    Icon="{StaticResource Settings}"
+                    Margin="20 0 0 15"/>
+            </StackPanel>
         </Grid>
         <!--#endregion-->
+        
+        <Grid Grid.Column="1" Margin="10 0 0 0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/><!--Menu-->
+                <RowDefinition Height="Auto"/><!--Sub Menu... File Operation button etc.-->
+                <RowDefinition Height="50"/><!--Nav buttons and address bar-->
+                <RowDefinition/><!--Files list-->
+                <RowDefinition Height="Auto"/><!--Footer.. showing file inf and disk space-->
+            </Grid.RowDefinitions>
+            
+            <!--#region Explorer Header-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="auto"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center">
+                    
+                    <RadioButton Content="Home" IsChecked="True"/>
+                    <RadioButton Content="Home" IsChecked="True"/>
+                    <RadioButton Content="Home" IsChecked="True"/>
+                    
+                </StackPanel>
+            </Grid>
+            <!--#endregion-->
+        </Grid>
     </Grid>
     
     

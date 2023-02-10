@@ -18,7 +18,12 @@ namespace WPFMVVMExcusesApp.Infrastructure.Commands
 
         private void OpenFolder()
         {
-            RadOpenFileDialog
+            RadOpenFileDialog();
+        }
+
+        private void RadOpenFileDialog()
+        {
+            throw new NotImplementedException();
         }
     }
 }

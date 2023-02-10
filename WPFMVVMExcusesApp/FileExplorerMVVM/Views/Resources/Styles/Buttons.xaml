@@ -61,7 +61,7 @@
     
     <!--#region Navigation and Folder Buttons-->
     <Style TargetType="{x:Type cc:NavigationMenuButton}">
-        <Setter Property="Foreground" Value="Firebrick"/>
+        <Setter Property="Foreground" Value="Beige"/>
         <Setter Property="GroupName" Value="DNFButton"/>
         <Setter Property="MinHeight" Value="25"/>
         <Setter Property="MinWidth" Value="100"/>
@@ -88,10 +88,10 @@
                         </Border>
 
                         <Path Grid.Column="0"
-                              Data="{StaticResource Folder}"
+                              Data="{TemplateBinding Icon}"
                               Stretch="Uniform"
                               Fill="Aqua"
-                              Height="5"
+                              Height="30"
                               Width="20"
                               Effect="{DynamicResource DropShadowEffect}"/>
 
@@ -106,8 +106,23 @@
                             Grid.Column="2"
                             Width="40"
                             Foreground="Aqua"
-                            
+                            Visibility="Collapsed"/>
+
                     </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bgBorder" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="bgBorder" Property="Opacity" Value=".5"/>
+                        </Trigger>
+
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="bgBorder" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="bgBorder" Property="Opacity" Value=".5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
