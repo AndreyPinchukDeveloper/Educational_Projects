@@ -284,10 +284,16 @@
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center">
                     
-                    <RadioButton Content="Home" IsChecked="True"/>
-                    <RadioButton Content="Home" IsChecked="True"/>
-                    <RadioButton Content="Home" IsChecked="True"/>
-                    
+                    <RadioButton Content="Home" 
+                                 IsChecked="True"
+                                 Style="{StaticResource MenuHeaderRadioButtonStyle}"/>
+                    <RadioButton Content="Computer"
+                                 Style="{StaticResource MenuHeaderRadioButtonStyle}"/>
+                    <RadioButton Content="View"
+                                 Style="{StaticResource MenuHeaderRadioButtonStyle}"/>
+
+                    <ToggleButton x:Name="ToggleExpandCollapseSubMenu"/>
+
                 </StackPanel>
             </Grid>
             <!--#endregion-->
