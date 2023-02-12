@@ -137,8 +137,8 @@
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Padding" Value="20.0"/>
-        <Setter Property="Foreground" Value="DarkGoldenrod"/>
+        <Setter Property="Padding" Value="20,0"/>
+        <Setter Property="Foreground" Value="DimGray"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="GroupName" Value="MenuHeader"/>
         <Setter Property="Template">
@@ -149,18 +149,58 @@
                         BorderThickness="{TemplateBinding BorderThickness}"
                         BorderBrush="{TemplateBinding BorderBrush}"
                         Padding="{TemplateBinding Padding}">
+                        <ContentPresenter/>
                     </Border>
 
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked"
                                  Value="True">
-                            <Setter Property="Foreground" Value="DarkGreen"/>
+                            <Setter Property="Foreground" Value="Red"/>
                             <Setter Property="FontWeight" Value="SemiBold"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region Buttons with icons-->
+    <Style x:Key="ToggleButtonWithIconStyle"
+           TargetType="{x:Type ToggleButton}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Width" Value="15"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Background="{TemplateBinding Background}">
+                        <Path Name="Path"
+                              Data="{TemplateBinding Content}"
+                              Fill="{TemplateBinding Foreground}"
+                              Height="{TemplateBinding FontSize}"
+                              Stretch="Uniform"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region Toggle Expand/Collapse Sub Menu-->
+    <Style x:Key="ExpandCollapseToggleButtonStyle" 
+           TargetType="{x:Type ToggleButton}"
+           BasedOn="{StaticResource ToggleButtonWithIconStyle}">
+        <Setter Property="Content" Value="{DynamicResource CollapseArrow}"/>
+        <Style.Triggers>
+            <Trigger Property="IsChecked"
+                     Value="True">
+                <Setter Property="Content" Value="{StaticResource ExpandArrow}"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
     <!--#endregion-->
 </ResourceDictionary>

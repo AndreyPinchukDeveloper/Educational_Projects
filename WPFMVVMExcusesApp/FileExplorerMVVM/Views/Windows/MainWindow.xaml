@@ -292,8 +292,16 @@
                     <RadioButton Content="View"
                                  Style="{StaticResource MenuHeaderRadioButtonStyle}"/>
 
-                    <ToggleButton x:Name="ToggleExpandCollapseSubMenu"/>
+                    <ToggleButton x:Name="ToggleExpandCollapseSubMenu"
+                                  FontSize="12"
+                                  Style="{StaticResource ExpandCollapseToggleButtonStyle}"/>
 
+                </StackPanel>
+                
+                <!--SearchBox-->
+                <StackPanel Grid.Column="1"
+                            >
+                    
                 </StackPanel>
             </Grid>
             <!--#endregion-->
