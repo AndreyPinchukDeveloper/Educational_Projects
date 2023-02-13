@@ -166,6 +166,45 @@
     <!--#endregion-->
     
     <!--#region Buttons with icons-->
+    <Style x:Key="ButtonWithIconStyle"
+           TargetType="{x:Type Button}">
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Width" Value="15"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Background="{TemplateBinding Background}">
+                        <Path Name="Path"
+                              Data="{TemplateBinding Content}"
+                              Fill="{TemplateBinding Foreground}"
+                              Height="{TemplateBinding FontSize}"
+                              Stretch="Uniform"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsEnabled" Value="True"/>
+                                <Condition Property="IsMouseOver" Value="True"/>
+                                <Condition Property="IsMouseCaptured" Value="False"/>
+                            </MultiTrigger.Conditions>
+                            
+                            <Setter Property="Background" Value="Wheat"/>
+                        </MultiTrigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Background" Value="Wheat"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
     <Style x:Key="ToggleButtonWithIconStyle"
            TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="Transparent"/>
@@ -200,6 +239,17 @@
                      Value="True">
                 <Setter Property="Content" Value="{StaticResource ExpandArrow}"/>
             </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--#endregion-->
+    
+    <!--#region DarkMode Toggle Button-->
+    <Style x:Key="DarkLightModeToggleButtonStyle"
+           TargetType="{x:Type ToggleButton}"
+           BasedOn="{StaticResource ToggleButtonWithIconStyle}">
+        <Setter Property="Content" Value="{StaticResource Sun}"/>
+        <Style.Triggers>
+            <Trigger/>
         </Style.Triggers>
     </Style>
     <!--#endregion-->

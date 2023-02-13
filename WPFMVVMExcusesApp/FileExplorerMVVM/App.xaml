@@ -8,6 +8,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Views/Resources/Styles/Buttons.xaml"/>
                 <ResourceDictionary Source="Views/Resources/Styles/Icons.xaml"/>
+                <ResourceDictionary Source="Views/Resources/Styles/TextBoxes.xaml"/>
             </ResourceDictionary.MergedDictionaries>
 
             <DropShadowEffect

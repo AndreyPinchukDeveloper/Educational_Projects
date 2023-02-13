@@ -300,8 +300,22 @@
                 
                 <!--SearchBox-->
                 <StackPanel Grid.Column="1"
-                            >
-                    
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center">
+                    <TextBox
+                        Margin="12,0"
+                        x:Name="SearchBox"
+                        Style="{StaticResource SearchBoxStyle}"/>
+
+                    <Button Style="{StaticResource ButtonWithIconStyle}"
+                            Content="{StaticResource Share}"
+                            FontSize="20"
+                            Width="44"/>
+
+                    <ToggleButton Width="44"
+                                  Click="{Binding ButtonBaseCommand}"
+                                  Style="{StaticResource ToggleButtonWithIconStyle}"/>
                 </StackPanel>
             </Grid>
             <!--#endregion-->
