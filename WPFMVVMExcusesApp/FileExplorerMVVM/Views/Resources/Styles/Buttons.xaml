@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:prop="clr-namespace:FileExplorerMVVM.Properties"
                     xmlns:cc="clr-namespace:FileExplorerMVVM.Infrastructure.CustomControls">
     <!--#region Window Buttons-->
     <Style TargetType="{x:Type Button}" x:Key="WindowChromeButtonStyle">
@@ -244,12 +245,16 @@
     <!--#endregion-->
     
     <!--#region DarkMode Toggle Button-->
+    <!--we use here Project settings ! Git/Project/etc-->
     <Style x:Key="DarkLightModeToggleButtonStyle"
            TargetType="{x:Type ToggleButton}"
            BasedOn="{StaticResource ToggleButtonWithIconStyle}">
-        <Setter Property="Content" Value="{StaticResource Sun}"/>
+        <Setter Property="Content" Value="{DynamicResource Moon}"/>
         <Style.Triggers>
-            <Trigger/>
+            <DataTrigger Binding="{Binding DarkMode, Source={x:Static prop:Settings.Default}}" 
+                         Value="True">
+                <Setter Property="Content" Value="{DynamicResource Sun}"/>
+            </DataTrigger>
         </Style.Triggers>
     </Style>
     <!--#endregion-->

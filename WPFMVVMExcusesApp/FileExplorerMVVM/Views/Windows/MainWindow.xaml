@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileExplorerMVVM"
+        xmlns:prop="clr-namespace:FileExplorerMVVM.Properties"
         xmlns:cc="clr-namespace:FileExplorerMVVM.Infrastructure.CustomControls"
         mc:Ignorable="d"
         Title="MainWindow" 
@@ -314,8 +315,10 @@
                             Width="44"/>
 
                     <ToggleButton Width="44"
-                                  Click="{Binding ButtonBaseCommand}"
-                                  Style="{StaticResource ToggleButtonWithIconStyle}"/>
+                                  IsChecked="{Binding DarkMode, Mode=TwoWay, Source={x:Static prop:Settings.Default}}"
+                                  FontSize="15"
+                                  Command="{Binding ButtonBaseCommand}"
+                                  Style="{StaticResource DarkLightModeToggleButtonStyle}"/>
                 </StackPanel>
             </Grid>
             <!--#endregion-->
