@@ -9,7 +9,7 @@ using System.Windows.Media;
 
 namespace FileExplorerMVVM.Infrastructure.CustomControls
 {
-    class NavigationMenuButton : RadioButton
+    public class SubMenuIconButton : Button
     {
         public PathGeometry Icon
         {
@@ -17,10 +17,7 @@ namespace FileExplorerMVVM.Infrastructure.CustomControls
             set => SetValue(IconProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for Icon.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty IconProperty =
-            DependencyProperty.Register("Icon", typeof(PathGeometry), typeof(NavigationMenuButton));
-
-
+            DependencyProperty.Register("Icon", typeof(PathGeometry), typeof(SubMenuIconButton));
     }
 }

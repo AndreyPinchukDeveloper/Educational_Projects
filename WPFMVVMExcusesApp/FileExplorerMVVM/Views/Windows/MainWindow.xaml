@@ -322,6 +322,26 @@
                 </StackPanel>
             </Grid>
             <!--#endregion-->
+            
+            <!--#region Sub Menu-->
+            <Grid Grid.Row="1"
+                  HorizontalAlignment="Left">
+                <StackPanel x:Name="FileIperationsPanel"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Left"
+                            Margin="10,0">
+                    <ItemsControl>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"/>
+                    </ItemsControl>
+                </StackPanel>
+            </Grid>
+            <!--#endregion-->
         </Grid>
     </Grid>
     
