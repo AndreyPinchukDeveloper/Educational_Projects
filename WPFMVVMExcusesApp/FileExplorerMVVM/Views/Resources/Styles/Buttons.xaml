@@ -238,7 +238,7 @@
         <Style.Triggers>
             <Trigger Property="IsChecked"
                      Value="True">
-                <Setter Property="Content" Value="{StaticResource ExpandArrow}"/>
+                <Setter Property="Content" Value="{DynamicResource ExpandArrow}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -291,9 +291,9 @@
                                         Margin="5">
 
                                 <Path Name="Path"
-                                      Data="{TemplateBinding Content}"
+                                      Data="{TemplateBinding Icon}"
                                       Fill="{TemplateBinding Foreground}"
-                                      Height="{TemplateBinding FontSize}"
+                                      Height="24"
                                       Stretch="Uniform"/>
                                 <TextBlock Name="TextBlock"
                                            Margin="0,5,0,0"

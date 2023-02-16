@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:FileExplorerMVVM"
         xmlns:prop="clr-namespace:FileExplorerMVVM.Properties"
         xmlns:cc="clr-namespace:FileExplorerMVVM.Infrastructure.CustomControls"
+        xmlns:converters="clr-namespace:FileExplorerMVVM.Infrastructure.Converters"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="782" Width="1235"
@@ -326,21 +327,51 @@
             <!--#region Sub Menu-->
             <Grid Grid.Row="1"
                   HorizontalAlignment="Left">
-                <StackPanel x:Name="FileIperationsPanel"
-                            Orientation="Horizontal"
-                            HorizontalAlignment="Left"
-                            Margin="10,0">
-                    <ItemsControl>
+                <Grid.Resources>
+                    <converters:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter"/>
+                </Grid.Resources>
+                <StackPanel x:Name="FileOperationsPanel"
+                            Orientation="Horizontal">
+                    <ItemsControl HorizontalAlignment="Left"
+                                  Margin="10,0"
+                                  Visibility="{Binding IsChecked, Converter={StaticResource BoolToVisibilityConverter}, ElementName=ToggleExpandCollapseSubMenu}">
+                        
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
                                 <StackPanel Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
-
-                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"/>
+                        
+                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
+                                              Content="Pin"
+                                              Icon="{StaticResource Pin}"/>
+                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
+                                              Content="Copy"
+                                              Icon="{StaticResource Copy}"/>
+                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
+                                              Content="Cut"
+                                              Icon="{StaticResource Cut}"/>
+                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
+                                              Content="Paste"
+                                              Icon="{StaticResource Paste}"/>
+                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
+                                              Content="Delete"
+                                              Icon="{StaticResource Delete}"/>
+                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
+                                              Content="Rename"
+                                              Icon="{StaticResource Rename}"/>
+                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
+                                              Content="NewFolder"
+                                              Icon="{StaticResource NewFolder}"/>
+                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
+                                              Content="FileSettings"
+                                              Icon="{StaticResource FileSettings}"/>
                     </ItemsControl>
                 </StackPanel>
             </Grid>
+            <!--#endregion-->
+            
+            <!--#region Navigation Buttons & Address Bar-->
             <!--#endregion-->
         </Grid>
     </Grid>
