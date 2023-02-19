@@ -193,16 +193,27 @@
                             <Setter Property="Foreground" Value="Aqua"/>
                             <Setter Property="Effect" Value="{StaticResource DropShadowEffect}"/>
                         </Style>
+
+                        <DataTemplate x:Key="NavFolderDataTemplate">
+                            <cc:NavigationMenuButton Content="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                                                     Icon="{Binding FolderIcon, UpdateSourceTrigger=PropertyChanged}"
+                                                     Margin="0 5 0 8"/>
+                        </DataTemplate>
                     </StackPanel.Resources>
 
                     <StackPanel>
                         <StackPanel.Style>
                             <Style TargetType="{x:Type StackPanel}">
                                 <Style.Triggers>
-                                    <DataTrigger>
-                                        <DataTrigger Binding="{Binding FavoriteFolders.Count}" Value="0">
-                                            <Setter Property="Visibility" Value="Hidden"/>
-                                        </DataTrigger>
+                                    <DataTrigger Binding="{Binding FavoriteFolders.Count,
+                                                 UpdateSourceTrigger=PropertyChanged}" 
+                                                 Value="0">
+                                        <Setter Property="Visibility" Value="Hidden"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding FavoriteFolders.Count,
+                                                 UpdateSourceTrigger=PropertyChanged}" 
+                                                 Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Collapsed"/>
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -210,61 +221,20 @@
                         <TextBlock 
                         Text="Favorites"/>
                         <ItemsControl Margin="0 0 0 17"
+                                      ItemTemplate="{StaticResource NavigationMenuButton}"
                                       ItemsSource="{Binding FavoriteFolders, 
                                       UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
-
                     <TextBlock Text="Remote"/>
+                    <ItemsControl ItemsSource="{Binding RemoteFolders, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Libraries"/>
+                    <ItemsControl ItemsSource="{Binding LibraryFolders, UpdateSourceTrigger=PropertyChanged}"/>
+
+                    <TextBlock Text="Devices"/>
+                    <ItemsControl ItemsSource="{Binding ConnectedDevices, UpdateSourceTrigger=PropertyChanged}"/>
                     
-                    <ItemsControl Margin="0 0 0 17">
-                        <cc:NavigationMenuButton Content="OneDrive"
-                            Icon="{StaticResource OneDrive}"
-                            Margin="0 5 0 0"/>
-                        <cc:NavigationMenuButton Content="Google Drive"
-                            Icon="{StaticResource GoogleDrive}"
-                            Margin="0 5 0 0"/>
-                        <cc:NavigationMenuButton Content="Dropbox"
-                            Icon="{StaticResource Dropbox}"
-                            Margin="0 5 0 0"/>
-                    </ItemsControl>
-
-                    <TextBlock 
-                        Text="Libraries"/>
-                    <ItemsControl Margin="0 0 0 17">
-                        <cc:NavigationMenuButton Content="Desktop"
-                            Icon="{StaticResource DesktopFolder}"
-                            Margin="0 5 0 0"/>
-                        <cc:NavigationMenuButton Content="Documents"
-                            Icon="{StaticResource DocumentsFolder}"
-                            Margin="0 5 0 0"/>
-                        <cc:NavigationMenuButton Content="Downloads"
-                            Icon="{StaticResource DownloadsFolder}"
-                            Margin="0 5 0 0"/>
-                        <cc:NavigationMenuButton Content="Pictures"
-                            Icon="{StaticResource PicturesFolder}"
-                            Margin="0 5 0 0"/>
-                        <cc:NavigationMenuButton Content="Videos"
-                            Icon="{StaticResource VideosFolder}"
-                            Margin="0 5 0 0"/>
-                        <cc:NavigationMenuButton Content="Music"
-                            Icon="{StaticResource MusicsFolder}"
-                            Margin="0 5 0 0"/>
-                    </ItemsControl>
-
-                    <TextBlock 
-                        Text="Devices"/>
-                    <ItemsControl Margin="0 17 0 0">
-                        <cc:NavigationMenuButton Content="Local disk (C:)"
-                            Icon="{StaticResource CDrive}"
-                            Margin="0 5 0 0"/>
-                        <cc:NavigationMenuButton Content="Local disk (D:)"
-                            Icon="{StaticResource NormalDrive}"
-                            Margin="0 5 0 0"/>
-                        <cc:NavigationMenuButton Content="Local disk (E:)"
-                            Icon="{StaticResource NormalDrive}"/>
-                    </ItemsControl>
-                        
                 </StackPanel>
             </ScrollViewer>
 
@@ -432,15 +402,9 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       BorderThickness="0"
-                      SelectionMode="Extended">
-                <ListViewItem Content="Program Files"
-                              Tag="{StaticResource Folder}"/>
-                <ListViewItem Content="Program Files (x86)"
-                              Tag="{StaticResource Folder}"/>
-                <ListViewItem Content="Users"
-                              Tag="{StaticResource Folder}"/>
-                <ListViewItem Content="Windows"
-                              Tag="{StaticResource Folder}"/>
+                      SelectionMode="Extended"
+                      ItemsSource="{Binding NavigatedFolderFiles, UpdateSourceTrigger=PropertyChanged}">
+
             </ListView>
             <!--#endregion-->
             

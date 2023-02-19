@@ -9,11 +9,14 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace FileExplorerMVVM.ViewModels
 {
     class MainWindowViewModel:ViewModelBase
     {
+        #region Properties
+
         readonly ResourceDictionary _iconDictionary = Application.LoadComponent(
             new Uri("/FileExplorerRedesign;component/Resources/Icons.xaml", UriKind.RelativeOrAbsolute)) as ResourceDictionary;
 
@@ -29,12 +32,43 @@ namespace FileExplorerMVVM.ViewModels
         public ObservableCollection<FileDetailsModel> LibraryFolders { get; set; }
         public ObservableCollection<FileDetailsModel> ConnectedDevices { get; set; }
         public ObservableCollection<FileDetailsModel> NavigatedFolderFiles { get; set; }
-        ICommand ButtonBaseCommand { get; set; }
 
+        #endregion
+
+        ICommand ButtonBaseCommand { get; set; }
 
         public MainWindowViewModel()
         {
             ButtonBaseCommand = new ButtonBaseCommand();
+
+            new FileDetailsModel()
+            {
+                Name = "OneDrive",
+                IsDirectory = true,
+                Path = Environment.GetEnvironmentVariable("OneDriveConsumer"),
+                FileIcon = (PathGeometry)_iconDictionary["OneDrive"]
+            };
+
+            new FileDetailsModel()
+            {
+                Name = "Google Drive",
+                IsDirectory = true,
+                Path = "",
+                FileIcon = (PathGeometry)_iconDictionary["GoogleDrive"]
+            };
+
+            new FileDetailsModel()
+            {
+                Name = "DropBox",
+                IsDirectory = true,
+                Path = "",
+                FileIcon = (PathGeometry)_iconDictionary["DropBox"]
+            };
+
+
         }
+
+        
+
     }
 }
