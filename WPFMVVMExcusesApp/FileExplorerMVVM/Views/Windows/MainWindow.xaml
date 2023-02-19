@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:FileExplorerMVVM"
         xmlns:prop="clr-namespace:FileExplorerMVVM.Properties"
         xmlns:cc="clr-namespace:FileExplorerMVVM.Infrastructure.CustomControls"
+        xmlns:viewmodel="clr-namespace:FileExplorerMVVM.ViewModels"
         xmlns:converters="clr-namespace:FileExplorerMVVM.Infrastructure.Converters"
         mc:Ignorable="d"
         Title="MainWindow" 
@@ -13,6 +14,10 @@
         MinHeight="760" MinWidth="864"
         WindowStartupLocation="CenterScreen"
         x:Name="MyMainWindow">
+    
+    <Window.DataContext>
+        <viewmodel:MainWindowViewModel/>
+    </Window.DataContext>
     
     <Window.Resources>
         <BitmapImage x:Key="Image_1" UriSource="Castle.jpg"/>
@@ -189,17 +194,29 @@
                             <Setter Property="Effect" Value="{StaticResource DropShadowEffect}"/>
                         </Style>
                     </StackPanel.Resources>
-                    
-                    <TextBlock 
-                        Text="Favorites"/>
-                    <ItemsControl Margin="0 0 0 17">
-                        <cc:NavigationMenuButton Content="Games"
-                            Icon="{StaticResource Folder}"
-                            Margin="0 5 0 0"/>
-                    </ItemsControl>
 
-                    <TextBlock 
-                        Text="Remote"/>
+                    <StackPanel>
+                        <StackPanel.Style>
+                            <Style TargetType="{x:Type StackPanel}">
+                                <Style.Triggers>
+                                    <DataTrigger>
+                                        <DataTrigger Binding="{Binding FavoriteFolders.Count}" Value="0">
+                                            <Setter Property="Visibility" Value="Hidden"/>
+                                        </DataTrigger>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <TextBlock 
+                        Text="Favorites"/>
+                        <ItemsControl Margin="0 0 0 17"
+                                      ItemsSource="{Binding FavoriteFolders, 
+                                      UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+
+
+                    <TextBlock Text="Remote"/>
+                    
                     <ItemsControl Margin="0 0 0 17">
                         <cc:NavigationMenuButton Content="OneDrive"
                             Icon="{StaticResource OneDrive}"
