@@ -41,34 +41,32 @@ namespace FileExplorerMVVM.ViewModels
         {
             ButtonBaseCommand = new ButtonBaseCommand();
 
-            new FileDetailsModel()
+
+            RemoteFolders = new ObservableCollection<FileDetailsModel>()
             {
-                Name = "OneDrive",
-                IsDirectory = true,
-                Path = Environment.GetEnvironmentVariable("OneDriveConsumer"),
-                FileIcon = (PathGeometry)_iconDictionary["OneDrive"]
+                new FileDetailsModel()
+                {
+                    Name = "OneDrive",
+                    IsDirectory = true,
+                    Path = Environment.GetEnvironmentVariable("OneDriveConsumer"),
+                    FileIcon = (PathGeometry)_iconDictionary["OneDrive"]
+                },
+                new FileDetailsModel()
+                {
+                    Name = "Google Drive",
+                    IsDirectory = true,
+                    Path = "",
+                    FileIcon = (PathGeometry)_iconDictionary["GoogleDrive"]
+                },
+                new FileDetailsModel()
+                {
+                    Name = "DropBox",
+                    IsDirectory = true,
+                    Path = "",
+                    FileIcon = (PathGeometry)_iconDictionary["DropBox"]
+                }
             };
-
-            new FileDetailsModel()
-            {
-                Name = "Google Drive",
-                IsDirectory = true,
-                Path = "",
-                FileIcon = (PathGeometry)_iconDictionary["GoogleDrive"]
-            };
-
-            new FileDetailsModel()
-            {
-                Name = "DropBox",
-                IsDirectory = true,
-                Path = "",
-                FileIcon = (PathGeometry)_iconDictionary["DropBox"]
-            };
-
-
         }
-
-        
 
     }
 }

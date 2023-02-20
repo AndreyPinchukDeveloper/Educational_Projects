@@ -221,19 +221,22 @@
                         <TextBlock 
                         Text="Favorites"/>
                         <ItemsControl Margin="0 0 0 17"
-                                      ItemTemplate="{StaticResource NavigationMenuButton}"
+                                      ItemTemplate="{StaticResource NavFolderDataTemplate}"
                                       ItemsSource="{Binding FavoriteFolders, 
                                       UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
 
                     <TextBlock Text="Remote"/>
-                    <ItemsControl ItemsSource="{Binding RemoteFolders, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ItemsControl ItemTemplate="{StaticResource NavFolderDataTemplate}"
+                                  ItemsSource="{Binding RemoteFolders, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Text="Libraries"/>
-                    <ItemsControl ItemsSource="{Binding LibraryFolders, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ItemsControl ItemTemplate="{StaticResource NavFolderDataTemplate}"
+                                  ItemsSource="{Binding LibraryFolders, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Text="Devices"/>
-                    <ItemsControl ItemsSource="{Binding ConnectedDevices, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ItemsControl ItemTemplate="{StaticResource NavFolderDataTemplate}"
+                                  ItemsSource="{Binding ConnectedDevices, UpdateSourceTrigger=PropertyChanged}"/>
                     
                 </StackPanel>
             </ScrollViewer>
