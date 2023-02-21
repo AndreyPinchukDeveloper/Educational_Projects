@@ -7,6 +7,7 @@
         xmlns:prop="clr-namespace:FileExplorerMVVM.Properties"
         xmlns:cc="clr-namespace:FileExplorerMVVM.Infrastructure.CustomControls"
         xmlns:viewmodel="clr-namespace:FileExplorerMVVM.ViewModels"
+        xmlns:model="clr-namespace:FileExplorerMVVM.Models"
         xmlns:converters="clr-namespace:FileExplorerMVVM.Infrastructure.Converters"
         mc:Ignorable="d"
         Title="MainWindow" 
@@ -195,6 +196,7 @@
                         </Style>
 
                         <DataTemplate x:Key="NavFolderDataTemplate">
+                            
                             <cc:NavigationMenuButton Content="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                                                      Icon="{Binding FolderIcon, UpdateSourceTrigger=PropertyChanged}"
                                                      Margin="0 5 0 8"/>
@@ -208,7 +210,7 @@
                                     <DataTrigger Binding="{Binding FavoriteFolders.Count,
                                                  UpdateSourceTrigger=PropertyChanged}" 
                                                  Value="0">
-                                        <Setter Property="Visibility" Value="Hidden"/>
+                                        <Setter Property="Visibility" Value="Collapsed"/>
                                     </DataTrigger>
                                     <DataTrigger Binding="{Binding FavoriteFolders.Count,
                                                  UpdateSourceTrigger=PropertyChanged}" 
@@ -227,7 +229,7 @@
                     </StackPanel>
 
                     <TextBlock Text="Remote"/>
-                    <ItemsControl ItemTemplate="{StaticResource NavFolderDataTemplate}"
+                    <ItemsControl ItemTemplate="{StaticResource NavigatedFolderFiles}"
                                   ItemsSource="{Binding RemoteFolders, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Text="Libraries"/>

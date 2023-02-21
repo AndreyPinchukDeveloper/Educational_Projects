@@ -1,6 +1,7 @@
 ﻿using FileExplorerMVVM.Infrastructure.Commands;
 using FileExplorerMVVM.Models;
 using FileExplorerMVVM.ViewModels.Base;
+using Syroot.Windows.IO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +19,8 @@ namespace FileExplorerMVVM.ViewModels
         #region Properties
 
         readonly ResourceDictionary _iconDictionary = Application.LoadComponent(
-            new Uri("/FileExplorerRedesign;component/Resources/Icons.xaml", UriKind.RelativeOrAbsolute)) as ResourceDictionary;
+            new Uri("/FileExplorerMVVM;component/Views/Resources/Styles/Icons.xaml", 
+                UriKind.RelativeOrAbsolute)) as ResourceDictionary;
 
         public string ParentDirectory { get; set; }
         public string PreviousDirectory { get; set; }
@@ -65,6 +67,52 @@ namespace FileExplorerMVVM.ViewModels
                     Path = "",
                     FileIcon = (PathGeometry)_iconDictionary["DropBox"]
                 }
+            };
+
+            LibraryFolders = new ObservableCollection<FileDetailsModel>()
+            {
+                new FileDetailsModel()
+                {
+                    Name = "Desktop",
+                    IsDirectory = true,
+                    Path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop),
+                    FileIcon = (PathGeometry)_iconDictionary["DesktopFolder"]
+                },
+                new FileDetailsModel()
+                {
+                    Name = "Documents",
+                    IsDirectory = true,
+                    Path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments),
+                    FileIcon = (PathGeometry)_iconDictionary["DocumentsFolder"]
+                },
+                new FileDetailsModel()
+                {
+                    Name = "Downloads",
+                    IsDirectory = true,
+                    Path = new KnownFolder(KnownFolderType.Downloads).Path,
+                    FileIcon = (PathGeometry)_iconDictionary["DownloadFolder"]
+                },
+                new FileDetailsModel()
+                {
+                    Name = "Pictures",
+                    IsDirectory = true,
+                    Path = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures),
+                    FileIcon = (PathGeometry)_iconDictionary["PicturesFolder"]
+                },
+                new FileDetailsModel()
+                {
+                    Name = "Videos",
+                    IsDirectory = true,
+                    Path = Environment.GetFolderPath(Environment.SpecialFolder.MyVideos),
+                    FileIcon = (PathGeometry)_iconDictionary["VideosFolder"]
+                },
+                new FileDetailsModel()
+                {
+                    Name = "Music",
+                    IsDirectory = true,
+                    Path = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic),
+                    FileIcon = (PathGeometry)_iconDictionary["MusicFolder"]
+                },
             };
         }
 
