@@ -5,6 +5,7 @@ using Syroot.Windows.IO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -65,7 +66,7 @@ namespace FileExplorerMVVM.ViewModels
                     Name = "DropBox",
                     IsDirectory = true,
                     Path = "",
-                    FileIcon = (PathGeometry)_iconDictionary["DropBox"]
+                    FileIcon = (PathGeometry)_iconDictionary["Dropbox"]
                 }
             };
 
@@ -90,7 +91,7 @@ namespace FileExplorerMVVM.ViewModels
                     Name = "Downloads",
                     IsDirectory = true,
                     Path = new KnownFolder(KnownFolderType.Downloads).Path,
-                    FileIcon = (PathGeometry)_iconDictionary["DownloadFolder"]
+                    FileIcon = (PathGeometry)_iconDictionary["DownloadsFolder"]
                 },
                 new FileDetailsModel()
                 {
@@ -111,9 +112,27 @@ namespace FileExplorerMVVM.ViewModels
                     Name = "Music",
                     IsDirectory = true,
                     Path = Environment.GetFolderPath(Environment.SpecialFolder.MyMusic),
-                    FileIcon = (PathGeometry)_iconDictionary["MusicFolder"]
+                    FileIcon = (PathGeometry)_iconDictionary["MusicsFolder"]
                 },
             };
+
+            
+            ConnectedDevices = new ObservableCollection<FileDetailsModel>();
+            //represent all disks on your PC
+            foreach (var drive in DriveInfo.GetDrives())
+            {
+                var name = string.IsNullOrEmpty(drive.VolumeLabel) ? "Local Disk" : drive.VolumeLabel;
+                ConnectedDevices.Add(new FileDetailsModel()
+                {
+                    Name = $"{name}({drive.Name.Replace(@"\", "")})",
+                    Path = drive.RootDirectory.FullName,
+                    IsDirectory = true,
+                    FileIcon = drive.Name.Contains("C:")
+                        ?(PathGeometry) _iconDictionary["CDrive"]
+                        :(PathGeometry)_iconDictionary["NormalDrive"]
+                }); 
+            }
+            CurrentDirectory = @"C:\";
         }
 
     }

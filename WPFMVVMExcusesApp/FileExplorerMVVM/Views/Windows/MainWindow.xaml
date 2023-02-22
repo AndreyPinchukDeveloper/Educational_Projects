@@ -198,7 +198,7 @@
                         <DataTemplate x:Key="NavFolderDataTemplate">
                             
                             <cc:NavigationMenuButton Content="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-                                                     Icon="{Binding FolderIcon, UpdateSourceTrigger=PropertyChanged}"
+                                                     Icon="{Binding FileIcon, UpdateSourceTrigger=PropertyChanged}"
                                                      Margin="0 5 0 8"/>
                         </DataTemplate>
                     </StackPanel.Resources>
@@ -229,7 +229,7 @@
                     </StackPanel>
 
                     <TextBlock Text="Remote"/>
-                    <ItemsControl ItemTemplate="{StaticResource NavigatedFolderFiles}"
+                    <ItemsControl ItemTemplate="{StaticResource NavFolderDataTemplate}"
                                   ItemsSource="{Binding RemoteFolders, UpdateSourceTrigger=PropertyChanged}"/>
 
                     <TextBlock Text="Libraries"/>
