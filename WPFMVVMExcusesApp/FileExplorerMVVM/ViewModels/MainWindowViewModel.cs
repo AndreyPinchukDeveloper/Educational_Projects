@@ -1,10 +1,12 @@
 ﻿using FileExplorerMVVM.Infrastructure.Commands;
+using FileExplorerMVVM.Infrastructure.Commands.Base;
 using FileExplorerMVVM.Models;
 using FileExplorerMVVM.ViewModels.Base;
 using Syroot.Windows.IO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -135,5 +137,13 @@ namespace FileExplorerMVVM.ViewModels
             CurrentDirectory = @"C:\";
         }
 
+        #region Commands
+
+        private ICommand _openSettingsCommand;
+        public ICommand openSettingsCommand
+        {
+            get { return _openSettingsCommand ?? (_openSettingsCommand = new Command(() => Process.Start("ms-settings:home"))); }
+        }
+        #endregion
     }
 }

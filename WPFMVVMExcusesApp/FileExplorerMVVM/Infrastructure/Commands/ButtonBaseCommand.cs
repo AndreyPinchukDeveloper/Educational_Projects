@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace FileExplorerMVVM.Infrastructure.Commands
 {
-    class ButtonBaseCommand:BaseCommand
+    class ButtonBaseCommand : BaseCommand
     {
+        public override void Execute(object? parameter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
