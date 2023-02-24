@@ -142,7 +142,13 @@ namespace FileExplorerMVVM.ViewModels
         private ICommand _openSettingsCommand;
         public ICommand openSettingsCommand
         {
-            get { return _openSettingsCommand ?? (_openSettingsCommand = new Command(() => Process.Start("ms-settings:home"))); }
+            get { return _openSettingsCommand ?? (_openSettingsCommand = new OpenWindowsSettingsCommand(() => Process.Start("ms-settings:home"))); }
+        }
+
+        private ICommand _openUserProfileSettingsCommand;
+        public ICommand openUserProfileSettingsCommand
+        {
+            get { return _openUserProfileSettingsCommand ?? (_openUserProfileSettingsCommand = new OpenWindowsSettingsCommand(() => Process.Start("ms-settings:yourinfo"))); }
         }
         #endregion
     }

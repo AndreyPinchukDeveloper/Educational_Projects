@@ -24,7 +24,7 @@ namespace FileExplorerMVVM.Infrastructure.Commands.Base
         }
     }
 
-    #region ExampleClass
+    /*#region ExampleClass
     public class Command : ICommand
     {
         private readonly Action _action;
@@ -49,5 +49,5 @@ namespace FileExplorerMVVM.Infrastructure.Commands.Base
             remove { }
         }
     }
-    #endregion
+    #endregion*/
 }

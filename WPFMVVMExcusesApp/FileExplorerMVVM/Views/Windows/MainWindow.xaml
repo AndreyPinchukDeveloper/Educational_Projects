@@ -250,7 +250,7 @@
                     Content="Andre Corporation"
                     Icon="{StaticResource User}"
                     Margin="20 5 0 15"
-                    Command="{Binding openSettingsCommand}"/>
+                    Command="{Binding openUserProfileSettingsCommand}"/>
                 <cc:NavigationMenuButton
                     Content="Settings"
                     Icon="{StaticResource Settings}"
