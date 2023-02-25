@@ -37,16 +37,12 @@ namespace FileExplorerMVVM.ViewModels
         public ObservableCollection<FileDetailsModel> LibraryFolders { get; set; }
         public ObservableCollection<FileDetailsModel> ConnectedDevices { get; set; }
         public ObservableCollection<FileDetailsModel> NavigatedFolderFiles { get; set; }
-
+        public ObservableCollection<SubMenuItemDetails> HomeTabSubMenuCollection { get; set; }
+        public ObservableCollection<SubMenuItemDetails> ViewTabSubMenuCollection { get; set; }
         #endregion
-
-        ICommand ButtonBaseCommand { get; set; }
 
         public MainWindowViewModel()
         {
-            ButtonBaseCommand = new ButtonBaseCommand();
-
-
             RemoteFolders = new ObservableCollection<FileDetailsModel>()
             {
                 new FileDetailsModel()
@@ -134,6 +130,9 @@ namespace FileExplorerMVVM.ViewModels
                         :(PathGeometry)_iconDictionary["NormalDrive"]
                 }); 
             }
+
+            LoadSubMenuCollectionCommand.Execute(null);
+            
             CurrentDirectory = @"C:\";
         }
 
@@ -142,13 +141,82 @@ namespace FileExplorerMVVM.ViewModels
         private ICommand _openSettingsCommand;
         public ICommand openSettingsCommand
         {
-            get { return _openSettingsCommand ?? (_openSettingsCommand = new OpenWindowsSettingsCommand(() => Process.Start("ms-settings:home"))); }
+            get { return _openSettingsCommand ?? (_openSettingsCommand = new OpenWindowsSettingsCommand(() => Process.Start(new ProcessStartInfo { FileName = "ms-settings:home", UseShellExecute = true }))); }
         }
 
         private ICommand _openUserProfileSettingsCommand;
         public ICommand openUserProfileSettingsCommand
         {
-            get { return _openUserProfileSettingsCommand ?? (_openUserProfileSettingsCommand = new OpenWindowsSettingsCommand(() => Process.Start("ms-settings:yourinfo"))); }
+            get { return _openUserProfileSettingsCommand ?? (_openUserProfileSettingsCommand = new OpenWindowsSettingsCommand(() => Process.Start(new ProcessStartInfo { FileName = "ms-settings:yourinfo", UseShellExecute = true }))); }
+        }
+
+        private ICommand _loadSubMenuCollectionCommand;
+        public ICommand LoadSubMenuCollectionCommand
+        {
+            get 
+            {
+                return _loadSubMenuCollectionCommand ??
+                    ( _openUserProfileSettingsCommand = new OpenWindowsSettingsCommand(()=>
+                    {
+                        HomeTabSubMenuCollection = new ObservableCollection<SubMenuItemDetails>
+                        {
+                            new SubMenuItemDetails()
+                            {
+                                Name= "Pin",
+                                Icon = (PathGeometry)_iconDictionary["Pin"]
+                            },
+                            new SubMenuItemDetails()
+                            {
+                                Name= "Copy",
+                                Icon = (PathGeometry)_iconDictionary["Copy"]
+                            },
+                            new SubMenuItemDetails()
+                            {
+                                Name= "Cut",
+                                Icon = (PathGeometry)_iconDictionary["Cut"]
+                            },
+                            new SubMenuItemDetails()
+                            {
+                                Name= "Paste",
+                                Icon = (PathGeometry)_iconDictionary["Paste"]
+                            },
+                            new SubMenuItemDetails()
+                            {
+                                Name= "Delete",
+                                Icon = (PathGeometry)_iconDictionary["Delete"]
+                            },
+                            new SubMenuItemDetails()
+                            {
+                                Name= "Rename",
+                                Icon = (PathGeometry)_iconDictionary["Rename"]
+                            },
+                            new SubMenuItemDetails()
+                            {
+                                Name= "New Folder",
+                                Icon = (PathGeometry)_iconDictionary["NewFolder"]
+                            },
+                            new SubMenuItemDetails()
+                            {
+                                Name= "Properties",
+                                Icon = (PathGeometry)_iconDictionary["FileSettings"]
+                            }
+                        };
+
+                        ViewTabSubMenuCollection = new ObservableCollection<SubMenuItemDetails>
+                        {
+                            new SubMenuItemDetails()
+                            {
+                                Name= "List",
+                                Icon = (PathGeometry)_iconDictionary["ListView"]
+                            },
+                            new SubMenuItemDetails()
+                            {
+                                Name= "Tile",
+                                Icon = (PathGeometry)_iconDictionary["TileView"]
+                            }
+                        };
+                    }));
+            }
         }
         #endregion
     }
