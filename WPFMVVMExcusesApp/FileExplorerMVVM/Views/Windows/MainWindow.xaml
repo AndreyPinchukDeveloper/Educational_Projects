@@ -279,13 +279,16 @@
                 <StackPanel Orientation="Horizontal"
                             HorizontalAlignment="Left"
                             VerticalAlignment="Center">
-                    
-                    <RadioButton Content="Home" 
+
+                    <RadioButton x:Name="HomeTabButton"
+                                 Content="Home" 
                                  IsChecked="True"
                                  Style="{StaticResource MenuHeaderRadioButtonStyle}"/>
-                    <RadioButton Content="Computer"
+                    <RadioButton x:Name="ComputerTabButton"
+                                 Content="Computer"
                                  Style="{StaticResource MenuHeaderRadioButtonStyle}"/>
-                    <RadioButton Content="View"
+                    <RadioButton x:Name="ViewTabButton"
+                                 Content="View"
                                  Style="{StaticResource MenuHeaderRadioButtonStyle}"/>
 
                     <ToggleButton x:Name="ToggleExpandCollapseSubMenu"
@@ -335,31 +338,27 @@
                                 <StackPanel Orientation="Horizontal"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <cc:SubMenuIconButton
+                                    Icon="{Binding Icon}"
+                                    Content="{Binding Name}"
+                                    Style="{StaticResource SubMenuIconButtonStyle}"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
                         
-                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
-                                              Content="Pin"
-                                              Icon="{StaticResource Pin}"/>
-                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
-                                              Content="Copy"
-                                              Icon="{StaticResource Copy}"/>
-                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
-                                              Content="Cut"
-                                              Icon="{StaticResource Cut}"/>
-                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
-                                              Content="Paste"
-                                              Icon="{StaticResource Paste}"/>
-                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
-                                              Content="Delete"
-                                              Icon="{StaticResource Delete}"/>
-                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
-                                              Content="Rename"
-                                              Icon="{StaticResource Rename}"/>
-                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
-                                              Content="NewFolder"
-                                              Icon="{StaticResource NewFolder}"/>
-                        <cc:SubMenuIconButton Style="{StaticResource SubMenuIconButtonStyle}"
-                                              Content="FileSettings"
-                                              Icon="{StaticResource FileSettings}"/>
+                        <ItemsControl.Style>
+                            <Style TargetType="{x:Type ItemsControl}">
+                                <Setter Property="ItemsSource" Value="{Binding HomeTabSubMenuCollection, UpdateSourceTrigger=PropertyChanged}"/>
+                                
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsChecked, ElementName=ViewTabButton}" Value="true">
+                                        <Setter Property="ItemsSource" Value="{Binding ViewTabSubMenuCollection, UpdateSourceTrigger=PropertyChanged}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ItemsControl.Style>
                     </ItemsControl>
                 </StackPanel>
             </Grid>

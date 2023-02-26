@@ -131,7 +131,7 @@ namespace FileExplorerMVVM.ViewModels
                 }); 
             }
 
-            LoadSubMenuCollectionCommand.Execute(null);
+            LoadSubMenuCollectionCommand.Execute(null);//do we really need that ?
             
             CurrentDirectory = @"C:\";
         }
@@ -147,7 +147,7 @@ namespace FileExplorerMVVM.ViewModels
         private ICommand _openUserProfileSettingsCommand;
         public ICommand openUserProfileSettingsCommand
         {
-            get { return _openUserProfileSettingsCommand ?? (_openUserProfileSettingsCommand = new OpenWindowsSettingsCommand(() => Process.Start(new ProcessStartInfo { FileName = "ms-settings:yourinfo", UseShellExecute = true }))); }
+            get { return _openUserProfileSettingsCommand ?? (_openUserProfileSettingsCommand = new OpenWindowsSettingsCommand(() => Process.Start(new ProcessStartInfo { FileName = "ms-settings:home", UseShellExecute = true }))); }
         }
 
         private ICommand _loadSubMenuCollectionCommand;
