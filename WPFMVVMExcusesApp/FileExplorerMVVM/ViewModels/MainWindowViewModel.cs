@@ -2,14 +2,18 @@
 using FileExplorerMVVM.Infrastructure.Commands.Base;
 using FileExplorerMVVM.Models;
 using FileExplorerMVVM.ViewModels.Base;
+using Microsoft.VisualBasic.FileIO;
 using Syroot.Windows.IO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -39,7 +43,64 @@ namespace FileExplorerMVVM.ViewModels
         public ObservableCollection<FileDetailsModel> NavigatedFolderFiles { get; set; }
         public ObservableCollection<SubMenuItemDetails> HomeTabSubMenuCollection { get; set; }
         public ObservableCollection<SubMenuItemDetails> ViewTabSubMenuCollection { get; set; }
+        internal ReadOnlyCollection<string> tempFolderCollection;
+        BackgroundWorker bgGetFiles = new BackgroundWorker()
+        {
+            WorkerReportsProgress = true,
+            WorkerSupportsCancellation = true
+        };
         #endregion
+
+        void LoadDictionary(FileDetailsModel fileDetailsModel)
+        {
+            NavigatedFolderFiles.Clear();
+            tempFolderCollection = null;
+
+            if (!bgGetFiles.IsBusy) return;
+            bgGetFiles.CancelAsync();
+            bgGetFiles.RunWorkerAsync(fileDetailsModel);
+        }
+
+        internal bool IsFileHidden(string fileName)
+        {
+            var attribute = FileAttributes.Normal;
+            try
+            {
+                attribute = File.GetAttributes(fileName);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return attribute.HasFlag(FileAttributes.Hidden);
+        }
+
+        internal bool IsDirectory(string fileName)
+        {
+            var attribute = FileAttributes.Normal;
+            try
+            {
+                attribute = File.GetAttributes(fileName);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return attribute.HasFlag(FileAttributes.Directory);
+        }
+
+        internal string GetFilesExtension(string fileName)
+        {
+            if(fileName== null) return string.Empty;
+            var extension = Path.GetExtension(fileName);
+            var cultureInfo = Thread.CurrentThread.CurrentCulture;
+            var textInfo = cultureInfo.TextInfo;
+            var data = textInfo.ToTitleCase(extension.Replace(".",string.Empty));
+            var attribute = FileAttributes.Normal;
+            return data;
+        }
 
         public MainWindowViewModel()
         {
@@ -134,6 +195,42 @@ namespace FileExplorerMVVM.ViewModels
             LoadSubMenuCollectionCommand.Execute(null);//do we really need that ?
             
             CurrentDirectory = @"C:\";
+
+            OnPropertyChanged(nameof(CurrentDirectory));
+
+            NavigatedFolderFiles = new ObservableCollection<FileDetailsModel>();
+            bgGetFiles.DoWork += BgGetFiles_DoWork;
+            bgGetFiles.ProgressChanged += BgGetFiles_ProgressChanged;
+            bgGetFiles.RunWorkerCompleted += BgGetFiles_RunWorkerCompleted;
+        }
+
+        private void BgGetFiles_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
+        {
+            
+        }
+
+        private void BgGetFiles_ProgressChanged(object? sender, ProgressChangedEventArgs e)
+        {
+            var fileName = e.UserState.ToString();
+            var file = new FileDetailsModel();
+            file.Name = Path.GetFileName(fileName);
+            file.Path = fileName;
+            file.IsHidden = IsFileHidden(fileName);
+            file.IsDirectory = IsDirectory(fileName);
+        }
+
+        private void BgGetFiles_DoWork(object? sender, DoWorkEventArgs e)
+        {
+            var fileOrFolder = (FileDetailsModel)e.Argument;
+            tempFolderCollection = new ReadOnlyCollectionBuilder<string>(FileSystem.GetDirectories(fileOrFolder.Path).Concat(FileSystem.GetFiles(fileOrFolder.Path))).ToReadOnlyCollection();
+
+            foreach (var file in tempFolderCollection) 
+            {
+                bgGetFiles.ReportProgress(1,file);
+            }
+
+            CurrentDirectory = fileOrFolder.Path;
+            OnPropertyChanged(nameof(CurrentDirectory));
         }
 
         #region Commands
