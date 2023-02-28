@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Infrastructure\Services\" />
     <Folder Include="Views\Controllers\" />
     <Folder Include="Views\Resources\Images\" />
   </ItemGroup>

@@ -43,7 +43,9 @@ namespace FileExplorerMVVM.ViewModels
         public ObservableCollection<FileDetailsModel> NavigatedFolderFiles { get; set; }
         public ObservableCollection<SubMenuItemDetails> HomeTabSubMenuCollection { get; set; }
         public ObservableCollection<SubMenuItemDetails> ViewTabSubMenuCollection { get; set; }
+        
         internal ReadOnlyCollection<string> tempFolderCollection;
+        
         BackgroundWorker bgGetFiles = new BackgroundWorker()
         {
             WorkerReportsProgress = true,
@@ -91,6 +93,28 @@ namespace FileExplorerMVVM.ViewModels
             return attribute.HasFlag(FileAttributes.Directory);
         }
 
+        internal bool IsFileReadOnly(string path)
+        {
+            try
+            {
+                if(Directory.Exists(path))
+                    return (FileSystem.GetDirectoryInfo(path).Attributes & FileAttributes.ReadOnly) != 0;
+                return (FileSystem.GetFileInfo(path).Attributes & FileAttributes.ReadOnly) != 0;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
+            catch (FileNotFoundException)
+            {
+                return false;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                return false;
+            }
+        }
+
         internal string GetFilesExtension(string fileName)
         {
             if(fileName== null) return string.Empty;
@@ -100,6 +124,48 @@ namespace FileExplorerMVVM.ViewModels
             var data = textInfo.ToTitleCase(extension.Replace(".",string.Empty));
             var attribute = FileAttributes.Normal;
             return data;
+        }
+
+        internal static readonly List<string> ImageExtensions = new List<string>()
+        {
+            ".jpg",
+            ".jpeg",
+            ".bmp",
+            ".gif",
+            ".png"
+        };
+
+        internal static readonly List<string> VideoExtensions = new List<string>()
+        {
+            ".mp4",
+            ".m4v",
+            ".mov",
+            ".wmv",
+            ".avi",
+            ".avchd",
+            ".flv",
+            ".f4v",
+            ".swf",
+            ".mkv",
+            ".webm"
+        };
+
+        internal PathGeometry GetImageForExtension(FileDetailsModel file)
+        {
+            var fileExtension = file.FileExtension;
+            if(Directory.Exists(file.Path)) 
+                return (PathGeometry)_iconDictionary["Folder"];
+
+            if (file.IsImage)
+                return (PathGeometry)_iconDictionary["ImageFile"];
+
+            if (file.IsVideo)
+                return (PathGeometry)_iconDictionary["VideoFile"];
+
+            if ((PathGeometry)_iconDictionary[$"{fileExtension}File"] == null)
+                return (PathGeometry)_iconDictionary["File"];
+
+            return (PathGeometry)_iconDictionary[$"{fileExtension}File"];
         }
 
         public MainWindowViewModel()
@@ -202,6 +268,11 @@ namespace FileExplorerMVVM.ViewModels
             bgGetFiles.DoWork += BgGetFiles_DoWork;
             bgGetFiles.ProgressChanged += BgGetFiles_ProgressChanged;
             bgGetFiles.RunWorkerCompleted += BgGetFiles_RunWorkerCompleted;
+
+            LoadDictionary(new FileDetailsModel()
+            {
+                Path = CurrentDirectory
+            });
         }
 
         private void BgGetFiles_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
@@ -216,7 +287,15 @@ namespace FileExplorerMVVM.ViewModels
             file.Name = Path.GetFileName(fileName);
             file.Path = fileName;
             file.IsHidden = IsFileHidden(fileName);
+            file.IsReadonly = IsFileReadOnly(fileName);
             file.IsDirectory = IsDirectory(fileName);
+            file.FileExtension = GetFilesExtension(fileName);
+            file.IsImage = ImageExtensions.Contains(file.FileExtension.ToLower());
+            file.IsVideo = VideoExtensions.Contains(file.FileExtension.ToLower());
+            file.FileIcon = GetImageForExtension(file);
+
+            NavigatedFolderFiles.Add(file);
+            OnPropertyChanged(nameof(NavigatedFolderFiles));
         }
 
         private void BgGetFiles_DoWork(object? sender, DoWorkEventArgs e)
