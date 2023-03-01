@@ -53,13 +53,13 @@ namespace FileExplorerMVVM.ViewModels
         };
         #endregion
 
-        void LoadDictionary(FileDetailsModel fileDetailsModel)
+        void LoadDirectory(FileDetailsModel fileDetailsModel)
         {
             NavigatedFolderFiles.Clear();
             tempFolderCollection = null;
 
-            if (!bgGetFiles.IsBusy) return;
-            bgGetFiles.CancelAsync();
+            if (bgGetFiles.IsBusy) bgGetFiles.CancelAsync();
+
             bgGetFiles.RunWorkerAsync(fileDetailsModel);
         }
 
@@ -269,7 +269,7 @@ namespace FileExplorerMVVM.ViewModels
             bgGetFiles.ProgressChanged += BgGetFiles_ProgressChanged;
             bgGetFiles.RunWorkerCompleted += BgGetFiles_RunWorkerCompleted;
 
-            LoadDictionary(new FileDetailsModel()
+            LoadDirectory(new FileDetailsModel()
             {
                 Path = CurrentDirectory
             });
@@ -394,6 +394,17 @@ namespace FileExplorerMVVM.ViewModels
                     }));
             }
         }
+
+        protected ICommand _getFilesListCommand;
+
+        public ICommand GetFilesListCommand =>
+            _getFilesListCommand ?? (_getFilesListCommand = new RelayCommand(parameter =>
+            {
+                var file = parameter as FileDetailsModel;
+                if (file == null) return;
+
+                LoadDirectory(file);
+            }));
         #endregion
     }
 }

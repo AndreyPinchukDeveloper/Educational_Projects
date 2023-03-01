@@ -4,6 +4,7 @@
            TargetType="{x:Type ListViewItem}">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Content" Value="{Binding Name}"/>
         <Setter Property="MinHeight" Value="50"/>
         <Setter Property="ToolTip" Value="{Binding Content, RelativeSource={RelativeSource Self}}"/>
         <Setter Property="Width" Value="80"/>
@@ -30,7 +31,7 @@
                             </Grid.RowDefinitions>
                             
                             <Path x:Name="Path"
-                                  Data="{TemplateBinding Tag}"
+                                  Data="{Binding FileIcon}"
                                   Stretch="Uniform"
                                   Fill="{TemplateBinding Foreground}"
                                   HorizontalAlignment="Center"/>
@@ -60,6 +61,10 @@
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="bgBorder" Property="Visibility" Value="Visible"/>
                         </Trigger>
+
+                        <DataTrigger Binding="{Binding IsHidden, UpdateSourceTrigger=PropertyChanged}" Value="True">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
