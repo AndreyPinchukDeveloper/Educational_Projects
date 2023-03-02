@@ -24,6 +24,7 @@ namespace FileExplorerMVVM.ViewModels
     class MainWindowViewModel:ViewModelBase
     {
         #region Properties
+        private readonly FileDetailsModel _fileDetailsModel;
 
         readonly ResourceDictionary _iconDictionary = Application.LoadComponent(
             new Uri("/FileExplorerMVVM;component/Views/Resources/Styles/Icons.xaml", 
@@ -61,58 +62,6 @@ namespace FileExplorerMVVM.ViewModels
             if (bgGetFiles.IsBusy) bgGetFiles.CancelAsync();
 
             bgGetFiles.RunWorkerAsync(fileDetailsModel);
-        }
-
-        internal bool IsFileHidden(string fileName)
-        {
-            var attribute = FileAttributes.Normal;
-            try
-            {
-                attribute = File.GetAttributes(fileName);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            return attribute.HasFlag(FileAttributes.Hidden);
-        }
-
-        internal bool IsDirectory(string fileName)
-        {
-            var attribute = FileAttributes.Normal;
-            try
-            {
-                attribute = File.GetAttributes(fileName);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            return attribute.HasFlag(FileAttributes.Directory);
-        }
-
-        internal bool IsFileReadOnly(string path)
-        {
-            try
-            {
-                if(Directory.Exists(path))
-                    return (FileSystem.GetDirectoryInfo(path).Attributes & FileAttributes.ReadOnly) != 0;
-                return (FileSystem.GetFileInfo(path).Attributes & FileAttributes.ReadOnly) != 0;
-            }
-            catch (UnauthorizedAccessException)
-            {
-                return false;
-            }
-            catch (FileNotFoundException)
-            {
-                return false;
-            }
-            catch (DirectoryNotFoundException)
-            {
-                return false;
-            }
         }
 
         internal string GetFilesExtension(string fileName)
@@ -170,6 +119,8 @@ namespace FileExplorerMVVM.ViewModels
 
         public MainWindowViewModel()
         {
+            _fileDetailsModel = new FileDetailsModel();
+
             RemoteFolders = new ObservableCollection<FileDetailsModel>()
             {
                 new FileDetailsModel()
@@ -286,9 +237,9 @@ namespace FileExplorerMVVM.ViewModels
             var file = new FileDetailsModel();
             file.Name = Path.GetFileName(fileName);
             file.Path = fileName;
-            file.IsHidden = IsFileHidden(fileName);
-            file.IsReadonly = IsFileReadOnly(fileName);
-            file.IsDirectory = IsDirectory(fileName);
+            file.IsHidden = _fileDetailsModel.IsFileHidden(fileName);
+            file.IsReadonly = _fileDetailsModel.IsFileReadOnly(fileName);
+            file.IsDirectory = _fileDetailsModel.IsDirectoryMethod(fileName);
             file.FileExtension = GetFilesExtension(fileName);
             file.IsImage = ImageExtensions.Contains(file.FileExtension.ToLower());
             file.IsVideo = VideoExtensions.Contains(file.FileExtension.ToLower());

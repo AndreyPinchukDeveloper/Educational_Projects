@@ -8,16 +8,5 @@ namespace FileExplorerMVVM.Infrastructure.Enums
 {
     public enum VidesExtensions
     {
-            .mp4,
-            .m4v,
-            .mov,
-            .wmv,
-            .avi,
-            .avchd,
-            .flv,
-            .f4v,
-            .swf,
-            .mkv,
-            .webm
     }
 }

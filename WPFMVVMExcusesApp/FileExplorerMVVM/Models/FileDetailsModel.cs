@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -28,5 +30,57 @@ namespace FileExplorerMVVM.Models
 
         internal string _Type { get; set; }
         public string Type => _Type = IsDirectory ? "Folder" : "File";
+
+        internal bool IsFileHidden(string fileName)
+        {
+            var attribute = FileAttributes.Normal;
+            try
+            {
+                attribute = File.GetAttributes(fileName);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return attribute.HasFlag(FileAttributes.Hidden);
+        }
+
+        internal bool IsDirectoryMethod(string fileName)
+        {
+            var attribute = FileAttributes.Normal;
+            try
+            {
+                attribute = File.GetAttributes(fileName);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return attribute.HasFlag(FileAttributes.Directory);
+        }
+
+        internal bool IsFileReadOnly(string path)
+        {
+            try
+            {
+                if (Directory.Exists(path))
+                    return (FileSystem.GetDirectoryInfo(path).Attributes & FileAttributes.ReadOnly) != 0;
+                return (FileSystem.GetFileInfo(path).Attributes & FileAttributes.ReadOnly) != 0;
+            }
+            catch (UnauthorizedAccessException)
+            {
+                return false;
+            }
+            catch (FileNotFoundException)
+            {
+                return false;
+            }
+            catch (DirectoryNotFoundException)
+            {
+                return false;
+            }
+        }
     }
 }
