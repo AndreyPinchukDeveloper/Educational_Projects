@@ -42,7 +42,7 @@ namespace FileExplorerMVVM.ViewModels
         public ObservableCollection<FileDetailsModel> LibraryFolders { get; set; }
         public ObservableCollection<FileDetailsModel> ConnectedDevices { get; set; }
         public ObservableCollection<FileDetailsModel> NavigatedFolderFiles { get; set; }
-        public ObservableCollection<SubMenuItemDetails> HomeTabSubMenuCollection { get; set; }
+        //public ObservableCollection<SubMenuItemDetails> HomeTabSubMenuCollection { get; set; }
         public ObservableCollection<SubMenuItemDetails> ViewTabSubMenuCollection { get; set; }
         
         internal ReadOnlyCollection<string> tempFolderCollection;
