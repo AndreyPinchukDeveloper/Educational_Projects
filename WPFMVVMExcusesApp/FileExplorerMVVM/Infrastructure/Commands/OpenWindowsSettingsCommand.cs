@@ -16,7 +16,7 @@ namespace FileExplorerMVVM.Infrastructure.Commands
         }
 
         /// <summary>
-        /// just call method
+        /// just call method that was given as parameter in ctor
         /// </summary>
         /// <param name="parameter"></param>
         public override void Execute(object? parameter)

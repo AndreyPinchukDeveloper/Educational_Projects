@@ -42,7 +42,7 @@ namespace FileExplorerMVVM.ViewModels
         public ObservableCollection<FileDetailsModel> LibraryFolders { get; set; }
         public ObservableCollection<FileDetailsModel> ConnectedDevices { get; set; }
         public ObservableCollection<FileDetailsModel> NavigatedFolderFiles { get; set; }
-        //public ObservableCollection<SubMenuItemDetails> HomeTabSubMenuCollection { get; set; }
+        public ObservableCollection<SubMenuItemDetails> HomeTabSubMenuCollection { get; set; }
         public ObservableCollection<SubMenuItemDetails> ViewTabSubMenuCollection { get; set; }
         
         internal ReadOnlyCollection<string> tempFolderCollection;
@@ -209,7 +209,9 @@ namespace FileExplorerMVVM.ViewModels
                 }); 
             }
 
-            LoadSubMenuCollectionCommand.Execute(null);//do we really need that ?
+            //LoadSubMenuCollectionCommand = new LoadSubMenuCollectionCommand();
+            //LoadSubMenuCollectionCommand.Execute(null);
+            //LoadSubMenuCollectionCommand.Execute(null);//do we really need that ?
             
             CurrentDirectory = @"C:\";
 
@@ -225,6 +227,8 @@ namespace FileExplorerMVVM.ViewModels
                 Path = CurrentDirectory
             });
         }
+
+        //public ICommand LoadSubMenuCollectionCommand { get;}
 
         private void BgGetFiles_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
         {
@@ -277,13 +281,13 @@ namespace FileExplorerMVVM.ViewModels
             get { return _openUserProfileSettingsCommand ?? (_openUserProfileSettingsCommand = new OpenWindowsSettingsCommand(() => Process.Start(new ProcessStartInfo { FileName = "ms-settings:home", UseShellExecute = true }))); }
         }
 
-        private ICommand _loadSubMenuCollectionCommand;
+        /*private ICommand _loadSubMenuCollectionCommand;
         public ICommand LoadSubMenuCollectionCommand
         {
             get 
             {
                 return _loadSubMenuCollectionCommand ??
-                    ( _openUserProfileSettingsCommand = new OpenWindowsSettingsCommand(()=>
+                    (_loadSubMenuCollectionCommand = new OpenWindowsSettingsCommand(()=>
                     {
                         HomeTabSubMenuCollection = new ObservableCollection<SubMenuItemDetails>
                         {
@@ -344,7 +348,7 @@ namespace FileExplorerMVVM.ViewModels
                         };
                     }));
             }
-        }
+        }*/
 
         protected ICommand _getFilesListCommand;
 

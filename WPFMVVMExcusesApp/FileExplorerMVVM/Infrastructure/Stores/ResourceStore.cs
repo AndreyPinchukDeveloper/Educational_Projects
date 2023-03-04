@@ -12,9 +12,5 @@ namespace FileExplorerMVVM.Infrastructure.Stores
         public ResourceDictionary _iconDictionary = Application.LoadComponent(
             new Uri("/FileExplorerMVVM;component/Views/Resources/Styles/Icons.xaml",
                 UriKind.RelativeOrAbsolute)) as ResourceDictionary;
-        public ResourceStore(ResourceDictionary iconDictionary)
-        {
-            _iconDictionary = iconDictionary;
-        }
     }
 }
