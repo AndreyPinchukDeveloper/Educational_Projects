@@ -209,9 +209,7 @@ namespace FileExplorerMVVM.ViewModels
                 }); 
             }
 
-            //LoadSubMenuCollectionCommand = new LoadSubMenuCollectionCommand();
-            //LoadSubMenuCollectionCommand.Execute(null);
-            //LoadSubMenuCollectionCommand.Execute(null);//do we really need that ?
+            LoadSubMenuCollectionCommand.Execute(null);
             
             CurrentDirectory = @"C:\";
 
@@ -227,8 +225,6 @@ namespace FileExplorerMVVM.ViewModels
                 Path = CurrentDirectory
             });
         }
-
-        //public ICommand LoadSubMenuCollectionCommand { get;}
 
         private void BgGetFiles_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
         {
@@ -281,7 +277,7 @@ namespace FileExplorerMVVM.ViewModels
             get { return _openUserProfileSettingsCommand ?? (_openUserProfileSettingsCommand = new OpenWindowsSettingsCommand(() => Process.Start(new ProcessStartInfo { FileName = "ms-settings:home", UseShellExecute = true }))); }
         }
 
-        /*private ICommand _loadSubMenuCollectionCommand;
+        private ICommand _loadSubMenuCollectionCommand;
         public ICommand LoadSubMenuCollectionCommand
         {
             get 
@@ -348,12 +344,23 @@ namespace FileExplorerMVVM.ViewModels
                         };
                     }));
             }
-        }*/
+        }
 
-        protected ICommand _getFilesListCommand;
+        protected ICommand _getFilesListCommand;//why protected ?
 
         public ICommand GetFilesListCommand =>
             _getFilesListCommand ?? (_getFilesListCommand = new RelayCommand(parameter =>
+            {
+                var file = parameter as FileDetailsModel;
+                if (file == null) return;
+
+                LoadDirectory(file);
+            }));
+
+        protected ICommand _getFilesSizeCommand;//why protected ?
+
+        public ICommand GetFilesSizeCommand =>
+            _getFilesSizeCommand ?? (_getFilesSizeCommand = new RelayCommand(parameter =>
             {
                 var file = parameter as FileDetailsModel;
                 if (file == null) return;

@@ -8,7 +8,7 @@
         xmlns:cc="clr-namespace:FileExplorerMVVM.Infrastructure.CustomControls"
         xmlns:viewmodel="clr-namespace:FileExplorerMVVM.ViewModels"
         xmlns:model="clr-namespace:FileExplorerMVVM.Models"
-        xmlns:converters="clr-namespace:FileExplorerMVVM.Infrastructure.Converters"
+        xmlns:converters="clr-namespace:FileExplorerMVVM.Infrastructure.Converters" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="MainWindow" 
         Height="782" Width="1235"
@@ -410,8 +410,16 @@
                       ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                       ScrollViewer.VerticalScrollBarVisibility="Auto"
                       BorderThickness="0"
+                      SelectedItem="{Binding Mode=OneWay}"
                       SelectionMode="Extended"
                       ItemsSource="{Binding NavigatedFolderFiles, UpdateSourceTrigger=PropertyChanged}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="MouseDoubleClick">
+                        <b:InvokeCommandAction
+                            Command="{Binding GetFilesListCommand}"
+                            CommandParameter="{Binding SelectedItem, ElementName=ListViewControl}"/>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
 
             </ListView>
             <!--#endregion-->
