@@ -52,6 +52,12 @@ namespace FileExplorerMVVM.ViewModels
             WorkerReportsProgress = true,
             WorkerSupportsCancellation = true
         };
+
+        BackgroundWorker bgGetFilesSize = new BackgroundWorker()
+        {
+            WorkerReportsProgress = true,
+            WorkerSupportsCancellation = true
+        };
         #endregion
 
         void LoadDirectory(FileDetailsModel fileDetailsModel)
@@ -231,6 +237,61 @@ namespace FileExplorerMVVM.ViewModels
             
         }
 
+        internal string CalculateSize(long bytes)
+        {
+            var suffix = new[] { "B", "KB", "MB", "GB", "TB" };
+            float byteNumber = bytes;
+            for (var i = 0; i < suffix.Length; i++)
+            {
+                if (byteNumber < 1000)
+                {
+                    if (i == 0) return $"{byteNumber} {suffix[i]}";
+                    else
+                    {
+                        return $"{byteNumber:0} {suffix[i]}";
+                    }
+                }
+                else
+                {
+                    byteNumber /= 1024;
+                }
+            }
+            return $"{byteNumber:N} {suffix[suffix.Length-1]}";
+        }
+
+        internal static long GetDirectorySize(string directoryPath)
+        {
+            try
+            {
+                var d = new DirectoryInfo(directoryPath);
+                return d.EnumerateFiles("*", System.IO.SearchOption.AllDirectories).Sum(fi => fi.Length);
+            }
+            catch (UnauthorizedAccessException) { return 0; }
+            catch (FileNotFoundException) { return 0; }
+            catch(DirectoryNotFoundException) { return 0; }
+        }
+
+        private void BgGetFilesSize_DoWork(object? sender, DoWorkEventArgs e)
+        {
+            var FileSize = NavigatedFolderFiles.Where(File => File.IsSelected && !File.IsDirectory)
+                .Sum(x=>new FileInfo(x.Path).Length);
+
+            SelectedFolderDetails = CalculateSize(FileSize);
+            OnPropertyChanged(nameof(SelectedFolderDetails));
+
+            var Directories = NavigatedFolderFiles.Where(directory => directory.IsSelected && !directory.IsDirectory);
+            try
+            {
+                foreach(var directory in Directories) 
+                {
+                    FileSize += GetDirectorySize(directory.Path);
+                    SelectedFolderDetails = CalculateSize(FileSize);
+                    OnPropertyChanged(nameof(SelectedFolderDetails));
+                }
+            }
+            catch(InvalidOperationException) { }
+        }
+
         private void BgGetFiles_ProgressChanged(object? sender, ProgressChangedEventArgs e)
         {
             var fileName = e.UserState.ToString();
@@ -354,6 +415,8 @@ namespace FileExplorerMVVM.ViewModels
                 var file = parameter as FileDetailsModel;
                 if (file == null) return;
 
+                SelectedFolderDetails = string.Empty;
+                OnPropertyChanged(nameof(SelectedFolderDetails));
                 LoadDirectory(file);
             }));
 
@@ -364,9 +427,27 @@ namespace FileExplorerMVVM.ViewModels
             {
                 var file = parameter as FileDetailsModel;
                 if (file == null) return;
+                SelectedFolderDetails = "Calculating size...";
 
-                LoadDirectory(file);
+                OnPropertyChanged(nameof(SelectedFolderDetails));
+
+                bgGetFilesSize.DoWork -= BgGetFilesSize_DoWork;
+                bgGetFilesSize.DoWork += BgGetFilesSize_DoWork;
+
+                if (bgGetFilesSize.IsBusy) bgGetFilesSize.CancelAsync();
+                if (bgGetFilesSize.CancellationPending)
+                {
+                    bgGetFiles.Dispose();
+                    bgGetFiles = new BackgroundWorker()
+                    {
+                        WorkerSupportsCancellation = true,
+                    };
+                }
+
+                bgGetFilesSize.RunWorkerAsync();
             }));
+
+        
         #endregion
     }
 }

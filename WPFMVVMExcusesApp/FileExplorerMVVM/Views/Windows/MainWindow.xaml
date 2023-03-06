@@ -465,6 +465,7 @@
                                 </Style>
                             </Run.Style>
                         </Run>
+                        <Run Text="{Binding SelectedFolderDetails, UpdateSourceTrigger=PropertyChanged}"/>
                     </TextBlock>
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Right"

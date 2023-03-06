@@ -69,18 +69,9 @@ namespace FileExplorerMVVM.Models
                     return (FileSystem.GetDirectoryInfo(path).Attributes & FileAttributes.ReadOnly) != 0;
                 return (FileSystem.GetFileInfo(path).Attributes & FileAttributes.ReadOnly) != 0;
             }
-            catch (UnauthorizedAccessException)
-            {
-                return false;
-            }
-            catch (FileNotFoundException)
-            {
-                return false;
-            }
-            catch (DirectoryNotFoundException)
-            {
-                return false;
-            }
+            catch (UnauthorizedAccessException) {return false; }
+            catch (FileNotFoundException) { return false; }
+            catch (DirectoryNotFoundException) { return false; }
         }
     }
 }
