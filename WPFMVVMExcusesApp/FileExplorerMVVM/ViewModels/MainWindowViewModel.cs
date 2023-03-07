@@ -239,7 +239,7 @@ namespace FileExplorerMVVM.ViewModels
 
         internal string CalculateSize(long bytes)
         {
-            var suffix = new[] { "B", "KB", "MB", "GB", "TB" };
+            var suffix = new[] {"B", "KB", "MB", "GB", "TB" };
             float byteNumber = bytes;
             for (var i = 0; i < suffix.Length; i++)
             {
@@ -248,7 +248,7 @@ namespace FileExplorerMVVM.ViewModels
                     if (i == 0) return $"{byteNumber} {suffix[i]}";
                     else
                     {
-                        return $"{byteNumber:0} {suffix[i]}";
+                        return $"{byteNumber:0.#0} {suffix[i]}";
                     }
                 }
                 else
@@ -279,7 +279,7 @@ namespace FileExplorerMVVM.ViewModels
             SelectedFolderDetails = CalculateSize(FileSize);
             OnPropertyChanged(nameof(SelectedFolderDetails));
 
-            var Directories = NavigatedFolderFiles.Where(directory => directory.IsSelected && !directory.IsDirectory);
+            var Directories = NavigatedFolderFiles.Where(directory => directory.IsSelected && directory.IsDirectory);
             try
             {
                 foreach(var directory in Directories) 
@@ -440,7 +440,7 @@ namespace FileExplorerMVVM.ViewModels
                     bgGetFiles.Dispose();
                     bgGetFiles = new BackgroundWorker()
                     {
-                        WorkerSupportsCancellation = true,
+                        WorkerSupportsCancellation = true
                     };
                 }
 

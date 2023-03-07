@@ -419,6 +419,12 @@
                             Command="{Binding GetFilesListCommand}"
                             CommandParameter="{Binding SelectedItem, ElementName=ListViewControl}"/>
                     </b:EventTrigger>
+                    
+                    <b:EventTrigger EventName="SelectionChanged">
+                        <b:InvokeCommandAction
+                            Command="{Binding GetFilesSizeCommand}"
+                            CommandParameter="{Binding SelectedItem, ElementName=ListViewControl}"/>
+                    </b:EventTrigger>
                 </b:Interaction.Triggers>
 
             </ListView>
