@@ -44,7 +44,17 @@ namespace FileExplorerMVVM.ViewModels
         public ObservableCollection<FileDetailsModel> NavigatedFolderFiles { get; set; }
         public ObservableCollection<SubMenuItemDetails> HomeTabSubMenuCollection { get; set; }
         public ObservableCollection<SubMenuItemDetails> ViewTabSubMenuCollection { get; set; }
-        
+
+        #region Back-Forward buttons filds
+        public ObservableCollection<string> PathHistoryCollection { get; set; }
+        internal int position = 0;
+        public bool CanGoBack { get; set; }
+        public bool CanGoForward { get; set; }
+        public bool IsAtRootDirectory { get; set; }
+        public bool PathDisrupted { get; set; }
+        #endregion
+
+
         internal ReadOnlyCollection<string> tempFolderCollection;
         
         BackgroundWorker bgGetFiles = new BackgroundWorker()
@@ -218,7 +228,6 @@ namespace FileExplorerMVVM.ViewModels
             LoadSubMenuCollectionCommand.Execute(null);
             
             CurrentDirectory = @"C:\";
-
             OnPropertyChanged(nameof(CurrentDirectory));
 
             NavigatedFolderFiles = new ObservableCollection<FileDetailsModel>();
@@ -230,6 +239,9 @@ namespace FileExplorerMVVM.ViewModels
             {
                 Path = CurrentDirectory
             });
+
+            PathHistoryCollection = new ObservableCollection<string>();
+            PathHistoryCollection.Add(CurrentDirectory);
         }
 
         private void BgGetFiles_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
@@ -447,7 +459,19 @@ namespace FileExplorerMVVM.ViewModels
                 bgGetFilesSize.RunWorkerAsync();
             }));
 
-        
+        protected ICommand _goToPreviousDirectoryCommand;
+        public ICommand GoToPreviousDirectoryCommand => _goToPreviousDirectoryCommand ??
+            (_goToPreviousDirectoryCommand = new OpenWindowsSettingsCommand(() =>
+            {
+
+            }));
+
+        protected ICommand _goToForwardDirectoryCommand;
+        public ICommand GoToForwardDirectoryCommand => _goToForwardDirectoryCommand ??
+            (_goToForwardDirectoryCommand = new OpenWindowsSettingsCommand(() =>
+            {
+
+            }));
         #endregion
     }
 }
