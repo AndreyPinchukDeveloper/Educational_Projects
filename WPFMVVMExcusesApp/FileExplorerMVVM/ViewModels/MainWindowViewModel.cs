@@ -472,6 +472,13 @@ namespace FileExplorerMVVM.ViewModels
             {
 
             }));
+
+        protected ICommand _goToParentDirectoryCommand;
+        public ICommand GoToParentDirectoryCommand => _goToParentDirectoryCommand ??
+            (_goToParentDirectoryCommand = new OpenWindowsSettingsCommand(() =>
+            {
+
+            }));
         #endregion
     }
 }

@@ -379,19 +379,50 @@
                 <Button Content="{StaticResource Back}"
                         FontSize="16"
                         HorizontalContentAlignment="Center"
-                        Style="{StaticResource ButtonWithIconStyle}"/>
+                        Command="{Binding GoToPreviousDirectoryCommand}">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonWithIconStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CanGoBack}" Value="False">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                        
+                </Button>
 
                 <Button Grid.Column="1"
                         Content="{StaticResource Forward}"
                         FontSize="16"
                         HorizontalContentAlignment="Center"
-                        Style="{StaticResource ButtonWithIconStyle}"/>
+                        Command="{Binding GoToPreviousDirectoryCommand}">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonWithIconStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CanGoForward}" Value="False">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
 
                 <Button Grid.Column="2"
                         Content="{StaticResource Up}"
                         FontSize="20"
                         HorizontalContentAlignment="Center"
-                        Style="{StaticResource ButtonWithIconStyle}"/>
+                        Command="{Binding GoToParentDirectoryCommand}">
+                    <Button.Style>
+                        <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonWithIconStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsAtRootDirectory}" Value="False">
+                                    <Setter Property="IsEnabled" Value="False"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
 
                 <TextBox Grid.Column="3"
                          Name="AddressBar"
