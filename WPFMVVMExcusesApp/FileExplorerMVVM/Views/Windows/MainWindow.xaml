@@ -383,7 +383,8 @@
                     <Button.Style>
                         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonWithIconStyle}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding CanGoBack}" Value="False">
+                                <DataTrigger Binding="{Binding CanGoBack, UpdateSourceTrigger=PropertyChanged}" 
+                                             Value="False">
                                     <Setter Property="IsEnabled" Value="False"/>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -400,7 +401,8 @@
                     <Button.Style>
                         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonWithIconStyle}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding CanGoForward}" Value="False">
+                                <DataTrigger Binding="{Binding CanGoForward, UpdateSourceTrigger=PropertyChanged}" 
+                                             Value="False">
                                     <Setter Property="IsEnabled" Value="False"/>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -416,7 +418,8 @@
                     <Button.Style>
                         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonWithIconStyle}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsAtRootDirectory}" Value="False">
+                                <DataTrigger Binding="{Binding IsAtRootDirectory, UpdateSourceTrigger=PropertyChanged}" 
+                                             Value="False">
                                     <Setter Property="IsEnabled" Value="False"/>
                                 </DataTrigger>
                             </Style.Triggers>

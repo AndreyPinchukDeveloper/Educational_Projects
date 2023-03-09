@@ -21,7 +21,7 @@ using System.Windows.Media;
 
 namespace FileExplorerMVVM.ViewModels
 {
-    class MainWindowViewModel:ViewModelBase
+    public class MainWindowViewModel:ViewModelBase
     {
         #region Properties
         private readonly FileDetailsModel _fileDetailsModel;
@@ -72,6 +72,9 @@ namespace FileExplorerMVVM.ViewModels
 
         void LoadDirectory(FileDetailsModel fileDetailsModel)
         {
+            CanGoBack = position != 0;
+            OnPropertyChanged(nameof(CanGoBack));
+
             NavigatedFolderFiles.Clear();
             tempFolderCollection = null;
 
@@ -208,7 +211,9 @@ namespace FileExplorerMVVM.ViewModels
                 },
             };
 
-            
+            GetFilesSizeCommand = new GetFilesSizeCommand(bgGetFiles, bgGetFilesSize, SelectedFolderDetails, NavigatedFolderFiles);
+            OnPropertyChanged(nameof(SelectedFolderDetails));
+
             ConnectedDevices = new ObservableCollection<FileDetailsModel>();
             //represent all disks on your PC
             foreach (var drive in DriveInfo.GetDrives())
@@ -242,6 +247,9 @@ namespace FileExplorerMVVM.ViewModels
 
             PathHistoryCollection = new ObservableCollection<string>();
             PathHistoryCollection.Add(CurrentDirectory);
+
+            CanGoBack = position != 0;
+            OnPropertyChanged(nameof(CanGoBack));
         }
 
         private void BgGetFiles_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
@@ -329,11 +337,21 @@ namespace FileExplorerMVVM.ViewModels
 
             foreach (var file in tempFolderCollection) 
             {
-                bgGetFiles.ReportProgress(1,file);
+                bgGetFiles.ReportProgress(1, file);
             }
 
             CurrentDirectory = fileOrFolder.Path;
             OnPropertyChanged(nameof(CurrentDirectory));
+        }
+
+        internal void UpdatePathHistory(string path)
+        {
+            if (PathHistoryCollection != null && string.IsNullOrEmpty(path))
+            {
+                PathHistoryCollection.Add(path);
+                position++;
+                OnPropertyChanged(nameof(PathHistoryCollection));
+            }
         }
 
         #region Commands
@@ -419,7 +437,7 @@ namespace FileExplorerMVVM.ViewModels
             }
         }
 
-        protected ICommand _getFilesListCommand;//why protected ?
+        protected ICommand _getFilesListCommand;
 
         public ICommand GetFilesListCommand =>
             _getFilesListCommand ?? (_getFilesListCommand = new RelayCommand(parameter =>
@@ -429,12 +447,33 @@ namespace FileExplorerMVVM.ViewModels
 
                 SelectedFolderDetails = string.Empty;
                 OnPropertyChanged(nameof(SelectedFolderDetails));
-                LoadDirectory(file);
+                if (Directory.Exists(file.Path))
+                {
+                    UpdatePathHistory(file.Path);
+                    LoadDirectory(file);
+                }
+                else
+                {
+                    try
+                    {
+                        Process.Start(new ProcessStartInfo(file.Path));
+                    }
+                    catch (Win32Exception exception)
+                    {
+
+                        MessageBox.Show(exception.Message, exception.Source);
+                    }
+                    catch (InvalidOperationException exception)
+                    {
+
+                        MessageBox.Show($"{file.Name} isn't installed on this system.", exception.Source);
+                    }
+                }
             }));
 
-        protected ICommand _getFilesSizeCommand;//why protected ?
+        public ICommand GetFilesSizeCommand { get; }
 
-        public ICommand GetFilesSizeCommand =>
+        /*public ICommand GetFilesSizeCommand =>
             _getFilesSizeCommand ?? (_getFilesSizeCommand = new RelayCommand(parameter =>
             {
                 var file = parameter as FileDetailsModel;
@@ -457,20 +496,40 @@ namespace FileExplorerMVVM.ViewModels
                 }
 
                 bgGetFilesSize.RunWorkerAsync();
-            }));
+            }));*/
 
         protected ICommand _goToPreviousDirectoryCommand;
         public ICommand GoToPreviousDirectoryCommand => _goToPreviousDirectoryCommand ??
             (_goToPreviousDirectoryCommand = new OpenWindowsSettingsCommand(() =>
             {
-
+                if (position>=1)
+                {
+                    position--;
+                    LoadDirectory(new FileDetailsModel()
+                    {
+                        Path = PathHistoryCollection.ElementAt(position)
+                    });
+                }
             }));
 
         protected ICommand _goToForwardDirectoryCommand;
         public ICommand GoToForwardDirectoryCommand => _goToForwardDirectoryCommand ??
             (_goToForwardDirectoryCommand = new OpenWindowsSettingsCommand(() =>
             {
+                if (position >= 1)
+                {
+                    position--;
+                    LoadDirectory(new FileDetailsModel()
+                    {
+                        Path = PathHistoryCollection.ElementAt(position)
+                    });
 
+                    CanGoForward = true;
+                    OnPropertyChanged(nameof(CanGoForward));
+
+                    PathDisrupted = false;
+                    OnPropertyChanged(nameof(PathDisrupted));
+                }
             }));
 
         protected ICommand _goToParentDirectoryCommand;
