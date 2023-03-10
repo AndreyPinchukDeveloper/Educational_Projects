@@ -41,7 +41,14 @@ namespace FileExplorerMVVM.ViewModels
         public ObservableCollection<FileDetailsModel> RemoteFolders { get; set; }
         public ObservableCollection<FileDetailsModel> LibraryFolders { get; set; }
         public ObservableCollection<FileDetailsModel> ConnectedDevices { get; set; }
-        public ObservableCollection<FileDetailsModel> NavigatedFolderFiles { get; set; }
+
+        private ObservableCollection<FileDetailsModel> _navigatedFolderFiles;
+        public ObservableCollection<FileDetailsModel> NavigatedFolderFiles 
+        { 
+            get => _navigatedFolderFiles;
+            set => Set(ref _navigatedFolderFiles, value);
+        }
+
         public ObservableCollection<SubMenuItemDetails> HomeTabSubMenuCollection { get; set; }
         public ObservableCollection<SubMenuItemDetails> ViewTabSubMenuCollection { get; set; }
 
@@ -57,20 +64,20 @@ namespace FileExplorerMVVM.ViewModels
 
         internal ReadOnlyCollection<string> tempFolderCollection;
         
-        BackgroundWorker bgGetFiles = new BackgroundWorker()
+        public BackgroundWorker bgGetFiles = new BackgroundWorker()
         {
             WorkerReportsProgress = true,
             WorkerSupportsCancellation = true
         };
 
-        BackgroundWorker bgGetFilesSize = new BackgroundWorker()
+        public BackgroundWorker bgGetFilesSize = new BackgroundWorker()
         {
             WorkerReportsProgress = true,
             WorkerSupportsCancellation = true
         };
         #endregion
 
-        void LoadDirectory(FileDetailsModel fileDetailsModel)
+        public void LoadDirectory(FileDetailsModel fileDetailsModel)
         {
             CanGoBack = position != 0;
             OnPropertyChanged(nameof(CanGoBack));
@@ -211,7 +218,7 @@ namespace FileExplorerMVVM.ViewModels
                 },
             };
 
-            GetFilesSizeCommand = new GetFilesSizeCommand(bgGetFiles, bgGetFilesSize, SelectedFolderDetails, NavigatedFolderFiles);
+            //GetFilesSizeCommand = new GetFilesSizeCommand(bgGetFiles, bgGetFilesSize, SelectedFolderDetails, NavigatedFolderFiles);
             OnPropertyChanged(nameof(SelectedFolderDetails));
 
             ConnectedDevices = new ObservableCollection<FileDetailsModel>();
@@ -471,9 +478,9 @@ namespace FileExplorerMVVM.ViewModels
                 }
             }));
 
-        public ICommand GetFilesSizeCommand { get; }
+        public ICommand _getFilesSizeCommand { get; set; }
 
-        /*public ICommand GetFilesSizeCommand =>
+        public ICommand GetFilesSizeCommand =>
             _getFilesSizeCommand ?? (_getFilesSizeCommand = new RelayCommand(parameter =>
             {
                 var file = parameter as FileDetailsModel;
@@ -496,7 +503,7 @@ namespace FileExplorerMVVM.ViewModels
                 }
 
                 bgGetFilesSize.RunWorkerAsync();
-            }));*/
+            }));
 
         protected ICommand _goToPreviousDirectoryCommand;
         public ICommand GoToPreviousDirectoryCommand => _goToPreviousDirectoryCommand ??

@@ -16,6 +16,7 @@ namespace FileExplorerMVVM.Infrastructure.Commands
     {
         public ObservableCollection<FileDetailsModel> NavigatedFolderFiles { get; set; }
         public string SelectedFolderDetails;
+        //MainWindowViewModel mainWindowViewModel;
 
         BackgroundWorker bgGetFiles;
 
@@ -35,7 +36,7 @@ namespace FileExplorerMVVM.Infrastructure.Commands
             if (file == null) return;
             SelectedFolderDetails = "Calculating size...";
 
-            //OnPropertyChanged(nameof(SelectedFolderDetails));
+            OnPropertyChanged(nameof(SelectedFolderDetails));
 
             bgGetFilesSize.DoWork -= BgGetFilesSize_DoWork;
             bgGetFilesSize.DoWork += BgGetFilesSize_DoWork;
@@ -89,11 +90,13 @@ namespace FileExplorerMVVM.Infrastructure.Commands
 
         private void BgGetFilesSize_DoWork(object? sender, DoWorkEventArgs e)
         {
+            Update();
+
             var FileSize = NavigatedFolderFiles.Where(File => File.IsSelected && !File.IsDirectory)
                 .Sum(x => new FileInfo(x.Path).Length);
 
             SelectedFolderDetails = CalculateSize(FileSize);
-            //OnPropertyChanged(nameof(SelectedFolderDetails));
+            OnPropertyChanged(nameof(SelectedFolderDetails));
 
             var Directories = NavigatedFolderFiles.Where(directory => directory.IsSelected && directory.IsDirectory);
             try
@@ -102,10 +105,15 @@ namespace FileExplorerMVVM.Infrastructure.Commands
                 {
                     FileSize += GetDirectorySize(directory.Path);
                     SelectedFolderDetails = CalculateSize(FileSize);
-                    //OnPropertyChanged(nameof(SelectedFolderDetails));
+                    OnPropertyChanged(nameof(SelectedFolderDetails));
                 }
             }
             catch (InvalidOperationException) { }
+        }
+
+        private void Update()
+        {
+
         }
     }
 }
