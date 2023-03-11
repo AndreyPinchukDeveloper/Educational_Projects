@@ -259,6 +259,12 @@ namespace FileExplorerMVVM.ViewModels
             OnPropertyChanged(nameof(CanGoBack));
         }
 
+        public static MainWindowViewModel LoadViewModel()
+        {
+            MainWindowViewModel viewModel = new MainWindowViewModel();
+            return viewModel;
+        }
+
         private void BgGetFiles_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
         {
             
