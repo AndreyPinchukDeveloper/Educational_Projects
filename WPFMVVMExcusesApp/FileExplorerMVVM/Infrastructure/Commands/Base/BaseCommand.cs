@@ -9,14 +9,9 @@ using System.Windows.Input;
 
 namespace FileExplorerMVVM.Infrastructure.Commands.Base
 {
-    public abstract class BaseCommand : ICommand, INotifyPropertyChanged
+    public abstract class BaseCommand : ICommand
     {
         public event EventHandler? CanExecuteChanged;
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         public virtual bool CanExecute(object? parameter)
         {

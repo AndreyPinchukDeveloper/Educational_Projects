@@ -7,6 +7,7 @@
         xmlns:prop="clr-namespace:FileExplorerMVVM.Properties"
         xmlns:cc="clr-namespace:FileExplorerMVVM.Infrastructure.CustomControls"
         xmlns:viewmodel="clr-namespace:FileExplorerMVVM.ViewModels"
+        xmlns:commands="clr-namespace:FileExplorerMVVM.Infrastructure.Commands"
         xmlns:model="clr-namespace:FileExplorerMVVM.Models"
         xmlns:converters="clr-namespace:FileExplorerMVVM.Infrastructure.Converters" xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"

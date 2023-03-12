@@ -218,7 +218,7 @@ namespace FileExplorerMVVM.ViewModels
                 },
             };
 
-            //GetFilesSizeCommand = new GetFilesSizeCommand(bgGetFiles, bgGetFilesSize, SelectedFolderDetails, NavigatedFolderFiles);
+            
             OnPropertyChanged(nameof(SelectedFolderDetails));
 
             ConnectedDevices = new ObservableCollection<FileDetailsModel>();
@@ -257,6 +257,8 @@ namespace FileExplorerMVVM.ViewModels
 
             CanGoBack = position != 0;
             OnPropertyChanged(nameof(CanGoBack));
+            GetFilesSizeCommand = new GetFilesSizeCommand(this, bgGetFiles, bgGetFilesSize, SelectedFolderDetails, NavigatedFolderFiles, tempFolderCollection, CurrentDirectory);
+            OnPropertyChanged(nameof(SelectedFolderDetails));
         }
 
         public static MainWindowViewModel LoadViewModel()
@@ -484,9 +486,9 @@ namespace FileExplorerMVVM.ViewModels
                 }
             }));
 
-        public ICommand _getFilesSizeCommand { get; set; }
+        public ICommand GetFilesSizeCommand { get; set; }
 
-        public ICommand GetFilesSizeCommand =>
+        /*public ICommand GetFilesSizeCommand =>
             _getFilesSizeCommand ?? (_getFilesSizeCommand = new RelayCommand(parameter =>
             {
                 var file = parameter as FileDetailsModel;
@@ -509,7 +511,7 @@ namespace FileExplorerMVVM.ViewModels
                 }
 
                 bgGetFilesSize.RunWorkerAsync();
-            }));
+            }));*/
 
         protected ICommand _goToPreviousDirectoryCommand;
         public ICommand GoToPreviousDirectoryCommand => _goToPreviousDirectoryCommand ??
