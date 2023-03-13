@@ -1,6 +1,7 @@
 ﻿using FileExplorerMVVM.Infrastructure.Commands.Base;
 using FileExplorerMVVM.Infrastructure.Stores;
 using FileExplorerMVVM.Models;
+using FileExplorerMVVM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -14,22 +15,20 @@ namespace FileExplorerMVVM.Infrastructure.Commands
 {
     public class LoadSubMenuCollectionCommand : BaseCommand
     {
-        private ObservableCollection<SubMenuItemDetails> _homeTabSubMenuCollection { get; set; }
-        private ObservableCollection<SubMenuItemDetails> _viewTabSubMenuCollection { get; set; }
+        private readonly MainWindowViewModel _mainWindowViewModel;
 
         public ResourceDictionary _iconDictionary = Application.LoadComponent(
             new Uri("/FileExplorerMVVM;component/Views/Resources/Styles/Icons.xaml",
                 UriKind.RelativeOrAbsolute)) as ResourceDictionary;
 
-        /*public LoadSubMenuCollectionCommand(ObservableCollection<SubMenuItemDetails> HomeTabSubMenuCollection, ObservableCollection<SubMenuItemDetails> ViewTabSubMenuCollection)
+        public LoadSubMenuCollectionCommand(MainWindowViewModel mainWindowViewModel)
         {
-            _homeTabSubMenuCollection= HomeTabSubMenuCollection;
-            _viewTabSubMenuCollection= ViewTabSubMenuCollection;
-        }*/
+            _mainWindowViewModel = mainWindowViewModel;
+        }
 
         public override void Execute(object? parameter)
         {
-            _homeTabSubMenuCollection = new ObservableCollection<SubMenuItemDetails>
+            _mainWindowViewModel.HomeTabSubMenuCollection = new ObservableCollection<SubMenuItemDetails>
             {
                 new SubMenuItemDetails()
                 {
@@ -73,7 +72,7 @@ namespace FileExplorerMVVM.Infrastructure.Commands
                 }
             };
 
-            _viewTabSubMenuCollection = new ObservableCollection<SubMenuItemDetails>
+            _mainWindowViewModel.ViewTabSubMenuCollection = new ObservableCollection<SubMenuItemDetails>
             {
                 new SubMenuItemDetails()
                 {

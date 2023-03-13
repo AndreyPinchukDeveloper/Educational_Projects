@@ -1,76 +1,51 @@
 ﻿using FileExplorerMVVM.Infrastructure.Commands.Base;
 using FileExplorerMVVM.Models;
 using FileExplorerMVVM.ViewModels;
-using Microsoft.VisualBasic.FileIO;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FileExplorerMVVM.Infrastructure.Commands
 {
     public class GetFilesSizeCommand : BaseCommand
     {
         private readonly MainWindowViewModel _mainWindowViewModel;
-        public ObservableCollection<FileDetailsModel> NavigatedFolderFiles { get; set; }
-        public string SelectedFolderDetails;
-        internal ReadOnlyCollection<string> tempFolderCollection;
-        private string _currentDirectory { get; set; }
-        //MainWindowViewModel mainWindowViewModel;
+        private readonly ObservableCollection<FileDetailsModel> _navigatedFolderFiles;       
+        private readonly BackgroundWorker _bgGetFilesSize;
+        private BackgroundWorker _bgGetFiles { get; set; }
 
-        BackgroundWorker bgGetFiles;
-
-        BackgroundWorker bgGetFilesSize;
-
-        public GetFilesSizeCommand(MainWindowViewModel mainWindowViewModel, BackgroundWorker bgGetFiles, BackgroundWorker bgGetFilesSize, string SelectedFolderDetails, 
-            ObservableCollection<FileDetailsModel> NavigatedFolderFiles, ReadOnlyCollection<string> tempFolderCollection, string currentDirectory)
+        public GetFilesSizeCommand(MainWindowViewModel mainWindowViewModel, BackgroundWorker bgGetFiles, BackgroundWorker bgGetFilesSize, ObservableCollection<FileDetailsModel> NavigatedFolderFiles)
         {
             _mainWindowViewModel = mainWindowViewModel;
-            this.bgGetFiles = bgGetFiles;
-            this.bgGetFilesSize = bgGetFilesSize;
-            this.SelectedFolderDetails = SelectedFolderDetails;
-            this.NavigatedFolderFiles = NavigatedFolderFiles;
-            NavigatedFolderFiles = new ObservableCollection<FileDetailsModel>();
-            this.tempFolderCollection = tempFolderCollection;
-            _currentDirectory = currentDirectory;
-            _mainWindowViewModel.PropertyChanged += OnViewModelPropertyChanged;
-        }
+            _bgGetFiles = bgGetFiles;
+            _bgGetFilesSize = bgGetFilesSize;
+            _navigatedFolderFiles = NavigatedFolderFiles;
 
-        private void OnViewModelPropertyChanged(object? sender, PropertyChangedEventArgs e)
-        {
-            if (e.PropertyName == nameof(MainWindowViewModel.SelectedFolderDetails))
-            {
-                OnCanExecutedChanged();
-            }
+            NavigatedFolderFiles = new ObservableCollection<FileDetailsModel>();
         }
 
         public override void Execute(object? parameter)
         {
             var file = parameter as FileDetailsModel;
             if (file == null) return;
-            SelectedFolderDetails = "Calculating size...";
+            _mainWindowViewModel.SelectedFolderDetails = "Calculating size...";
 
-            //OnPropertyChanged(nameof(SelectedFolderDetails));
+            _bgGetFilesSize.DoWork -= BgGetFilesSize_DoWork;
+            _bgGetFilesSize.DoWork += BgGetFilesSize_DoWork;
 
-            bgGetFilesSize.DoWork -= BgGetFilesSize_DoWork;
-            bgGetFilesSize.DoWork += BgGetFilesSize_DoWork;
-
-            if (bgGetFilesSize.IsBusy) bgGetFilesSize.CancelAsync();
-            if (bgGetFilesSize.CancellationPending)
+            if (_bgGetFilesSize.IsBusy) _bgGetFilesSize.CancelAsync();
+            if (_bgGetFilesSize.CancellationPending)
             {
-                bgGetFiles.Dispose();
-                bgGetFiles = new BackgroundWorker()
+                _bgGetFiles.Dispose();
+                _bgGetFiles = new BackgroundWorker()
                 {
                     WorkerSupportsCancellation = true
                 };
             }
 
-            bgGetFilesSize.RunWorkerAsync();
+            _bgGetFilesSize.RunWorkerAsync();
         }
 
         private string CalculateSize(long bytes)
@@ -109,20 +84,18 @@ namespace FileExplorerMVVM.Infrastructure.Commands
 
         private void BgGetFilesSize_DoWork(object? sender, DoWorkEventArgs e)
         {
-            var FileSize = NavigatedFolderFiles.Where(File => File.IsSelected && !File.IsDirectory)
+            var FileSize = _navigatedFolderFiles.Where(File => File.IsSelected && !File.IsDirectory)
                 .Sum(x => new FileInfo(x.Path).Length);
 
-            SelectedFolderDetails = CalculateSize(FileSize);
-            //OnPropertyChanged(nameof(SelectedFolderDetails));
+            _mainWindowViewModel.SelectedFolderDetails = CalculateSize(FileSize);
 
-            var Directories = NavigatedFolderFiles.Where(directory => directory.IsSelected && directory.IsDirectory);
+            var Directories = _navigatedFolderFiles.Where(directory => directory.IsSelected && directory.IsDirectory);
             try
             {
                 foreach (var directory in Directories)
                 {
                     FileSize += GetDirectorySize(directory.Path);
-                    SelectedFolderDetails = CalculateSize(FileSize);
-                    //OnPropertyChanged(nameof(SelectedFolderDetails));
+                    _mainWindowViewModel.SelectedFolderDetails = CalculateSize(FileSize);
                 }
             }
             catch (InvalidOperationException) { }

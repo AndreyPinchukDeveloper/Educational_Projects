@@ -253,12 +253,12 @@
                     Content="Andre Corporation"
                     Icon="{StaticResource User}"
                     Margin="20 5 0 15"
-                    Command="{Binding openUserProfileSettingsCommand}"/>
+                    Command="{Binding OpenSettingsCommand}"/>
                 <cc:NavigationMenuButton
                     Content="Settings"
                     Icon="{StaticResource Settings}"
                     Margin="20 0 0 15"
-                    Command="{Binding openSettingsCommand}"/>
+                    Command="{Binding OpenSettingsCommand}"/>
             </StackPanel>
         </Grid>
         <!--#endregion-->

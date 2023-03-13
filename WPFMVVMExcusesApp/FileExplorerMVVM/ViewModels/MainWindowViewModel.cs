@@ -35,7 +35,13 @@ namespace FileExplorerMVVM.ViewModels
         public string CurrentDirectory { get; set; }
         public string NextDirectory { get; set; }
         public string SelectedDriveSize { get; set; }
-        public string SelectedFolderDetails { get; set; }
+        
+        private  string _selectedFolderDetails;
+        public  string SelectedFolderDetails
+        {
+            get => _selectedFolderDetails;
+            set => Set(ref _selectedFolderDetails, value);
+        }
 
         public ObservableCollection<FileDetailsModel> FavoriteFolders { get; set; }
         public ObservableCollection<FileDetailsModel> RemoteFolders { get; set; }
@@ -237,6 +243,7 @@ namespace FileExplorerMVVM.ViewModels
                 }); 
             }
 
+            LoadSubMenuCollectionCommand = new LoadSubMenuCollectionCommand(this);
             LoadSubMenuCollectionCommand.Execute(null);
             
             CurrentDirectory = @"C:\";
@@ -257,8 +264,9 @@ namespace FileExplorerMVVM.ViewModels
 
             CanGoBack = position != 0;
             OnPropertyChanged(nameof(CanGoBack));
-            GetFilesSizeCommand = new GetFilesSizeCommand(this, bgGetFiles, bgGetFilesSize, SelectedFolderDetails, NavigatedFolderFiles, tempFolderCollection, CurrentDirectory);
-            OnPropertyChanged(nameof(SelectedFolderDetails));
+            GetFilesSizeCommand = new GetFilesSizeCommand(this, bgGetFiles, bgGetFilesSize, NavigatedFolderFiles);
+            OpenSettingsCommand = new OpenSettingsCommand();
+            //OnPropertyChanged(nameof(SelectedFolderDetails));
         }
 
         public static MainWindowViewModel LoadViewModel()
@@ -270,61 +278,6 @@ namespace FileExplorerMVVM.ViewModels
         private void BgGetFiles_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
         {
             
-        }
-
-        internal string CalculateSize(long bytes)
-        {
-            var suffix = new[] {"B", "KB", "MB", "GB", "TB" };
-            float byteNumber = bytes;
-            for (var i = 0; i < suffix.Length; i++)
-            {
-                if (byteNumber < 1000)
-                {
-                    if (i == 0) return $"{byteNumber} {suffix[i]}";
-                    else
-                    {
-                        return $"{byteNumber:0.#0} {suffix[i]}";
-                    }
-                }
-                else
-                {
-                    byteNumber /= 1024;
-                }
-            }
-            return $"{byteNumber:N} {suffix[suffix.Length-1]}";
-        }
-
-        internal static long GetDirectorySize(string directoryPath)
-        {
-            try
-            {
-                var d = new DirectoryInfo(directoryPath);
-                return d.EnumerateFiles("*", System.IO.SearchOption.AllDirectories).Sum(fi => fi.Length);
-            }
-            catch (UnauthorizedAccessException) { return 0; }
-            catch (FileNotFoundException) { return 0; }
-            catch(DirectoryNotFoundException) { return 0; }
-        }
-
-        private void BgGetFilesSize_DoWork(object? sender, DoWorkEventArgs e)
-        {
-            var FileSize = NavigatedFolderFiles.Where(File => File.IsSelected && !File.IsDirectory)
-                .Sum(x=>new FileInfo(x.Path).Length);
-
-            SelectedFolderDetails = CalculateSize(FileSize);
-            OnPropertyChanged(nameof(SelectedFolderDetails));
-
-            var Directories = NavigatedFolderFiles.Where(directory => directory.IsSelected && directory.IsDirectory);
-            try
-            {
-                foreach(var directory in Directories) 
-                {
-                    FileSize += GetDirectorySize(directory.Path);
-                    SelectedFolderDetails = CalculateSize(FileSize);
-                    OnPropertyChanged(nameof(SelectedFolderDetails));
-                }
-            }
-            catch(InvalidOperationException) { }
         }
 
         private void BgGetFiles_ProgressChanged(object? sender, ProgressChangedEventArgs e)
@@ -371,86 +324,9 @@ namespace FileExplorerMVVM.ViewModels
 
         #region Commands
 
-        private ICommand _openSettingsCommand;
-        public ICommand openSettingsCommand
-        {
-            get { return _openSettingsCommand ?? (_openSettingsCommand = new OpenWindowsSettingsCommand(() => Process.Start(new ProcessStartInfo { FileName = "ms-settings:home", UseShellExecute = true }))); }
-        }
+        public ICommand OpenSettingsCommand { get; set; }
 
-        private ICommand _openUserProfileSettingsCommand;
-        public ICommand openUserProfileSettingsCommand
-        {
-            get { return _openUserProfileSettingsCommand ?? (_openUserProfileSettingsCommand = new OpenWindowsSettingsCommand(() => Process.Start(new ProcessStartInfo { FileName = "ms-settings:home", UseShellExecute = true }))); }
-        }
-
-        private ICommand _loadSubMenuCollectionCommand;
-        public ICommand LoadSubMenuCollectionCommand
-        {
-            get 
-            {
-                return _loadSubMenuCollectionCommand ??
-                    (_loadSubMenuCollectionCommand = new OpenWindowsSettingsCommand(()=>
-                    {
-                        HomeTabSubMenuCollection = new ObservableCollection<SubMenuItemDetails>
-                        {
-                            new SubMenuItemDetails()
-                            {
-                                Name= "Pin",
-                                Icon = (PathGeometry)_iconDictionary["Pin"]
-                            },
-                            new SubMenuItemDetails()
-                            {
-                                Name= "Copy",
-                                Icon = (PathGeometry)_iconDictionary["Copy"]
-                            },
-                            new SubMenuItemDetails()
-                            {
-                                Name= "Cut",
-                                Icon = (PathGeometry)_iconDictionary["Cut"]
-                            },
-                            new SubMenuItemDetails()
-                            {
-                                Name= "Paste",
-                                Icon = (PathGeometry)_iconDictionary["Paste"]
-                            },
-                            new SubMenuItemDetails()
-                            {
-                                Name= "Delete",
-                                Icon = (PathGeometry)_iconDictionary["Delete"]
-                            },
-                            new SubMenuItemDetails()
-                            {
-                                Name= "Rename",
-                                Icon = (PathGeometry)_iconDictionary["Rename"]
-                            },
-                            new SubMenuItemDetails()
-                            {
-                                Name= "New Folder",
-                                Icon = (PathGeometry)_iconDictionary["NewFolder"]
-                            },
-                            new SubMenuItemDetails()
-                            {
-                                Name= "Properties",
-                                Icon = (PathGeometry)_iconDictionary["FileSettings"]
-                            }
-                        };
-
-                        ViewTabSubMenuCollection = new ObservableCollection<SubMenuItemDetails>
-                        {
-                            new SubMenuItemDetails()
-                            {
-                                Name= "List",
-                                Icon = (PathGeometry)_iconDictionary["ListView"]
-                            },
-                            new SubMenuItemDetails()
-                            {
-                                Name= "Tile",
-                                Icon = (PathGeometry)_iconDictionary["TileView"]
-                            }
-                        };
-                    }));
-            }
-        }
+        public ICommand LoadSubMenuCollectionCommand { get; set; }
 
         protected ICommand _getFilesListCommand;
 
@@ -487,31 +363,6 @@ namespace FileExplorerMVVM.ViewModels
             }));
 
         public ICommand GetFilesSizeCommand { get; set; }
-
-        /*public ICommand GetFilesSizeCommand =>
-            _getFilesSizeCommand ?? (_getFilesSizeCommand = new RelayCommand(parameter =>
-            {
-                var file = parameter as FileDetailsModel;
-                if (file == null) return;
-                SelectedFolderDetails = "Calculating size...";
-
-                OnPropertyChanged(nameof(SelectedFolderDetails));
-
-                bgGetFilesSize.DoWork -= BgGetFilesSize_DoWork;
-                bgGetFilesSize.DoWork += BgGetFilesSize_DoWork;
-
-                if (bgGetFilesSize.IsBusy) bgGetFilesSize.CancelAsync();
-                if (bgGetFilesSize.CancellationPending)
-                {
-                    bgGetFiles.Dispose();
-                    bgGetFiles = new BackgroundWorker()
-                    {
-                        WorkerSupportsCancellation = true
-                    };
-                }
-
-                bgGetFilesSize.RunWorkerAsync();
-            }));*/
 
         protected ICommand _goToPreviousDirectoryCommand;
         public ICommand GoToPreviousDirectoryCommand => _goToPreviousDirectoryCommand ??
