@@ -37,7 +37,7 @@ namespace FileExplorerMVVM.ViewModels
         public string SelectedDriveSize { get; set; }
         
         private  string _selectedFolderDetails;
-        public  string SelectedFolderDetails
+        public string SelectedFolderDetails
         {
             get => _selectedFolderDetails;
             set => Set(ref _selectedFolderDetails, value);
@@ -59,7 +59,12 @@ namespace FileExplorerMVVM.ViewModels
         public ObservableCollection<SubMenuItemDetails> ViewTabSubMenuCollection { get; set; }
 
         #region Back-Forward buttons filds
-        public ObservableCollection<string> PathHistoryCollection { get; set; }
+        private ObservableCollection<string> _pathHistoryCollection;
+        public ObservableCollection<string> PathHistoryCollection
+        {
+            get => _pathHistoryCollection;
+            set => Set(ref _pathHistoryCollection, value);
+        }
         internal int position = 0;
         public bool CanGoBack { get; set; }
         public bool CanGoForward { get; set; }
@@ -264,9 +269,9 @@ namespace FileExplorerMVVM.ViewModels
 
             CanGoBack = position != 0;
             OnPropertyChanged(nameof(CanGoBack));
+            GetFilesListCommand = new GetFilesListCommand(this);
             GetFilesSizeCommand = new GetFilesSizeCommand(this, bgGetFiles, bgGetFilesSize, NavigatedFolderFiles);
             OpenSettingsCommand = new OpenSettingsCommand();
-            //OnPropertyChanged(nameof(SelectedFolderDetails));
         }
 
         public static MainWindowViewModel LoadViewModel()
@@ -312,56 +317,10 @@ namespace FileExplorerMVVM.ViewModels
             OnPropertyChanged(nameof(CurrentDirectory));
         }
 
-        internal void UpdatePathHistory(string path)
-        {
-            if (PathHistoryCollection != null && string.IsNullOrEmpty(path))
-            {
-                PathHistoryCollection.Add(path);
-                position++;
-                OnPropertyChanged(nameof(PathHistoryCollection));
-            }
-        }
-
         #region Commands
-
         public ICommand OpenSettingsCommand { get; set; }
-
         public ICommand LoadSubMenuCollectionCommand { get; set; }
-
-        protected ICommand _getFilesListCommand;
-
-        public ICommand GetFilesListCommand =>
-            _getFilesListCommand ?? (_getFilesListCommand = new RelayCommand(parameter =>
-            {
-                var file = parameter as FileDetailsModel;
-                if (file == null) return;
-
-                SelectedFolderDetails = string.Empty;
-                OnPropertyChanged(nameof(SelectedFolderDetails));
-                if (Directory.Exists(file.Path))
-                {
-                    UpdatePathHistory(file.Path);
-                    LoadDirectory(file);
-                }
-                else
-                {
-                    try
-                    {
-                        Process.Start(new ProcessStartInfo(file.Path));
-                    }
-                    catch (Win32Exception exception)
-                    {
-
-                        MessageBox.Show(exception.Message, exception.Source);
-                    }
-                    catch (InvalidOperationException exception)
-                    {
-
-                        MessageBox.Show($"{file.Name} isn't installed on this system.", exception.Source);
-                    }
-                }
-            }));
-
+        public ICommand GetFilesListCommand { get; set; }
         public ICommand GetFilesSizeCommand { get; set; }
 
         protected ICommand _goToPreviousDirectoryCommand;
