@@ -53,7 +53,7 @@ namespace FileExplorerMVVM.Infrastructure.Commands
 
         private void UpdatePathHistory(string path)
         {
-            if (_mainWindowViewModel.PathHistoryCollection != null && string.IsNullOrEmpty(path))
+            if (_mainWindowViewModel.PathHistoryCollection != null && !string.IsNullOrEmpty(path))
             {
                 _mainWindowViewModel.PathHistoryCollection.Add(path);
                 _mainWindowViewModel.position++;

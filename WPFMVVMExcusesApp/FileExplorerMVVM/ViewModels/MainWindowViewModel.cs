@@ -334,26 +334,31 @@ namespace FileExplorerMVVM.ViewModels
                     {
                         Path = PathHistoryCollection.ElementAt(position)
                     });
-                }
-            }));
-
-        protected ICommand _goToForwardDirectoryCommand;
-        public ICommand GoToForwardDirectoryCommand => _goToForwardDirectoryCommand ??
-            (_goToForwardDirectoryCommand = new OpenWindowsSettingsCommand(() =>
-            {
-                if (position >= 1)
-                {
-                    position--;
-                    LoadDirectory(new FileDetailsModel()
-                    {
-                        Path = PathHistoryCollection.ElementAt(position)
-                    });
 
                     CanGoForward = true;
                     OnPropertyChanged(nameof(CanGoForward));
 
                     PathDisrupted = false;
                     OnPropertyChanged(nameof(PathDisrupted));
+                }                
+            }));
+
+        protected ICommand _goToForwardDirectoryCommand;
+        public ICommand GoToForwardDirectoryCommand => _goToForwardDirectoryCommand ??
+            (_goToForwardDirectoryCommand = new OpenWindowsSettingsCommand(() =>
+            {
+                if (position < PathHistoryCollection.Count -1)
+                {
+                    position++;
+                    LoadDirectory(new FileDetailsModel()
+                    {
+                        Path = PathHistoryCollection.ElementAt(position)
+                    });
+
+                    CanGoForward = 
+                        position < PathHistoryCollection.Count - 1 &&
+                        position != PathHistoryCollection.Count - 1;
+                    OnPropertyChanged(nameof(CanGoForward));
                 }
             }));
 
@@ -361,7 +366,32 @@ namespace FileExplorerMVVM.ViewModels
         public ICommand GoToParentDirectoryCommand => _goToParentDirectoryCommand ??
             (_goToParentDirectoryCommand = new OpenWindowsSettingsCommand(() =>
             {
+                var ParentDirectory = string.Empty;
+                PathDisrupted = true;
+                var d = new DirectoryInfo(ParentDirectory);
 
+                if (d.Parent != null)
+                {
+                    ParentDirectory = d.Parent.FullName;
+                    IsAtRootDirectory = false;
+                    OnPropertyChanged(nameof(IsAtRootDirectory));
+                }
+                else if (d.Parent == null)
+                {
+                    IsAtRootDirectory = true;
+                    OnPropertyChanged(nameof(IsAtRootDirectory));
+                    return;
+                }
+                else
+                {
+                    ParentDirectory= d.Root.ToString()
+                    .Split(Path.DirectorySeparatorChar)[1];
+                }
+
+                GetFilesListCommand.Execute(new FileDetailsModel()
+                {
+                    Path = ParentDirectory
+                });
             }));
         #endregion
     }
