@@ -32,7 +32,13 @@ namespace FileExplorerMVVM.ViewModels
 
         public string ParentDirectory { get; set; }
         public string PreviousDirectory { get; set; }
-        public string CurrentDirectory { get; set; }
+
+        private string _currentDirectory;
+        public string CurrentDirectory
+        {
+            get => _currentDirectory;
+            set => Set(ref _currentDirectory, value);
+        }
         public string NextDirectory { get; set; }
         public string SelectedDriveSize { get; set; }
         
@@ -59,17 +65,59 @@ namespace FileExplorerMVVM.ViewModels
         public ObservableCollection<SubMenuItemDetails> ViewTabSubMenuCollection { get; set; }
 
         #region Back-Forward buttons filds
+
         private ObservableCollection<string> _pathHistoryCollection;
         public ObservableCollection<string> PathHistoryCollection
         {
             get => _pathHistoryCollection;
             set => Set(ref _pathHistoryCollection, value);
         }
+
         internal int position = 0;
-        public bool CanGoBack { get; set; }
-        public bool CanGoForward { get; set; }
-        public bool IsAtRootDirectory { get; set; }
-        public bool PathDisrupted { get; set; }
+
+        private bool _canGoBack;
+        public bool CanGoBack
+        {
+            get => _canGoBack;
+            set => Set(ref _canGoBack, value);
+        }
+        
+        private bool _canGoForward;
+        public bool CanGoForward
+        {
+            get => _canGoForward;
+            set => Set(ref _canGoForward, value);
+        }
+        private bool _isAtRootDirectory;
+        public bool IsAtRootDirectory
+        {
+            get => _isAtRootDirectory;
+            set => Set(ref _isAtRootDirectory, value);
+        }
+
+        private bool _pathDisrupted;
+        public bool PathDisrupted
+        {
+            get => _pathDisrupted;
+            set
+            {
+                Set(ref _pathDisrupted, value);
+                if (_pathDisrupted)
+                {
+                    var tempCollection = new ObservableCollection<string>();
+                    for (int i = position; i < PathHistoryCollection.Count - 1; i++)
+                    {
+                        tempCollection.Add(PathHistoryCollection[i]);
+                    }
+
+                    foreach (var path in tempCollection)
+                    {
+                        PathHistoryCollection.Remove(path);
+                    }
+                    _pathDisrupted = false;
+                }
+            }
+        }
         #endregion
 
 
@@ -91,11 +139,16 @@ namespace FileExplorerMVVM.ViewModels
         public void LoadDirectory(FileDetailsModel fileDetailsModel)
         {
             CanGoBack = position != 0;
-            OnPropertyChanged(nameof(CanGoBack));
-
             NavigatedFolderFiles.Clear();
             tempFolderCollection = null;
 
+            if (PathHistoryCollection != null && position>0)
+            {
+                if (PathHistoryCollection.ElementAt(position) != fileDetailsModel.Path)
+                {
+                    PathDisrupted = true;
+                }
+            }
             if (bgGetFiles.IsBusy) bgGetFiles.CancelAsync();
 
             bgGetFiles.RunWorkerAsync(fileDetailsModel);
@@ -229,9 +282,6 @@ namespace FileExplorerMVVM.ViewModels
                 },
             };
 
-            
-            OnPropertyChanged(nameof(SelectedFolderDetails));
-
             ConnectedDevices = new ObservableCollection<FileDetailsModel>();
             //represent all disks on your PC
             foreach (var drive in DriveInfo.GetDrives())
@@ -252,7 +302,6 @@ namespace FileExplorerMVVM.ViewModels
             LoadSubMenuCollectionCommand.Execute(null);
             
             CurrentDirectory = @"C:\";
-            OnPropertyChanged(nameof(CurrentDirectory));
 
             NavigatedFolderFiles = new ObservableCollection<FileDetailsModel>();
             bgGetFiles.DoWork += BgGetFiles_DoWork;
@@ -268,7 +317,6 @@ namespace FileExplorerMVVM.ViewModels
             PathHistoryCollection.Add(CurrentDirectory);
 
             CanGoBack = position != 0;
-            OnPropertyChanged(nameof(CanGoBack));
             GetFilesListCommand = new GetFilesListCommand(this);
             GetFilesSizeCommand = new GetFilesSizeCommand(this, bgGetFiles, bgGetFilesSize, NavigatedFolderFiles);
             OpenSettingsCommand = new OpenSettingsCommand();
@@ -300,7 +348,6 @@ namespace FileExplorerMVVM.ViewModels
             file.FileIcon = GetImageForExtension(file);
 
             NavigatedFolderFiles.Add(file);
-            OnPropertyChanged(nameof(NavigatedFolderFiles));
         }
 
         private void BgGetFiles_DoWork(object? sender, DoWorkEventArgs e)
@@ -314,7 +361,13 @@ namespace FileExplorerMVVM.ViewModels
             }
 
             CurrentDirectory = fileOrFolder.Path;
-            OnPropertyChanged(nameof(CurrentDirectory));
+
+            var root = Path.GetPathRoot(fileOrFolder.Path);
+            if (string.IsNullOrWhiteSpace(CurrentDirectory) || CurrentDirectory==root)
+            {
+                IsAtRootDirectory = true;
+            }
+            else { IsAtRootDirectory = false; }
         }
 
         #region Commands
@@ -336,10 +389,7 @@ namespace FileExplorerMVVM.ViewModels
                     });
 
                     CanGoForward = true;
-                    OnPropertyChanged(nameof(CanGoForward));
-
                     PathDisrupted = false;
-                    OnPropertyChanged(nameof(PathDisrupted));
                 }                
             }));
 
@@ -358,7 +408,6 @@ namespace FileExplorerMVVM.ViewModels
                     CanGoForward = 
                         position < PathHistoryCollection.Count - 1 &&
                         position != PathHistoryCollection.Count - 1;
-                    OnPropertyChanged(nameof(CanGoForward));
                 }
             }));
 
@@ -374,12 +423,10 @@ namespace FileExplorerMVVM.ViewModels
                 {
                     ParentDirectory = d.Parent.FullName;
                     IsAtRootDirectory = false;
-                    OnPropertyChanged(nameof(IsAtRootDirectory));
                 }
                 else if (d.Parent == null)
                 {
                     IsAtRootDirectory = true;
-                    OnPropertyChanged(nameof(IsAtRootDirectory));
                     return;
                 }
                 else
