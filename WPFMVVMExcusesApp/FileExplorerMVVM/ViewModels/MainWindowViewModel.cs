@@ -320,6 +320,10 @@ namespace FileExplorerMVVM.ViewModels
             GetFilesListCommand = new GetFilesListCommand(this);
             GetFilesSizeCommand = new GetFilesSizeCommand(this, bgGetFiles, bgGetFilesSize, NavigatedFolderFiles);
             OpenSettingsCommand = new OpenSettingsCommand();
+            GoToPreviousDirectoryCommand = new GoToPreviousDirectoryCommand(this);
+            GoToForwardDirectoryCommand = new GoToForwardDirectoryCommand(this);
+            GoToParentDirectoryCommand = new GoToParentDirectoryCommand(this);
+            NavigateToPatchCommand = new NavigateToPatchCommand(this);
         }
 
         public static MainWindowViewModel LoadViewModel()
@@ -375,71 +379,10 @@ namespace FileExplorerMVVM.ViewModels
         public ICommand LoadSubMenuCollectionCommand { get; set; }
         public ICommand GetFilesListCommand { get; set; }
         public ICommand GetFilesSizeCommand { get; set; }
-
-        protected ICommand _goToPreviousDirectoryCommand;
-        public ICommand GoToPreviousDirectoryCommand => _goToPreviousDirectoryCommand ??
-            (_goToPreviousDirectoryCommand = new OpenWindowsSettingsCommand(() =>
-            {
-                if (position>=1)
-                {
-                    position--;
-                    LoadDirectory(new FileDetailsModel()
-                    {
-                        Path = PathHistoryCollection.ElementAt(position)
-                    });
-
-                    CanGoForward = true;
-                    PathDisrupted = false;
-                }                
-            }));
-
-        protected ICommand _goToForwardDirectoryCommand;
-        public ICommand GoToForwardDirectoryCommand => _goToForwardDirectoryCommand ??
-            (_goToForwardDirectoryCommand = new OpenWindowsSettingsCommand(() =>
-            {
-                if (position < PathHistoryCollection.Count -1)
-                {
-                    position++;
-                    LoadDirectory(new FileDetailsModel()
-                    {
-                        Path = PathHistoryCollection.ElementAt(position)
-                    });
-
-                    CanGoForward = 
-                        position < PathHistoryCollection.Count - 1 &&
-                        position != PathHistoryCollection.Count - 1;
-                }
-            }));
-
-        protected ICommand _goToParentDirectoryCommand;
-        public ICommand GoToParentDirectoryCommand => _goToParentDirectoryCommand ??
-            (_goToParentDirectoryCommand = new OpenWindowsSettingsCommand(() =>
-            {
-                var ParentDirectory = string.Empty;
-                PathDisrupted = true;
-                var d = new DirectoryInfo(ParentDirectory);
-
-                if (d.Parent != null)
-                {
-                    ParentDirectory = d.Parent.FullName;
-                    IsAtRootDirectory = false;
-                }
-                else if (d.Parent == null)
-                {
-                    IsAtRootDirectory = true;
-                    return;
-                }
-                else
-                {
-                    ParentDirectory= d.Root.ToString()
-                    .Split(Path.DirectorySeparatorChar)[1];
-                }
-
-                GetFilesListCommand.Execute(new FileDetailsModel()
-                {
-                    Path = ParentDirectory
-                });
-            }));
+        public ICommand GoToPreviousDirectoryCommand { get; set; } 
+        public ICommand GoToForwardDirectoryCommand { get; set; }
+        public ICommand GoToParentDirectoryCommand { get; set; }
+        public ICommand NavigateToPatchCommand { get; set; }
         #endregion
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FileExplorerMVVM.Infrastructure.Commands.Base;
+using FileExplorerMVVM.Models;
 using FileExplorerMVVM.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,18 @@ namespace FileExplorerMVVM.Infrastructure.Commands
         }
         public override void Execute(object? parameter)
         {
-            throw new NotImplementedException();
+            if (_mainWindowViewModel.position < _mainWindowViewModel.PathHistoryCollection.Count - 1)
+            {
+                _mainWindowViewModel.position++;
+                _mainWindowViewModel.LoadDirectory(new FileDetailsModel()
+                {
+                    Path = _mainWindowViewModel.PathHistoryCollection.ElementAt(_mainWindowViewModel.position)
+                });
+
+                _mainWindowViewModel.CanGoForward =
+                    _mainWindowViewModel.position < _mainWindowViewModel.PathHistoryCollection.Count - 1 &&
+                    _mainWindowViewModel.position != _mainWindowViewModel.PathHistoryCollection.Count - 1;
+            }
         }
     }
 }

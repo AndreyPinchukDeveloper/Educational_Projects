@@ -398,7 +398,7 @@
                         Content="{StaticResource Forward}"
                         FontSize="16"
                         HorizontalContentAlignment="Center"
-                        Command="{Binding GoToPreviousDirectoryCommand}">
+                        Command="{Binding GoToForwardDirectoryCommand}">
                     <Button.Style>
                         <Style TargetType="{x:Type Button}" BasedOn="{StaticResource ButtonWithIconStyle}">
                             <Style.Triggers>
@@ -433,7 +433,14 @@
                          HorizontalAlignment="Stretch"
                          Margin="12,0"
                          Text="{Binding CurrentDirectory, UpdateSourceTrigger=PropertyChanged}"
-                         Style="{StaticResource AddressBarTextBoxStyle}"/>
+                         Style="{StaticResource AddressBarTextBoxStyle}">
+                    <TextBox.InputBindings>
+                        <KeyBinding
+                            Key="Enter"
+                            Command="{Binding NavigateToPatchCommand}"
+                            CommandParameter="{Binding Text, ElementName=AddressBar}"/>
+                    </TextBox.InputBindings>
+                </TextBox>
             </Grid>
             <!--#endregion-->
             

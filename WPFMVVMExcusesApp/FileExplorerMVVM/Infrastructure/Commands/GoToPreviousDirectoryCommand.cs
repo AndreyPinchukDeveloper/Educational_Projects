@@ -26,6 +26,9 @@ namespace FileExplorerMVVM.Infrastructure.Commands
                 {
                     Path = _mainWindowViewModel.PathHistoryCollection.ElementAt(_mainWindowViewModel.position)
                 });
+
+                _mainWindowViewModel.CanGoForward = true;
+                _mainWindowViewModel.PathDisrupted = false;
             }
         }
     }
