@@ -104,10 +104,14 @@
                         <!--Unpin button-->
                         <Button
                             Name="UnPinButton"
+                            Content="{DynamicResource UnPin}"
+                            Command="{TemplateBinding UnPinCommand}"
+                            CommandParameter="{Binding}"
                             Grid.Column="2"
                             Width="40"
                             Foreground="Aqua"
-                            Visibility="Collapsed"/>
+                            Visibility="Collapsed"
+                            Style="{DynamicResource ButtonWithIconStyle}"/>
 
                     </Grid>
                     <ControlTemplate.Triggers>
@@ -123,6 +127,13 @@
                             <Setter TargetName="bgBorder" Property="Visibility" Value="Visible"/>
                             <Setter TargetName="bgBorder" Property="Opacity" Value=".5"/>
                         </Trigger>
+
+                        <DataTrigger Binding="{Binding IsPinned}"
+                                     Value="True">
+                            <Setter TargetName="UpPinButton"
+                                    Property="Visibility"
+                                    Value="Visible"/>
+                        </DataTrigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>

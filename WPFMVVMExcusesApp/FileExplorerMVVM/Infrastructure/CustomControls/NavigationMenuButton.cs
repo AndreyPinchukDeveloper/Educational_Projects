@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace FileExplorerMVVM.Infrastructure.CustomControls
@@ -21,6 +22,14 @@ namespace FileExplorerMVVM.Infrastructure.CustomControls
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.Register("Icon", typeof(PathGeometry), typeof(NavigationMenuButton));
 
+        private ICommand UnPinCommand
+        {
+            get => (ICommand)GetValue(UnPinCommandProperty);
+            set => SetValue(UnPinCommandProperty, value);
+        }
+
+        public static readonly DependencyProperty UnPinCommandProperty =
+            DependencyProperty.Register("UnPinCommand", typeof(PathGeometry), typeof(NavigationMenuButton));
 
     }
 }

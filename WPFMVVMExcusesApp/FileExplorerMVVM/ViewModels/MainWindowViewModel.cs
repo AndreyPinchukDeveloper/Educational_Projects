@@ -39,6 +39,7 @@ namespace FileExplorerMVVM.ViewModels
             get => _currentDirectory;
             set => Set(ref _currentDirectory, value);
         }
+
         public string NextDirectory { get; set; }
         public string SelectedDriveSize { get; set; }
         
@@ -49,16 +50,39 @@ namespace FileExplorerMVVM.ViewModels
             set => Set(ref _selectedFolderDetails, value);
         }
 
-        public ObservableCollection<FileDetailsModel> FavoriteFolders { get; set; }
-        public ObservableCollection<FileDetailsModel> RemoteFolders { get; set; }
-        public ObservableCollection<FileDetailsModel> LibraryFolders { get; set; }
-        public ObservableCollection<FileDetailsModel> ConnectedDevices { get; set; }
+        public ObservableCollection<FileDetailsModel> _remoteFolders;
+        public ObservableCollection<FileDetailsModel> RemoteFolders
+        {
+            get => _remoteFolders;
+            set => Set(ref _remoteFolders, value);
+        }
+
+        public ObservableCollection<FileDetailsModel> _libraryFolders;
+        public ObservableCollection<FileDetailsModel> LibraryFolders
+        {
+            get => _libraryFolders;
+            set => Set(ref _libraryFolders, value);
+        }
+
+        public ObservableCollection<FileDetailsModel> _connectedDevices;
+        public ObservableCollection<FileDetailsModel> ConnectedDevices
+        {
+            get => _connectedDevices;
+            set => Set(ref _connectedDevices, value);
+        }
 
         private ObservableCollection<FileDetailsModel> _navigatedFolderFiles;
         public ObservableCollection<FileDetailsModel> NavigatedFolderFiles 
         { 
             get => _navigatedFolderFiles;
             set => Set(ref _navigatedFolderFiles, value);
+        }
+
+        private ObservableCollection<FileDetailsModel> _favoriteFolders;
+        public ObservableCollection<FileDetailsModel> FavoriteFolders
+        {
+            get => _favoriteFolders;
+            set => Set(ref _favoriteFolders, value);
         }
 
         public ObservableCollection<SubMenuItemDetails> HomeTabSubMenuCollection { get; set; }
@@ -324,6 +348,7 @@ namespace FileExplorerMVVM.ViewModels
             GoToForwardDirectoryCommand = new GoToForwardDirectoryCommand(this);
             GoToParentDirectoryCommand = new GoToParentDirectoryCommand(this);
             NavigateToPatchCommand = new NavigateToPatchCommand(this);
+            SubMenuFileOparationCommand = SubMenuFileOparationCommand(this);
         }
 
         public static MainWindowViewModel LoadViewModel()
@@ -383,6 +408,7 @@ namespace FileExplorerMVVM.ViewModels
         public ICommand GoToForwardDirectoryCommand { get; set; }
         public ICommand GoToParentDirectoryCommand { get; set; }
         public ICommand NavigateToPatchCommand { get; set; }
+        public ICommand SubMenuFileOparationCommand { get; set; }
         #endregion
     }
 }

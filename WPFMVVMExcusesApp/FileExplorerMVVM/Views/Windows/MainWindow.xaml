@@ -202,6 +202,7 @@
                                                      Icon="{Binding FileIcon, UpdateSourceTrigger=PropertyChanged}"
                                                      Command="{Binding DataContext.GetFilesListCommand, ElementName=MyMainWindow}"
                                                      CommandParameter="{Binding}"
+                                                     UnPinCommand="{Binding}"
                                                      Margin="0 5 0 8"/>
                         </DataTemplate>
                     </StackPanel.Resources>
