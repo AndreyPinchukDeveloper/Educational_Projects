@@ -53,16 +53,29 @@ namespace FileExplorerMVVM.Infrastructure.Commands
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
 
         private void PinFolder()
         {
-            if (_mainWindowViewModel.FavoriteFolders == null)
-            {
+            if (_mainWindowViewModel.FavoriteFolders == null) 
                 _mainWindowViewModel.FavoriteFolders = new ObservableCollection<FileDetailsModel>();
+
+            try
+            {
+                var selectedFile = _mainWindowViewModel.NavigatedFolderFiles.Where(folder => folder.IsSelected && !folder.IsPinned && folder.IsDirectory);
+
+                foreach (var directory in selectedFile) 
+                {
+                    directory.IsPinned = true;
+                    _mainWindowViewModel.FavoriteFolders.Add(directory);
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
             }
         }
     }
