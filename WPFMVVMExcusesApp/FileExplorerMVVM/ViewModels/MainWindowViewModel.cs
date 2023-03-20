@@ -339,8 +339,8 @@ namespace FileExplorerMVVM.ViewModels
 
             PathHistoryCollection = new ObservableCollection<string>();
             PathHistoryCollection.Add(CurrentDirectory);
-
             CanGoBack = position != 0;
+
             GetFilesListCommand = new GetFilesListCommand(this);
             GetFilesSizeCommand = new GetFilesSizeCommand(this, bgGetFiles, bgGetFilesSize, NavigatedFolderFiles);
             OpenSettingsCommand = new OpenSettingsCommand();
@@ -348,7 +348,8 @@ namespace FileExplorerMVVM.ViewModels
             GoToForwardDirectoryCommand = new GoToForwardDirectoryCommand(this);
             GoToParentDirectoryCommand = new GoToParentDirectoryCommand(this);
             NavigateToPatchCommand = new NavigateToPatchCommand(this);
-            SubMenuFileOparationCommand = SubMenuFileOparationCommand(this);
+            SubMenuFileOparationCommand = new SubMenuFileOparationCommand(this);
+            UnPinFavoriteFolderCommand = new UnPinFavoriteFolderCommand(this);
         }
 
         public static MainWindowViewModel LoadViewModel()
@@ -409,6 +410,7 @@ namespace FileExplorerMVVM.ViewModels
         public ICommand GoToParentDirectoryCommand { get; set; }
         public ICommand NavigateToPatchCommand { get; set; }
         public ICommand SubMenuFileOparationCommand { get; set; }
+        public ICommand UnPinFavoriteFolderCommand { get; set; }
         #endregion
     }
 }

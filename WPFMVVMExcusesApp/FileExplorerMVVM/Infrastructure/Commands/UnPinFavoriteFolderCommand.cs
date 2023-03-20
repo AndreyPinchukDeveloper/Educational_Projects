@@ -1,4 +1,5 @@
 ﻿using FileExplorerMVVM.Infrastructure.Commands.Base;
+using FileExplorerMVVM.Models;
 using FileExplorerMVVM.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -18,7 +19,11 @@ namespace FileExplorerMVVM.Infrastructure.Commands
 
         public override void Execute(object? parameter)
         {
-            throw new NotImplementedException();
+            var folder = parameter as FileDetailsModel;
+            if (folder == null) return;
+
+            folder.IsPinned = false;
+            _mainWindowViewModel.FavoriteFolders.Remove(folder);
         }
     }
 }

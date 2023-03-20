@@ -22,14 +22,14 @@ namespace FileExplorerMVVM.Infrastructure.CustomControls
         public static readonly DependencyProperty IconProperty =
             DependencyProperty.Register("Icon", typeof(PathGeometry), typeof(NavigationMenuButton));
 
-        private ICommand UnPinCommand
+        public ICommand UnPinCommand
         {
             get => (ICommand)GetValue(UnPinCommandProperty);
             set => SetValue(UnPinCommandProperty, value);
         }
 
         public static readonly DependencyProperty UnPinCommandProperty =
-            DependencyProperty.Register("UnPinCommand", typeof(PathGeometry), typeof(NavigationMenuButton));
+            DependencyProperty.Register("UnPinCommand", typeof(ICommand), typeof(NavigationMenuButton));
 
     }
 }

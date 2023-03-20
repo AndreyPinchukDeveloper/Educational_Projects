@@ -130,7 +130,7 @@
 
                         <DataTrigger Binding="{Binding IsPinned}"
                                      Value="True">
-                            <Setter TargetName="UpPinButton"
+                            <Setter TargetName="UnPinButton"
                                     Property="Visibility"
                                     Value="Visible"/>
                         </DataTrigger>

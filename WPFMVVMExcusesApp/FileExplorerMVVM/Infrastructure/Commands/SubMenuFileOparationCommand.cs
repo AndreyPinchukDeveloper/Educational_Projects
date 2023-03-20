@@ -74,7 +74,6 @@ namespace FileExplorerMVVM.Infrastructure.Commands
             }
             catch (Exception)
             {
-
                 throw;
             }
         }
