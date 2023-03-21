@@ -30,6 +30,7 @@ namespace FileExplorerMVVM.Infrastructure.Commands
                         PinFolder();
                         break;
                     case "Copy":
+                        Copy();
                         break;
                     case "Cut":
                         break;
@@ -54,6 +55,20 @@ namespace FileExplorerMVVM.Infrastructure.Commands
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        private void Copy()
+        {
+            if (_mainWindowViewModel.ClipBoardCollection == null)
+                _mainWindowViewModel.ClipBoardCollection = new ObservableCollection<FileDetailsModel>();
+            _mainWindowViewModel.ClipBoardCollection.Clear();
+
+            var selectedFiles = _mainWindowViewModel.NavigatedFolderFiles.Where(file => file.IsSelected);
+            foreach ( var file in selectedFiles) 
+            { 
+                if(!_mainWindowViewModel.ClipBoardCollection.Contains(file))
+                    _mainWindowViewModel.ClipBoardCollection.Add(file);
             }
         }
 

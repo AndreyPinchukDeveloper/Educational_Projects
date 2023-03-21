@@ -88,6 +88,13 @@ namespace FileExplorerMVVM.ViewModels
         public ObservableCollection<SubMenuItemDetails> HomeTabSubMenuCollection { get; set; }
         public ObservableCollection<SubMenuItemDetails> ViewTabSubMenuCollection { get; set; }
 
+        private ObservableCollection<FileDetailsModel> _clipBoardCollection;
+        public ObservableCollection<FileDetailsModel> ClipBoardCollection
+        {
+            get => _clipBoardCollection;
+            set => Set(ref _clipBoardCollection, value);
+        }
+
         #region Back-Forward buttons filds
 
         private ObservableCollection<string> _pathHistoryCollection;
@@ -142,6 +149,8 @@ namespace FileExplorerMVVM.ViewModels
                 }
             }
         }
+
+        public bool IsMoveOperation { get; set; }
         #endregion
 
 
