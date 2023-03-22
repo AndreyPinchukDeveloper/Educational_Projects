@@ -1,9 +1,11 @@
 ﻿using FileExplorerMVVM.Infrastructure.Commands.Base;
 using FileExplorerMVVM.Models;
 using FileExplorerMVVM.ViewModels;
+using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,8 +35,10 @@ namespace FileExplorerMVVM.Infrastructure.Commands
                         Copy();
                         break;
                     case "Cut":
+                        Cut();
                         break;
                     case "Paste":
+                        Paste(_mainWindowViewModel.IsMoveOperation);
                         break;
                     case "Delete":
                         break;
@@ -58,6 +62,62 @@ namespace FileExplorerMVVM.Infrastructure.Commands
             }
         }
 
+        private void Paste(bool isMoveOperation)
+        {
+            var destinationPath = _mainWindowViewModel.CurrentDirectory;
+            if (!isMoveOperation)
+            {
+                foreach (var file in _mainWindowViewModel.ClipBoardCollection) 
+                {
+                    var sourcePath = file.Path;
+                    var destinyPath = _mainWindowViewModel.CurrentDirectory + "\\" + file.Name;
+                    destinyPath = Path.Combine(sourcePath, destinyPath);
+                    var temp = Path.GetExtension(file.Path);
+
+                    if (string.IsNullOrWhiteSpace(temp))
+                        FileSystem.CopyDirectory(file.Path, destinyPath, UIOption.AllDialogs, UICancelOption.DoNothing);
+                    else
+                        FileSystem.CopyFile(file.Path, destinyPath, UIOption.AllDialogs, UICancelOption.DoNothing);
+                }
+            }
+            else
+            {
+                foreach (var file in _mainWindowViewModel.ClipBoardCollection)
+                {
+                    var sourcePath = file.Path;
+                    var destinyPath = _mainWindowViewModel.CurrentDirectory + "\\" + file.Name;
+                    destinyPath = Path.Combine(sourcePath, destinyPath);
+                    var temp = Path.GetExtension(file.Path);
+
+                    if (string.IsNullOrWhiteSpace(temp))
+                        FileSystem.MoveDirectory(file.Path, destinyPath, UIOption.AllDialogs, UICancelOption.DoNothing);
+                    else
+                        FileSystem.MoveFile(file.Path, destinyPath, UIOption.AllDialogs, UICancelOption.DoNothing);
+                }
+            }
+            _mainWindowViewModel.LoadDirectory(new FileDetailsModel()
+            {
+                Path = destinationPath
+            });
+            isMoveOperation = false;
+        }
+
+        private void Cut()
+        {
+            if (_mainWindowViewModel.ClipBoardCollection == null)
+                _mainWindowViewModel.ClipBoardCollection = new ObservableCollection<FileDetailsModel>();
+            _mainWindowViewModel.ClipBoardCollection.Clear();
+
+            var selectedFiles = _mainWindowViewModel.NavigatedFolderFiles.Where(file => file.IsSelected);
+
+            foreach (var file in selectedFiles)
+            {
+                if (!_mainWindowViewModel.ClipBoardCollection.Contains(file))
+                    _mainWindowViewModel.ClipBoardCollection.Add(file);
+            }
+            _mainWindowViewModel.IsMoveOperation = true;
+        }
+
         private void Copy()
         {
             if (_mainWindowViewModel.ClipBoardCollection == null)
@@ -65,11 +125,13 @@ namespace FileExplorerMVVM.Infrastructure.Commands
             _mainWindowViewModel.ClipBoardCollection.Clear();
 
             var selectedFiles = _mainWindowViewModel.NavigatedFolderFiles.Where(file => file.IsSelected);
+            
             foreach ( var file in selectedFiles) 
             { 
                 if(!_mainWindowViewModel.ClipBoardCollection.Contains(file))
                     _mainWindowViewModel.ClipBoardCollection.Add(file);
             }
+            _mainWindowViewModel.IsMoveOperation = false;
         }
 
         private void PinFolder()
