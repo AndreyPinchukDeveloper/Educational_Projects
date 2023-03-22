@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace FileExplorerMVVM.Infrastructure.Commands
 {
@@ -41,6 +42,7 @@ namespace FileExplorerMVVM.Infrastructure.Commands
                         Paste(_mainWindowViewModel.IsMoveOperation);
                         break;
                     case "Delete":
+                        Delete();
                         break;
                     case "Rename":
                         break;
@@ -59,6 +61,56 @@ namespace FileExplorerMVVM.Infrastructure.Commands
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        private void Delete()
+        {
+            var selectedFiles = _mainWindowViewModel.NavigatedFolderFiles.Where(file => file.IsSelected);
+            if (selectedFiles.Count() >= 1)
+            {
+                if (MessageBoxResult.Yes == MessageBox.Show(
+                    $"Are you sure you want to move {selectedFiles.Count()} items to the trash ?", 
+                    "Delete Multiple Items", 
+                    MessageBoxButton.YesNo, MessageBoxImage.Warning, MessageBoxResult.No))
+                {
+                    foreach (var file in selectedFiles) 
+                    {
+                        try
+                        {
+                            if (string.IsNullOrWhiteSpace(Path.GetExtension(file.Path)))
+                            {
+                                FileSystem.DeleteDirectory(file.Path ?? string.Empty, UIOption.OnlyErrorDialogs,
+                                    RecycleOption.SendToRecycleBin, UICancelOption.DoNothing);
+                            }
+                            else
+                            {
+                                FileSystem.DeleteFile(file.Path, UIOption.OnlyErrorDialogs,
+                                    RecycleOption.SendToRecycleBin, UICancelOption.DoNothing);
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                            throw;
+                        }
+                    }
+                }
+                else
+                {
+                    if (string.IsNullOrWhiteSpace(selectedFiles.ElementAt(0).Path))
+                    {
+                        FileSystem.DeleteDirectory(selectedFiles.ElementAt(0).Path, UIOption.OnlyErrorDialogs,
+                            RecycleOption.SendToRecycleBin, UICancelOption.DoNothing);
+                    }
+                    else
+                    {
+                        FileSystem.DeleteFile(selectedFiles.ElementAt(0).Path, UIOption.OnlyErrorDialogs,
+                            RecycleOption.SendToRecycleBin, UICancelOption.DoNothing);
+                    }
+                }
+
+                _mainWindowViewModel.LoadDirectory(new FileDetailsModel() { Path = _mainWindowViewModel.CurrentDirectory});
             }
         }
 
