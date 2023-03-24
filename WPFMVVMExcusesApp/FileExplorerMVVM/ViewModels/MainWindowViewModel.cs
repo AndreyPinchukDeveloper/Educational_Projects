@@ -42,7 +42,15 @@ namespace FileExplorerMVVM.ViewModels
 
         public string NextDirectory { get; set; }
         public string SelectedDriveSize { get; set; }
-        
+
+        private string _newFolderName;
+        public string NewFolderName
+        {
+            get => _newFolderName;
+            set => Set(ref _newFolderName, value);
+        }
+
+
         private  string _selectedFolderDetails;
         public string SelectedFolderDetails
         {

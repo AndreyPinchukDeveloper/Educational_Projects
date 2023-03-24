@@ -3,7 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FileExplorerMVVM.Views.Windows"
+        xmlns:local="clr-namespace:FileExplorerMVVM.Views.Windows" 
+        xmlns:cc="clr-namespace:FileExplorerMVVM.Infrastructure.CustomControls"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="RenameDialog" Height="80" Width="270"
         WindowStyle="None"
@@ -24,7 +26,7 @@
             <Grid Background="Silver" 
                   Opacity=".3"/>
 
-            <TextBlock Text="OldFolderName"
+            <TextBlock Text="{Binding OldFolderName}"
                        HorizontalAlignment="Left"
                        VerticalAlignment="Center"
                        Margin="10 0"/>
@@ -32,7 +34,35 @@
             <Button x:Name="CloseButton"
                     Content="&#xE888;"
                     FontFamily="{StaticResource 'Segoe MDL2 Assets'}"
-                    />
+                    FontSize="11"
+                    HorizontalAlignment="Right"
+                    IsCancel="True"
+                    Style="{StaticResource WindowChromeCloseButtonStyle}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="Click">
+                        <b:CallMethodAction MethodName="Close"
+                                            TargetObject="{Binding ElementName=renameDialog}"/>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+            </Button>
+
+            <Rectangle Grid.Row="1"
+                       Fill="{StaticResource Window.Background.Static}"
+                       Opacity=".3"/>
+
+            <Grid Grid.Row="1"
+                  Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBox Background="Transparent"
+                         x:Name="TextBox"
+                         BorderThickness="1"
+                         Text="{Binding NewFolderName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                         VerticalContentAlignment="Center"/>
+            </Grid>
         </Grid>
     </Border>
 </Window>
