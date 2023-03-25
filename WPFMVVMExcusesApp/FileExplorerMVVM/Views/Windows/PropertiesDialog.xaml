@@ -1,19 +1,19 @@
-﻿<Window x:Class="FileExplorerMVVM.Views.Windows.RenameDialog"
+﻿<Window x:Class="FileExplorerMVVM.Views.Windows.PropertiesDialog"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileExplorerMVVM.Views.Windows" 
-        xmlns:cc="clr-namespace:FileExplorerMVVM.Infrastructure.CustomControls"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:cc="clr-namespace:FileExplorerMVVM.Infrastructure.CustomControls"
         mc:Ignorable="d"
-        Title="RenameDialog" Height="80" Width="270"
         WindowStyle="None"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         AllowsTransparency="True"
         Background="Transparent"
-        Name="renameDialog">
+        Name="PropertyDialog"
+        Height="210" Width="363">
     <Border
         BorderThickness="1"
         BorderBrush="Black">
@@ -24,7 +24,7 @@
             </Grid.RowDefinitions>
 
             <Grid Background="Silver" 
-                  Opacity=".3">
+                  Opacity=".6">
                 <b:Interaction.Triggers>
                     <b:EventTrigger EventName="MouseDown">
                         <b:CallMethodAction MethodName="DragMove"
@@ -33,10 +33,21 @@
                 </b:Interaction.Triggers>
             </Grid>
 
-            <TextBlock Text="{Binding OldFolderName, ElementName=RenameFolderWindow}"
-                       HorizontalAlignment="Left"
-                       VerticalAlignment="Center"
-                       Margin="10 0"/>
+            <StackPanel Orientation="Horizontal"
+                        Margin="10,0">
+                <Path
+                    Data="{Binding Icon, ElementName=PropertyDialog}"
+                    Height="{Binding FontSize, ElementName=PropertyDialog}"
+                    Stretch="Uniform"/>
+
+                <TextBlock
+                    IsHitTestVisible="False"
+                    FontWeight="SemiBold"
+                    Margin="5,0"
+                    Text="{Binding FileName, ElementName=PropertyDialogWindow}"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"/>
+            </StackPanel>
 
             <Button x:Name="CloseButton"
                     Content="&#xE888;"
@@ -52,38 +63,10 @@
                     </b:EventTrigger>
                 </b:Interaction.Triggers>
             </Button>
-
             <Rectangle Grid.Row="1"
                        Fill="{StaticResource Window.Background.Static}"
-                       Opacity=".3"/>
-
-            <Grid Grid.Row="1"
-                  Margin="10">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition Width="Auto"/>
-                </Grid.ColumnDefinitions>
-
-                <TextBox Background="Transparent"
-                         x:Name="TextBox"
-                         BorderThickness="1"
-                         Text="{Binding NewFolderName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                         VerticalContentAlignment="Center"/>
-
-                <Button Grid.Column="1"
-                        Content="{StaticResource Forward}"
-                        Height="25"
-                        Width="25"
-                        IsDefault="True"
-                        Style="{StaticResource ButtonWithIconStyle}">
-                    <b:Interaction.Triggers>
-                        <b:EventTrigger EventName="Click">
-                            <b:CallMethodAction MethodName="Close"
-                                            TargetObject="{Binding ElementName=renameDialog}"/>
-                        </b:EventTrigger>
-                    </b:Interaction.Triggers>
-                </Button>
-            </Grid>
+                       Opacity=".5"/>
         </Grid>
     </Border>
+        
 </Window>
