@@ -14,9 +14,14 @@
         Background="Transparent"
         Name="PropertyDialog"
         Height="210" Width="363">
+    <Window.DataContext>
+        <cc:PropertyDialogWindow/>
+    </Window.DataContext>
+    
     <Border
         BorderThickness="1"
         BorderBrush="Black">
+        
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="32"/>
@@ -66,6 +71,95 @@
             <Rectangle Grid.Row="1"
                        Fill="{StaticResource Window.Background.Static}"
                        Opacity=".5"/>
+            <Grid Grid.Row="1"
+                  Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Path 
+                    Data="{Binding Icon, UpdateSourceTrigger=PropertyChanged, ElementName=PropertyDialog, TargetNullValue={StaticResource Folder}}"
+                    Stretch="Uniform"/>
+
+                <Grid Grid.Column="1"
+                      Margin="10 0 0 0">
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <cc:SubMenuIconButton
+                                    Icon="{Binding Icon}"
+                                    Content="{Binding Name}"
+                                    Style="{StaticResource SubMenuIconButtonStyle}"
+                                    CommandParameter="{Binding}"
+                                    Command="{Binding DataContext.SubMenuFileOparationCommand, ElementName=MyMainWindow}"/>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80"/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    
+                    <TextBlock Grid.Row="0"
+                               Text="Name:"/>
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged, ElementName=PropertyDialogWindow}"/>
+
+                    <TextBlock Grid.Row="1"
+                               Text="Extension:"/>
+                    <TextBlock Grid.Column="1"
+                               Grid.Row="1"
+                               Text="{Binding FileExtension, UpdateSourceTrigger=PropertyChanged, ElementName=PropertyDialogWindow}"/>
+
+                    <TextBlock Grid.Row="2"
+                               Text="Location:"/>
+                    <TextBlock Grid.Column="1"
+                               Grid.Row="1"
+                               Text="{Binding FullPath, UpdateSourceTrigger=PropertyChanged, ElementName=PropertyDialogWindow}"/>
+
+                    <TextBlock Grid.Row="3"
+                               Text="Size:"/>
+                    <TextBlock Grid.Column="1"
+                               Grid.Row="1"
+                               Text="{Binding FileSize, UpdateSourceTrigger=PropertyChanged, ElementName=PropertyDialogWindow}"/>
+
+                    <TextBlock Grid.Row="4"
+                               Text="Created On:"/>
+                    <TextBlock Grid.Column="1"
+                               Grid.Row="1"
+                               Text="{Binding CreatedOn, UpdateSourceTrigger=PropertyChanged, ElementName=PropertyDialogWindow}"/>
+
+                    <TextBlock Grid.Row="5"
+                               Text="Modified On:"/>
+                    <TextBlock Grid.Column="1"
+                               Grid.Row="1"
+                               Text="{Binding ModifiedOn, UpdateSourceTrigger=PropertyChanged, ElementName=PropertyDialogWindow}"/>
+
+                    <TextBlock Grid.Row="6"
+                               Text="Accessed On:"/>
+                    <TextBlock Grid.Column="1"
+                               Grid.Row="1"
+                               Text="{Binding AccessedOn, UpdateSourceTrigger=PropertyChanged, ElementName=PropertyDialogWindow}"/>
+
+                    <TextBlock Grid.Row="7"
+                               Text="Attributes:"/>
+                    <StackPanel>
+                        
+                    </StackPanel>
+                </Grid>
+            </Grid>
         </Grid>
     </Border>
         
