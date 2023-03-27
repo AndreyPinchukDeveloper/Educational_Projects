@@ -14,16 +14,14 @@
         Background="Transparent"
         Name="PropertyDialog"
         Height="210" Width="363">
-
+    <Window.Resources>
+        <Style TargetType="{x:Type Path}">
+            <Setter Property="Fill" Value="Black"/>
+        </Style>
+    </Window.Resources>
     <Border
         BorderThickness="1"
         BorderBrush="Black">
-        
-        <cc:PropertyDialogWindow
-            x:Name="PropertyDialogWindow"
-            DataContext="{Binding FileName, ElementName=FileNameTextBlock}"
-            DataContext="{Binding FileSize, ElementName=CloseButton}"/>
-        
         <Grid>
             
             <Grid.RowDefinitions>
@@ -87,7 +85,7 @@
 
                 <Grid Grid.Column="1"
                       Margin="10 0 0 0">
-
+                    
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <cc:SubMenuIconButton
@@ -159,8 +157,16 @@
 
                     <TextBlock Grid.Row="7"
                                Text="Attributes:"/>
-                    <StackPanel>
-                        
+                    <StackPanel Grid.Row="7"
+                                Grid.Column="1"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center">
+                        <CheckBox Content="Read-only"
+                                  Foreground="{Binding Foreground, ElementName=PropertyDialogWindow}"
+                                  IsChecked="{Binding IsReadOnly, Mode=OneWay, ElementName=PropertyDialogWindow}"/>
+                        <CheckBox Content="Hidden"
+                                  Foreground="{Binding Foreground, ElementName=PropertyDialogWindow}"
+                                  IsChecked="{Binding IsHidden, Mode=OneWay, ElementName=PropertyDialogWindow}"/>
                     </StackPanel>
                 </Grid>
             </Grid>

@@ -1,6 +1,8 @@
 ﻿using FileExplorerMVVM.Infrastructure.Commands.Base;
+using FileExplorerMVVM.Infrastructure.CustomControls;
 using FileExplorerMVVM.Models;
 using FileExplorerMVVM.ViewModels;
+using FileExplorerMVVM.Views.Windows;
 using Microsoft.VisualBasic.FileIO;
 using System;
 using System.Collections.Generic;
@@ -45,6 +47,7 @@ namespace FileExplorerMVVM.Infrastructure.Commands
                         Delete();
                         break;
                     case "Rename":
+                        Rename();
                         break;
                     case "New Folder":
                         break;
@@ -61,6 +64,48 @@ namespace FileExplorerMVVM.Infrastructure.Commands
             catch (Exception)
             {
                 throw;
+            }
+        }
+
+        private void Rename()
+        {
+            var selectedFiles = new ObservableCollection<FileDetailsModel>(_mainWindowViewModel.NavigatedFolderFiles.Where(x => x.IsSelected));
+            RenameFolderWindow renameFolderWindow = new RenameFolderWindow();
+            string OldFolderName = renameFolderWindow.OldFolderName;
+
+            foreach (var file in selectedFiles)
+            {
+                if (file.IsSelected)
+                {
+                    try
+                    {
+                        new RenameDialog()
+                        {
+                            DataContext = this,
+                            Owner = Application.Current.MainWindow,
+                            ShowActivated = true,
+                            ShowInTaskbar = false,
+                            Topmost = true,
+                            renameFolderWindow.OldFolderName = $"Renaming: {file.Name}"
+                        }.ShowDialog();
+
+                        if (!string.IsNullOrWhiteSpace(NewFolderName))
+                        {
+                            if (file.IsDirectory)
+                                FileSystem.RenameDirectory(file.Path, NewFolderName);
+                            else
+                                FileSystem.RenameFile(file.Path, $"{NewFolderName}.{file.FileExtension.ToLower()}");
+                            file.Name = NewFolderName;
+                            file.IsSelected = false;
+
+                            _mainWindowViewModel.NavigatedFolderFiles.Remove(file);
+                            _mainWindowViewModel.NavigatedFolderFiles.Add(file);
+
+                            NewFolderName = string.Empty;
+                        }
+                    }
+                    
+                }
             }
         }
 
