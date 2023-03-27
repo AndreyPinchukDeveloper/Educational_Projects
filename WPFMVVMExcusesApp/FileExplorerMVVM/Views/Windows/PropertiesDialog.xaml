@@ -14,15 +14,18 @@
         Background="Transparent"
         Name="PropertyDialog"
         Height="210" Width="363">
-    <Window.DataContext>
-        <cc:PropertyDialogWindow/>
-    </Window.DataContext>
-    
+
     <Border
         BorderThickness="1"
         BorderBrush="Black">
         
+        <cc:PropertyDialogWindow
+            x:Name="PropertyDialogWindow"
+            DataContext="{Binding FileName, ElementName=FileNameTextBlock}"
+            DataContext="{Binding FileSize, ElementName=CloseButton}"/>
+        
         <Grid>
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="32"/>
                 <RowDefinition/>
@@ -115,6 +118,7 @@
                     <TextBlock Grid.Row="0"
                                Text="Name:"/>
                     <TextBlock Grid.Column="1"
+                               x:Name="FileNameTextBlock"
                                Text="{Binding FileName, UpdateSourceTrigger=PropertyChanged, ElementName=PropertyDialogWindow}"/>
 
                     <TextBlock Grid.Row="1"
