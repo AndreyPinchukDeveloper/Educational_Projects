@@ -70,7 +70,7 @@
                 </b:Interaction.Triggers>
             </Button>
             <Rectangle Grid.Row="1"
-                       Fill="{StaticResource Window.Background.Static}"
+                       Fill="Green"
                        Opacity=".5"/>
             <Grid Grid.Row="1"
                   Margin="10">
@@ -85,18 +85,7 @@
 
                 <Grid Grid.Column="1"
                       Margin="10 0 0 0">
-                    
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <cc:SubMenuIconButton
-                                    Icon="{Binding Icon}"
-                                    Content="{Binding Name}"
-                                    Style="{StaticResource SubMenuIconButtonStyle}"
-                                    CommandParameter="{Binding}"
-                                    Command="{Binding DataContext.SubMenuFileOparationCommand, ElementName=MyMainWindow}"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                    
+
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="80"/>
                         <ColumnDefinition/>

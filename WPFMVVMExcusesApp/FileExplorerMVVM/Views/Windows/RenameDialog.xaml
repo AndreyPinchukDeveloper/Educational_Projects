@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FileExplorerMVVM.Views.Windows" 
         xmlns:cc="clr-namespace:FileExplorerMVVM.Infrastructure.CustomControls"
-        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors" 
+        xmlns:viewmodels="clr-namespace:FileExplorerMVVM.ViewModels" 
+        d:DataContext="{d:DesignInstance Type=viewmodels:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="RenameDialog" Height="80" Width="270"
         WindowStyle="None"
@@ -54,7 +56,7 @@
             </Button>
 
             <Rectangle Grid.Row="1"
-                       Fill="{StaticResource Window.Background.Static}"
+                       Fill="ForestGreen"
                        Opacity=".3"/>
 
             <Grid Grid.Row="1"

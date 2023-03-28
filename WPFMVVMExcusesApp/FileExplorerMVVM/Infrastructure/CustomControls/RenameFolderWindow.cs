@@ -18,7 +18,7 @@ namespace FileExplorerMVVM.Infrastructure.CustomControls
 
         // Using a DependencyProperty as the backing store for MyProperty.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty OldFolderNameProperty =
-            DependencyProperty.Register("MyProperty", typeof(string), typeof(RenameDialog));
+            DependencyProperty.Register("OldFolderName", typeof(string), typeof(RenameDialog));
 
 
     }

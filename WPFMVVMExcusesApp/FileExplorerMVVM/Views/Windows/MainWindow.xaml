@@ -32,6 +32,7 @@
     <Window.Style>
         <Style TargetType="{x:Type Window}">
             <Setter Property="AllowsTransparency" Value="True"/>
+            <Setter Property="ShowActivated" Value="True"/>
             <Setter Property="WindowStyle" Value="None"/>
             <Setter Property="UseLayoutRounding" Value="True"/>
             <Setter Property="TextOptions.TextFormattingMode" Value="Ideal"/>
@@ -50,8 +51,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Window}">
-                        <Border
-                            x:Name="RootBorder"
+                        <Border x:Name="RootBorder"
                             BorderBrush="Firebrick"
                             BorderThickness="0"
                             Background="{TemplateBinding Background}">
@@ -128,7 +128,19 @@
                                 <!--#endregion-->
                             </Grid>
                         </Border>
+                        
                         <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsActive"
+                                     Value="True">
+                                <Setter Property="Effect">
+                                    <Setter.Value>
+                                        <BlurEffect KernelType="Gaussian"
+                                                    Radius=".5"
+                                                    RenderingBias="Performance"/>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
                             <EventTrigger RoutedEvent="Loaded">
                                 <BeginStoryboard>
                                     <Storyboard>
