@@ -20,6 +20,5 @@ namespace FileExplorerMVVM.Infrastructure.CustomControls
         public static readonly DependencyProperty OldFolderNameProperty =
             DependencyProperty.Register("OldFolderName", typeof(string), typeof(RenameDialog));
 
-
     }
 }
