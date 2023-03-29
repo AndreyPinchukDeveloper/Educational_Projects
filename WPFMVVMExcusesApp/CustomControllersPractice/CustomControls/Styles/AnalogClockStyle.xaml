@@ -5,13 +5,18 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="local:AnalogClock">
+                    
+                    <ControlTemplate.Resources>
+                        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+                    </ControlTemplate.Resources>
+                    
                     <Grid RenderTransformOrigin="0.5 0.5">
                         
                         <Grid.RenderTransform>
                             <RotateTransform Angle="90"/>
                         </Grid.RenderTransform>
                         
-                        <Line x:Name="PART_HourHand" 
+                        <Line x:Name="PART_HourHand"
                               Stroke="Black" 
                               StrokeThickness="1" 
                               VerticalAlignment="Center"
@@ -25,8 +30,9 @@
                               HorizontalAlignment="Center"
                               X1="0"
                               X2="-100"/>
-                        <Line x:Name="PART_SecondHand" 
-                              Stroke="Black" 
+                        <Line x:Name="PART_SecondHand"                              
+                              Visibility="{TemplateBinding ShowSeconds, Converter={StaticResource BooleanToVisibilityConverter}}"
+                              Stroke="PaleVioletRed" 
                               StrokeThickness="1" 
                               VerticalAlignment="Center"
                               HorizontalAlignment="Center"

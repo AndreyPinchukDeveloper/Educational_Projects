@@ -8,6 +8,6 @@
         mc:Ignorable="d"
         Title="Analog Clock" Height="450" Width="800">
     <Grid>
-        <custom:AnalogClock/>
+        <custom:AnalogClock ShowSeconds="True"/>
     </Grid>
 </Window>
