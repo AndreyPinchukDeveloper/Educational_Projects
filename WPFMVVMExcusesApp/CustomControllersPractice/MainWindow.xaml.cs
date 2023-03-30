@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CustomControllersPractice.CustomControls;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace CustomControllersPractice
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void AnalogClock_TimeChanged(object sender, TimeChangedEventArgs e)
+        {
+            CurrentTime.Text = e.NewTime.ToString("hh:mm:ss");
         }
     }
 }

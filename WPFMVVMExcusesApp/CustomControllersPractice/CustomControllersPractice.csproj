@@ -67,7 +67,11 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Commands\Base\AsyncCommandBase.cs" />
+    <Compile Include="Commands\Base\CommandBase.cs" />
+    <Compile Include="Commands\ShowTextCommand.cs" />
     <Compile Include="CustomControls\AnalogClock.cs" />
+    <Compile Include="CustomControls\TimeChangedEventArgs.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

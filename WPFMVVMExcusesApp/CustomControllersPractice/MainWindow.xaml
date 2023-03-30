@@ -7,7 +7,13 @@
         xmlns:custom="clr-namespace:CustomControllersPractice.CustomControls"
         mc:Ignorable="d"
         Title="Analog Clock" Height="450" Width="800">
-    <Grid>
+
+    <StackPanel HorizontalAlignment="Center">
         <custom:AnalogClock ShowSeconds="True"/>
-    </Grid>
+
+        <TextBlock x:Name="CurrentTime" 
+                   Text="{Binding CurrentText}"                   
+                   Margin="10"
+                   FontSize="50"/>
+    </StackPanel>
 </Window>
