@@ -12,7 +12,7 @@
         <custom:AnalogClock ShowSeconds="True"/>
 
         <TextBlock x:Name="CurrentTime" 
-                   Text="{Binding CurrentText}"                   
+                   Text="{Binding CurrentTime}"                   
                    Margin="10"
                    FontSize="50"/>
     </StackPanel>

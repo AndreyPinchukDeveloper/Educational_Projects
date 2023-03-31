@@ -11,7 +11,6 @@ namespace CustomControllersPractice.Commands
     internal class ShowTextCommand : CommandBase
     {
         private readonly AnalogClock _analogClock;
-        private TimeChangedEventArgs timeEvent;
         public ShowTextCommand(AnalogClock analogClock)
         {
             _analogClock = analogClock;
@@ -19,7 +18,7 @@ namespace CustomControllersPractice.Commands
 
         public override void Execute(object parameter)
         {
-            _analogClock.CurrentTime = timeEvent.NewTime.ToString("hh:mm:ss");
+            _analogClock.CurrentTime = _analogClock.TimeChanged timeEvent.NewTime.ToString("hh:mm:ss");
         }
     }
 }
