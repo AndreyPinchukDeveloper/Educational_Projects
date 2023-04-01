@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileExplorerMVVM", "FileExp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomControllersPractice", "CustomControllersPractice\CustomControllersPractice.csproj", "{1F6C1F3E-87FE-424A-BAE7-91EA2EDCC137}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DelegatesAndEvents", "DelegatesAndEvents\DelegatesAndEvents.csproj", "{553F1B04-89C7-4472-8D4B-4C94CC5B96F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{1F6C1F3E-87FE-424A-BAE7-91EA2EDCC137}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F6C1F3E-87FE-424A-BAE7-91EA2EDCC137}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F6C1F3E-87FE-424A-BAE7-91EA2EDCC137}.Release|Any CPU.Build.0 = Release|Any CPU
+		{553F1B04-89C7-4472-8D4B-4C94CC5B96F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{553F1B04-89C7-4472-8D4B-4C94CC5B96F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{553F1B04-89C7-4472-8D4B-4C94CC5B96F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{553F1B04-89C7-4472-8D4B-4C94CC5B96F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
