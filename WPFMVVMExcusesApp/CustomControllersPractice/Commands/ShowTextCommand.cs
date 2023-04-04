@@ -18,7 +18,7 @@ namespace CustomControllersPractice.Commands
 
         public override void Execute(object parameter)
         {
-            _analogClock.CurrentTime = _analogClock.TimeChanged timeEvent.NewTime.ToString("hh:mm:ss");
+            return;
         }
     }
 }

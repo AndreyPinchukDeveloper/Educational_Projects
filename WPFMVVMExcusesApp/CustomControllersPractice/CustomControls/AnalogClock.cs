@@ -53,14 +53,15 @@ namespace CustomControllersPractice.CustomControls
 
         static AnalogClock()
         {
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(AnalogClock), new FrameworkPropertyMetadata(typeof(AnalogClock)));            
+            DefaultStyleKeyProperty.OverrideMetadata(typeof(AnalogClock), new FrameworkPropertyMetadata(typeof(AnalogClock))); 
+            
         }
 
-        public AnalogClock()
+        /*public AnalogClock()
         {
             ShowTextCommand = new ShowTextCommand(this);
             ShowTextCommand.Execute(this);
-        }
+        }*/
 
         protected virtual void OnTimeChanged(DateTime time)
         {
@@ -98,6 +99,6 @@ namespace CustomControllersPractice.CustomControls
             secondHand.RenderTransform = new RotateTransform((time.Second / 12.0) * 60, 0.5, 0.5);
         }
 
-        ICommand ShowTextCommand { get; }
+        //ICommand ShowTextCommand { get; }
     }
 }
