@@ -1,4 +1,5 @@
 ﻿@page "/"
+@inject IConfiguration config
 
 <PageTitle>Upload Demo App</PageTitle>
 
@@ -22,8 +23,38 @@
     private int maxAllowedFiles = 3;
     private List<string> errors = new();
 
-    private async Task LoadFiles(InputFileChangeIventArgs e)
+    private async Task LoadFiles(InputFileChangeEventArgs e)
     {
-        
+        errors.Clear();
+        if (e.FileCount > maxAllowedFiles)
+        {
+            errors.Add($"Error: Attempting to upload {e.FileCount} files, but only {maxAllowedFiles} files are allowed.");
+
+            foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
+            {
+                try
+                {
+                    string newFileName = Path.ChangeExtension(
+                    Path.GetRandomFileName(),
+                    Path.GetExtension(file.Name));
+
+                    string path = Path.Combine(
+                        config.GetValue<string>("FileStorage")!,
+                        "Andre", 
+                        newFileName);
+
+                    Directory.CreateDirectory(Path.Combine(
+                        config.GetValue<string>("FileStorage")!,
+                        "Andre"));//create directory if it's not exist
+
+                    await using FileStream fs = new(path, FileMode.Create);
+                    await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
+                }
+                catch (Exception ex)
+                {
+                    errors.Add($"File: {file.Name} Error: {ex.Message}");
+                }
+            }
+        }
     }
 }
