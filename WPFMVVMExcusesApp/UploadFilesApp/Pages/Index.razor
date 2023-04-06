@@ -1,11 +1,26 @@
 ﻿@page "/"
+@using UploadFilesApp.Data;
 @inject IConfiguration config
 
 <PageTitle>Upload Demo App</PageTitle>
 
 <h1>Upload Demo</h1>
 
-<InputFile OnChange="@LoadFiles" multiple/>
+<EditForm Model="newCustomer" OnValidSubmit="SubmitForm">
+    <div>
+        <label for="firstName"> First Name:</label>
+        <InputText id="firstName" class="form-control" @bind-Value="newCustomer.FirstName"/>
+    </div>
+    <div>
+        <label for="lastName"> Last Name:</label>
+        <InputText id="lastName" class="form-control" @bind-Value="newCustomer.LastName" />
+    </div>
+    <div>
+        <label for="profilePicture"> Profile Picture:</label>
+        <InputFile OnChange="@LoadFiles"/>
+    </div>
+    <button class="btn btn-primary mt-3" type="submit"> Create Customer</button>
+</EditForm>
 
 @if(errors.Count >0)
 {
@@ -22,39 +37,60 @@
     private long maxFileSize = 1024*1024*3;//represents 3 MB
     private int maxAllowedFiles = 3;
     private List<string> errors = new();
+    private CustomerModel newCustomer = new();
+    private IBrowserFile? file;
+
+    private async Task SubmitForm()
+    {
+        try
+        {
+            string relativePath = await CaptureFile();
+            newCustomer.FileName = relativePath;
+        }
+        catch (Exception ex)
+        {
+            errors.Add($"Error: {ex.Message}");
+        }
+    }
 
     private async Task LoadFiles(InputFileChangeEventArgs e)
     {
-        errors.Clear();
-        if (e.FileCount > maxAllowedFiles)
+        file = e.File;
+    }
+
+    private async Task<string> CaptureFile()
+    {
+        if (file is null)
         {
-            errors.Add($"Error: Attempting to upload {e.FileCount} files, but only {maxAllowedFiles} files are allowed.");
+            return "";
+        }
 
-            foreach (var file in e.GetMultipleFiles(maxAllowedFiles))
-            {
-                try
-                {
-                    string newFileName = Path.ChangeExtension(
-                    Path.GetRandomFileName(),
-                    Path.GetExtension(file.Name));
+        try
+        {
+            string newFileName = Path.ChangeExtension(
+            Path.GetRandomFileName(),
+            Path.GetExtension(file.Name));
 
-                    string path = Path.Combine(
-                        config.GetValue<string>("FileStorage")!,
-                        "Andre", 
-                        newFileName);
+            string path = Path.Combine(
+                config.GetValue<string>("FileStorage")!,
+                "Andre",
+                newFileName);
 
-                    Directory.CreateDirectory(Path.Combine(
-                        config.GetValue<string>("FileStorage")!,
-                        "Andre"));//create directory if it's not exist
+            string relativePath = Path.Combine("Andre", newFileName);
 
-                    await using FileStream fs = new(path, FileMode.Create);
-                    await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
-                }
-                catch (Exception ex)
-                {
-                    errors.Add($"File: {file.Name} Error: {ex.Message}");
-                }
-            }
+            Directory.CreateDirectory(Path.Combine(
+                config.GetValue<string>("FileStorage")!,
+                "Andre"));//create directory if it's not exist
+
+            await using FileStream fs = new(path, FileMode.Create);
+            await file.OpenReadStream(maxFileSize).CopyToAsync(fs);
+
+            return relativePath;
+        }
+        catch (Exception ex)
+        {
+            errors.Add($"File: {file.Name} Error: {ex.Message}");
+            throw;
         }
     }
 }
