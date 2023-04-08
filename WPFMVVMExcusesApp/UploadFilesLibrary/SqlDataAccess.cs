@@ -4,18 +4,18 @@ using Microsoft.Extensions.Configuration;
 
 namespace UploadFilesLibrary;
 
-public class SqlDataAccess
+public class SqlDataAccess : ISqlDataAccess
 {
     private readonly IConfiguration _config;
 
     public SqlDataAccess(IConfiguration config)
-	{
+    {
         _config = config;
     }
 
     public async Task SaveData(
-        string storedProc, 
-        string connectionName, 
+        string storedProc,
+        string connectionName,
         object parameter)
     {
         string connectionString = _config.GetConnectionString(connectionName)
@@ -24,8 +24,8 @@ public class SqlDataAccess
         using var connection = new SqlConnection(connectionString);
 
         await connection.ExecuteAsync(
-            storedProc, 
-            parameter, 
+            storedProc,
+            parameter,
             commandType: System.Data.CommandType.StoredProcedure);
     }
 }
