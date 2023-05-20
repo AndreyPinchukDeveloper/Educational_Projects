@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DelegatesAndEvents", "Deleg
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UploadFilesApp", "UploadFilesApp\UploadFilesApp.csproj", "{E743D8F0-9F08-4B8D-A583-6730F07C3E8A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UploadFilesLibrary", "UploadFilesLibrary\UploadFilesLibrary.csproj", "{A865C5D8-0A04-4794-868D-6263299BE837}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UploadFilesLibrary", "UploadFilesLibrary\UploadFilesLibrary.csproj", "{A865C5D8-0A04-4794-868D-6263299BE837}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
