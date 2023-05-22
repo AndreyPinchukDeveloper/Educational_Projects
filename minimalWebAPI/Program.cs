@@ -4,6 +4,7 @@ builder.Services.AddDbContext<HotelDb>(options =>
 {
     options.UseSqlite(builder.Configuration.GetConnectionString("Sqlite"));
 });
+builder.Services.AddScoped<IRepository<HotelDb>, SQLHotelRepository>();
 
 var app = builder.Build();
 
@@ -14,34 +15,30 @@ if(app.Environment.IsDevelopment())
     db.Database.EnsureCreated();
 }
 
-app.MapGet("/hotels", async (HotelDb db) => await db.Hotels.ToListAsync());//GET method
-app.MapGet("/hotels/{id}", async (int id, HotelDb db) => 
-    await db.Hotels.FirstOrDefaultAsync(h=>h.Id ==id)
+app.MapGet("/hotels", async (IRepository<HotelDb> repository) => 
+    Results.Ok(await repository.GetHotelAsync()));//GET method
+app.MapGet("/hotels/{id}", async (int id, IRepository<HotelDb> repository) => 
+    await repository.GetHotelAsync(id)
     is Hotel hotel 
     ? Results.Ok(hotel)
     : Results.NotFound());//gets by id
 
-app.MapPost("/hotels", async ([FromBody] Hotel hotel, HotelDb db) => 
+app.MapPost("/hotels", async ([FromBody] Hotel hotel, IRepository<HotelDb> repository) => 
 {
-    db.Hotels.Add(hotel);
-    await db.SaveChangesAsync();
+    await repository.InsertHotelAsync(hotel);
+    await repository.SaveAsync();
     return Results.Created($"/hotels/{hotel.Id}", hotel);
 });
 
-app.MapPut("/hotels", async ([FromBody] Hotel hotel, HotelDb db) => {
-    var hotelFromDb = await db.Hotels.FindAsync(new object[] {hotel.Id});
-    if(hotelFromDb == null) return Results.NotFound();
-    hotelFromDb.Latitude = hotel.Latitude;
-    hotelFromDb.Longtitude = hotel.Longtitude;
-    await db.SaveChangesAsync();
+app.MapPut("/hotels", async ([FromBody] Hotel hotel, IRepository<HotelDb> repository) => {
+    await repository.UpdateHotelAsync(hotel);
+    await repository.SaveAsync();
     return Results.NoContent();
 });//method for change data from list
 
-app.MapDelete("/hotels/{id}", async (int id, HotelDb db) => {
-    var hotelFromDbToDelete = await db.Hotels.FindAsync(new object[] {id});
-    if(hotelFromDbToDelete==null) return Results.NotFound();
-    db.Hotels.Remove(hotelFromDbToDelete);
-    await db.SaveChangesAsync();
+app.MapDelete("/hotels/{id}", async (int id, IRepository<HotelDb> repository) => {
+    await repository.DeleteHotelAsync(id);
+    await repository.SaveAsync();
     return Results.NoContent();
 });//method for remove data from list
 
