@@ -20,7 +20,7 @@ if(app.Environment.IsDevelopment())
 }
 
 app.MapGet("/hotels", async (IRepository<HotelDb> repository) => 
-    Results.Ok(await repository.GetHotelAsync()))
+    Results.Extensions.Xml(await repository.GetHotelAsync()))
     .Produces<List<Hotel>>(StatusCodes.Status200OK)
     .WithName("GetAllHotels")
     .WithTags("Getters");//GET method
@@ -72,5 +72,5 @@ async(string query, IRepository<HotelDb> repository) =>
         .WithTags("Getters")
         .ExcludeFromDescription();
 
-app.UseHttpsRedirection();//http to https
+app.UseHttpsRedirection();//http to https, find by name
 app.Run();
