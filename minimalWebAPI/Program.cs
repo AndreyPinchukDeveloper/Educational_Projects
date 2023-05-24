@@ -62,15 +62,22 @@ app.MapDelete("/hotels/{id}", async (int id, IRepository<HotelDb> repository) =>
 .WithTags("Deleters");//method for remove data from list
 
 app.MapGet("/hotels/search/name/{query}",
-async(string query, IRepository<HotelDb> repository) =>
-    await repository.GetHotelAsync(query) is IEnumerable<Hotel> hotels
-        ? Results.Ok(hotels)
-        : Results.NotFound(Array.Empty<Hotel>()))
-        .Produces<List<Hotel>>(StatusCodes.Status200OK)
-        .Produces(StatusCodes.Status404NotFound)
-        .WithName("SearchHotels")
-        .WithTags("Getters")
-        .ExcludeFromDescription();
+    async(string query, IRepository<HotelDb> repository) =>
+        await repository.GetHotelAsync(query) is IEnumerable<Hotel> hotels
+            ? Results.Ok(hotels)
+            : Results.NotFound(Array.Empty<Hotel>()))
+    .Produces<List<Hotel>>(StatusCodes.Status200OK)
+    .Produces(StatusCodes.Status404NotFound)
+    .WithName("SearchHotels")
+    .WithTags("Getters")
+    .ExcludeFromDescription();
+
+app.MapGet("/hotels/search/location/{coordinate}",
+    async(Coordinate coordinate, IRepository<HotelDb> repository) =>
+        await repository.GetHotelAsync(coordinate) is IEnumerable<Hotel> hotels
+            ? Results.Ok(hotels)
+            : Results.NotFound(Array.Empty<Hotel>()))
+    .ExcludeFromDescription();
 
 app.UseHttpsRedirection();//http to https, find by name
 app.Run();
