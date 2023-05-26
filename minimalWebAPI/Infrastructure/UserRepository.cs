@@ -8,8 +8,8 @@ public class UserRepository : IUserRepository
     };
     public UserDto GetUser(UserModel userModel) =>
         _users.FirstOrDefault(u =>
-            string.Equals(u.username, userModel.UserName)&&
+            string.Equals(u.userName, userModel.UserName)&&
             string.Equals(u.password, userModel.Password))??
             throw new Exception();
-    )
+    
 }

@@ -1,1 +1,1 @@
-public record UserDto(string username, string password);
+public record UserDto(string userName, string password);
