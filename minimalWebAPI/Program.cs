@@ -8,22 +8,13 @@ var app = builder.Build();
 
 Configure(app);
 
-//only for test
-app.MapGet("/login", [AllowAnonymous] async (HttpContext context,
-    ITokenService tokenService, IUserRepository userRepository)=>{
-        UserModel userModel = new()
-        {
-            UserName = context.Request.Query["username"],
-            Password = context.Request.Query["password"]
-        };
-        var userDto = userRepository.GetUser(userModel);
-        if(userDto == null) return Results.Unauthorized();
-        var token = tokenService.BuildToken(builder.Configuration["Jwt:Key"],
-            builder.Configuration["Jwt:Issuer"], userDto);
-        return Results.Ok(token);
-    });
+var apis = app.Services.GetServices<IAPI>();
+foreach(var api in apis)
+{
+    if(api is null) throw new InvalidProgramException("Api isn't found");
+    api.Register(app);
+}
 
-new MyHotelAPI().NewRegister(app);
 app.Run();
 
 void RegisterServices(IServiceCollection services)
@@ -53,6 +44,8 @@ void RegisterServices(IServiceCollection services)
                     Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
             };
         });
+    services.AddTransient<IAPI, AuthAPI>();
+    services.AddTransient<IAPI, MyHotelAPI>();
 }
 
 void Configure(WebApplication app)
