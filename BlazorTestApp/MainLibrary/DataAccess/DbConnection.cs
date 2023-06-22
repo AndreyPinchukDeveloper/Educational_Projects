@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace MainLibrary.DataAccess
 {
-    public class DbConnection
+    public class DbConnection : IDbConnection
     {
         private readonly IConfiguration _config;
         private readonly IMongoDatabase _db;
@@ -24,7 +24,7 @@ namespace MainLibrary.DataAccess
         public IMongoCollection<StatusModel> StatusCollection { get; private set; }
         public IMongoCollection<UserModel> UserCollection { get; private set; }
         public IMongoCollection<SuggestionModel> SuggestionCollection { get; private set; }
-        
+
         /// <summary>
         /// Create new client, connection to DB, connection to all collections
         /// </summary>
