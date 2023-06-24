@@ -1,14 +1,15 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using System;
-using System.Collections.Generic;
+using System.Collections.Generic;    
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MainLibrary.DataAccess
-{
+{    
     public class MongoStatusData
-    {
+    {    
+    
         private readonly IMongoCollection<StatusModel> _statuses;
         private readonly IMemoryCache _cache;
         private const string cacheName = "StatusData";
