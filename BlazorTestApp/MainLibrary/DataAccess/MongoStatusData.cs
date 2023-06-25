@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MainLibrary.DataAccess
-{    
-    public class MongoStatusData
-    {    
-    
+{
+    public class MongoStatusData : IStatusData
+    {
+
         private readonly IMongoCollection<StatusModel> _statuses;
         private readonly IMemoryCache _cache;
-        private const string cacheName = "StatusData";
+        private const string CacheName = "StatusData";
 
         public MongoStatusData(IDbConnection db, IMemoryCache cache)
         {
@@ -22,12 +22,12 @@ namespace MainLibrary.DataAccess
 
         public async Task<List<StatusModel>> GetAllStatuses()
         {
-            var output = _cache.Get<List<StatusModel>>(cacheName);
-            if (output is null) 
+            var output = _cache.Get<List<StatusModel>>(CacheName);
+            if (output is null)
             {
                 var results = await _statuses.FindAsync(_ => true);
 
-                _cache.Set(cacheName, output, TimeSpan.FromDays(1);
+                _cache.Set(CacheName, output, TimeSpan.FromDays(1);
             }
             return output;
         }
