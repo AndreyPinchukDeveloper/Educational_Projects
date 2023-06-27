@@ -94,6 +94,27 @@ namespace MainLibrary.DataAccess
                 await session.AbortTransactionAsync();
                 throw;
             }
+
+            public async Task CreateSuggestion(SuggestionModel suggestion)
+            {
+                var client = _db.Client;
+                using var session = await client.StartSessionAsync();
+                session.StartTransaction();
+
+                try 
+                {
+                   var db = client.GetDatabase(_db.DbName);
+                   var suggestionsInTransaction = db.GetCollection<SuggestionMode>(_db.SuggestionCollectionName)
+                   await suggestionInTransaction.InsertOneAsync(suggestion);
+
+                   var usersInTransaction = db.GetCollection<UserModel>(_db.UserCollectionName);
+                   var user = await _userData.GetUser(suggestion.Author.Id);
+                }
+                catch(Exception ex)
+                {
+                   await session.AbortTransactionAsync();
+                }
+            }
         }
     }
 }
