@@ -33,6 +33,7 @@ builder.Services.AddAutoMapper(config =>
 });
 builder.Services.AddApplication();
 builder.Services.AddPersistance();//!!!!!
+builder.Services.AddControllers();
 
 builder.Services.AddCors(options =>//only for tests !!!!
 {
