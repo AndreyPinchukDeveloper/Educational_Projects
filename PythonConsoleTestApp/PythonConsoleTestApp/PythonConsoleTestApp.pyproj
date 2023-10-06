@@ -21,6 +21,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MainFile.py" />
     <Compile Include="module1.py" />
     <Compile Include="PythonConsoleTestApp.py" />
   </ItemGroup>

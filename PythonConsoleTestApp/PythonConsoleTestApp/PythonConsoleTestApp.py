@@ -12,10 +12,12 @@ import itertools
 
 doc = DocumentManager.Instance.CurrentDBDocument
 
+# FILTER ELEMENTS
 def get_fam(a):
 	elements = FilteredElementCollector(doc).OfCategory(a).WhereElementIsNotElementType().ToElements()
 	return elements	
 	
+# ADDED ALL TO COLLECTION
 def write_par (a,b):
 	error_list = []
 	for element in a:
@@ -31,6 +33,8 @@ def write_par (a,b):
 			error_list.append(element)			
 	return error_list
 
+# можно каждый элемент подставлять в метод get_fam, потом добавлять каждый отдельно в list 
+# 
 parts = get_fam(BuiltInCategory.OST_Parts) #Базовый уровень
 stairs = get_fam(BuiltInCategory.OST_Stairs) #Базовый уровень 
 struct_fram = get_fam(BuiltInCategory.OST_StructuralFraming) #Базовый уровень 
