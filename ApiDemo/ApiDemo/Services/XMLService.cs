@@ -33,7 +33,7 @@ namespace ApiDemo.Services
             studentNameNode.AppendChild(doc.CreateTextNode("SirAndre"));
             studentRecordNode.AppendChild(studentNameNode);
 
-            XmlNode studentNameNode = doc.CreateElement("StudentName");
+            XmlNode studentNameNode1 = doc.CreateElement("StudentName");
             studentNameNode.AppendChild(doc.CreateTextNode("SirAndre"));
             studentRecordNode.AppendChild(studentNameNode);
         }
