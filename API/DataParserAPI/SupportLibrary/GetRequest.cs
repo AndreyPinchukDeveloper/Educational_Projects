@@ -55,6 +55,8 @@ namespace SupportLibrary
             _request.Accept = Accept;
             _request.Proxy = Proxy;
             _request.Host = Host;
+            _request.Referer = Referer;
+            _request.UserAgent = UserAgent;
 
             foreach (var pair in Headers)
             {

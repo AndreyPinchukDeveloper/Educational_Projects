@@ -16,6 +16,8 @@ namespace SupportLibrary
         public string Host { get; set; }
         public string Data { get; set; }
         public string ContentType { get; set; }
+        public string Referer { get; set; }
+        public string UserAgent { get; set; }
         public WebProxy Proxy { get; set; }
         public Dictionary<string, string> Headers { get; set; }
 
@@ -56,6 +58,8 @@ namespace SupportLibrary
             _request.Proxy = Proxy;
             _request.Host = Host;
             _request.ContentType = ContentType;
+            _request.Referer = Referer;
+            _request.UserAgent = UserAgent;
 
             byte[] sentData = Encoding.UTF8.GetBytes(Data);
             _request.ContentLength = sentData.Length;
