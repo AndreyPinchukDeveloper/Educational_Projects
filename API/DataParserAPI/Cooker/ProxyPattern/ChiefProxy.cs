@@ -1,4 +1,4 @@
-﻿namespace Cooker;
+﻿namespace Cooker.ProxyPattern;
 
 public class ChiefProxy : IChief
 {

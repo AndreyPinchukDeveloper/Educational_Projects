@@ -1,4 +1,4 @@
-﻿namespace Cooker;
+﻿namespace Cooker.ProxyPattern;
 public class Chief : IChief
 {
     public IDictionary<int, string> GetSTatuses()
