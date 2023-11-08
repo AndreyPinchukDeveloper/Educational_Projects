@@ -1,5 +1,7 @@
 using WebAPI.Middleware.Extensions;
 using WebAPI.Services;
+using WebAPI.Services.Tests;
+using WebAPI.Services.Tests.Intefaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 builder.Services.AddTransient<IStaffRepository, StaffRepository>();
+builder.Services.AddScoped<IScopedService, TestService>();
+builder.Services.AddTransient<ITransientService, TestService>();
+builder.Services.AddSingleton<ISingletonService, TestService>();
+builder.Services.AddTransient<DataBaseServiceTest>();
 
 var app = builder.Build();
 app.UseLogUrl();
