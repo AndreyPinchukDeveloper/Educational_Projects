@@ -15,6 +15,7 @@ builder.Services.AddScoped<IScopedService, TestService>();
 builder.Services.AddTransient<ITransientService, TestService>();
 builder.Services.AddSingleton<ISingletonService, TestService>();
 builder.Services.AddTransient<DataBaseServiceTest>();
+builder.Services.AddTransient<IOrderService, OrderService>();
 
 var app = builder.Build();
 app.UseLogUrl();
