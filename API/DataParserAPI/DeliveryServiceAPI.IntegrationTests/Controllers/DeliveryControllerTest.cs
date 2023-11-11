@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 using Moq;
@@ -8,6 +10,8 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using WebAPI.Data;
+using WebAPI.Data.Models;
 using WebAPI.Services.Tests.Intefaces;
 
 namespace DeliveryServiceAPI.IntegrationTests.Controllers
@@ -20,7 +24,20 @@ namespace DeliveryServiceAPI.IntegrationTests.Controllers
         {
             //Arrange
 
-            WebApplicationFactory<Program> webHost = new WebApplicationFactory<Program>().WithWebHostBuilder(_ => { });
+            WebApplicationFactory<Program> webHost = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureServices(services =>
+                {
+                    var dbContextDescriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<ApplicationDbContext>));
+
+                    services.Remove(dbContextDescriptor);
+                    services.AddDbContext<ApplicationDbContext>(options =>
+                    {
+                        options.UseInMemoryDatabase("delivery.db");
+                    });
+                });
+            });
+
             HttpClient httpClient = webHost.CreateClient();
 
             //Act
@@ -41,6 +58,14 @@ namespace DeliveryServiceAPI.IntegrationTests.Controllers
             {
                 builder.ConfigureServices(services =>
                 {
+                    var dbContextDescriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<ApplicationDbContext>));
+
+                    services.Remove(dbContextDescriptor);
+                    services.AddDbContext<ApplicationDbContext>(options =>
+                    {
+                        options.UseInMemoryDatabase("delivery.db");
+                    });
+
                     var orderService = services.SingleOrDefault(d => d.ServiceType == typeof(IOrderService));
 
                     services.Remove(orderService);
@@ -59,6 +84,45 @@ namespace DeliveryServiceAPI.IntegrationTests.Controllers
             //Assert
 
             Assert.AreEqual(HttpStatusCode.NotFound, responce.StatusCode);
+        }
+
+        /// <summary>
+        /// Replace database
+        /// </summary>
+        /// <returns></returns>
+        [Test]
+        public async Task GetOrderCount_SendRequest_ShouldReturnCount()
+        {
+            //Arrange
+
+            WebApplicationFactory<Program> webHost = new WebApplicationFactory<Program>().WithWebHostBuilder(builder =>
+            {
+                builder.ConfigureServices(services =>
+                {
+                    var dbContextDescriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<ApplicationDbContext>));
+
+                    services.Remove(dbContextDescriptor);
+                    services.AddDbContext<ApplicationDbContext>(options =>
+                    {
+                        options.UseInMemoryDatabase("delivery.db");
+                    });
+                });
+            });
+            ApplicationDbContext dbContext = webHost.Services.CreateScope().ServiceProvider.GetService<ApplicationDbContext>();
+            List<Order> orders = new () { new Order(),  new Order(), new Order() };
+            await dbContext.Orders.AddRangeAsync(orders);
+            await dbContext.SaveChangesAsync();
+            HttpClient httpClient = webHost.CreateClient();
+            //Act
+
+            HttpResponseMessage responce = await httpClient.GetAsync("api/delivery/GetOrderCount");
+
+            //Assert
+
+            Assert.AreEqual(HttpStatusCode.OK, responce.StatusCode);
+            int ordersCount = int.Parse(await responce.Content.ReadAsStringAsync());
+            Assert.AreEqual(orders.Count, ordersCount);
+
         }
     }
 }

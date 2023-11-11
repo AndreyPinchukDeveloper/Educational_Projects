@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using WebAPI.Data;
 using WebAPI.Services.Tests.Intefaces;
 
 namespace WebAPI.Controllers
@@ -8,9 +9,11 @@ namespace WebAPI.Controllers
     public class DeliveryController:Controller
     {
         private readonly IOrderService _orderService;
-        public DeliveryController(IOrderService orderService)
+        private readonly ApplicationDbContext _context;
+        public DeliveryController(IOrderService orderService, ApplicationDbContext context)
         {
             _orderService = orderService;
+            _context = context;
         }
 
         [HttpGet("check-status")]
@@ -33,6 +36,12 @@ namespace WebAPI.Controllers
             }
         }
 
-        
+        [HttpGet("GetOrderCount")]
+        public IActionResult GetOrderCount()
+        {
+            int orderCount = _context.Orders.Count();
+
+            return Ok(orderCount);
+        }
     }
 }
