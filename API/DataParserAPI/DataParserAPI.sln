@@ -21,7 +21,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Monitoring", "Monitoring", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{AC673CDC-D0ED-45EE-AF08-9DF9F594A2E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHOP.DatabaseService", "SHOP.DatabaseService\SHOP.DatabaseService.csproj", "{071858FB-754A-412D-826F-FA194B795F08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SHOP.DatabaseService", "SHOP.DatabaseService\SHOP.DatabaseService.csproj", "{071858FB-754A-412D-826F-FA194B795F08}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SHOP.SmsService", "SHOP.SmsService\SHOP.SmsService.csproj", "{65C4FD77-6AD6-41FF-B8F2-AF95DF1E42FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +63,10 @@ Global
 		{071858FB-754A-412D-826F-FA194B795F08}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{071858FB-754A-412D-826F-FA194B795F08}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{071858FB-754A-412D-826F-FA194B795F08}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65C4FD77-6AD6-41FF-B8F2-AF95DF1E42FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65C4FD77-6AD6-41FF-B8F2-AF95DF1E42FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65C4FD77-6AD6-41FF-B8F2-AF95DF1E42FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65C4FD77-6AD6-41FF-B8F2-AF95DF1E42FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -68,6 +74,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{41E0D435-5D13-45A3-9A97-EB65BDC2D015} = {0F5B0E87-2ED5-4B0D-8AC3-F75311C187FD}
 		{071858FB-754A-412D-826F-FA194B795F08} = {AC673CDC-D0ED-45EE-AF08-9DF9F594A2E3}
+		{65C4FD77-6AD6-41FF-B8F2-AF95DF1E42FE} = {AC673CDC-D0ED-45EE-AF08-9DF9F594A2E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A4A9070-08EB-4694-9C5F-7BAD8B5313D2}
