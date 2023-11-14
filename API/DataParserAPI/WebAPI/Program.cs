@@ -1,3 +1,4 @@
+using Hangfire;
 using Microsoft.EntityFrameworkCore;
 using WebAPI.Data;
 using WebAPI.Middleware.Extensions;
@@ -12,6 +13,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddHealthChecksUI().AddInMemoryStorage();
+builder.Services.AddHangfire(h=>h.UseSqlServerStorage("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=WebShopDB;Integrated Security=True;Connect Timeout=30;Encrypt=False;Trust Server Certificate=False;Application Intent=ReadWrite;Multi Subnet Failover=False"));
+builder.Services.AddHangfireServer();
 builder.Services.AddTransient<IStaffRepository, StaffRepository>();
 builder.Services.AddScoped<IScopedService, TestService>();
 builder.Services.AddTransient<ITransientService, TestService>();
@@ -29,6 +32,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseHangfireDashboard("/dashboard");//at the end you need to use "dashboard" in LaunchSettings.jason, just replace "swagger"
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllers();
