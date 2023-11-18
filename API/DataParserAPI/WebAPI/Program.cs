@@ -21,6 +21,11 @@ builder.Services.AddTransient<ITransientService, TestService>();
 builder.Services.AddSingleton<ISingletonService, TestService>();
 builder.Services.AddTransient<DataBaseServiceTest>();
 builder.Services.AddTransient<IOrderService, OrderService>();
+builder.Services.AddLogging(loggingBuilder =>
+{
+    loggingBuilder.AddConsole().AddFilter(DbLoggerCategory.Database.Command.Name, LogLevel.Information);
+    loggingBuilder.AddDebug();
+});
 
 var app = builder.Build();
 app.UseLogUrl();
