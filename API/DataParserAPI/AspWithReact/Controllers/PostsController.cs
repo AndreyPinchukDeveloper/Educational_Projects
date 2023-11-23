@@ -1,5 +1,7 @@
 ﻿using AspWithReact.Models;
+using AspWithReact.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 namespace AspWithReact.Controllers
 {
@@ -7,35 +9,42 @@ namespace AspWithReact.Controllers
     [ApiController]
     public class PostsController:ControllerBase
     {
-        [HttpPost]
-        public object Create(PostModel model)
-        {
+        private PostService _postService;
 
+        public PostsController(PostService postService)
+        {
+            _postService = postService;
+        }
+
+        [HttpPost]
+        public PostModel Create(PostModel model)
+        {
+            return _postService.Create(model);
         }
 
         [HttpPatch]
-        public object Update(PostModel model)
+        public PostModel Update(PostModel model)
         {
-
+            return _postService.Update(model);
         }
 
         [HttpGet("{id}")]
-        public object Get(int id)
+        public PostModel Get(int id)
         {
-
+            return _postService.Get(id);
         }
 
         [HttpGet]
-        public object GetAll()
+        public IEnumerable<PostModel> GetAll()
         {
-
-
+            return _postService.GetAll();
         }
 
-        [HttpDelete]
-        public object Delete(int id)
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
         {
-
+            _postService.Delete(id);
+            return Ok();
         }
     }
 }

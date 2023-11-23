@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AspWithReact.Services.Interfaces
 {
-    public interface IPostService
+    public interface PostService
     {
         PostModel Create(PostModel model);
         PostModel Update(PostModel model);
