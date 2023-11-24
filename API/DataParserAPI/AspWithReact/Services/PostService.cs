@@ -5,10 +5,10 @@ using System.Reflection;
 
 namespace AspWithReact.Services
 {
-    public class PostServices : PostService
+    public class PostService : IPostService
     {
         private readonly ProjectDataContext _context;
-        public PostServices(ProjectDataContext projectDataConte)
+        public PostService(ProjectDataContext projectDataConte)
         {
             _context = projectDataConte;
         }

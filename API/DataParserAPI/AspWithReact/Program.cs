@@ -1,3 +1,4 @@
+using AspWithReact.Data;
 using AspWithReact.Services;
 using AspWithReact.Services.Interfaces;
 
@@ -7,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
 
+builder.Services.AddTransient<IPostService, PostService>();
+builder.Services.AddSingleton<ProjectDataContext>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -15,7 +19,7 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
-builder.Services.AddTransient<IPostServices, PostService>();
+
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
