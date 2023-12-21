@@ -30,16 +30,20 @@ const Posts = () => {
             text: textFromUser
         };
 
+        const headers = new Headers();
+        headers.set('Content-Type', 'application/json');
+
         const options = {
             method: 'POST',
-            headers: new Headers(),
+            headers: headers,
             body: JSON.stringify(newPost)
         };
 
         const result = await fetch(URL, options);
         if (result.ok) {
             const post = await result.json();
-            setPosts(allPosts.push(post));
+            allPosts.push(post);
+            setPosts(allPosts.slice());
         }
         return [];
     }
