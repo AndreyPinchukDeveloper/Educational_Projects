@@ -29,7 +29,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspWithReact", "AspWithReac
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BackgroundTasks", "BackgroundTasks", "{8FEFB15B-D5DE-479F-B6DA-5365244E5882}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AllHostedService", "AllHostedService\AllHostedService.csproj", "{92A114D8-1A79-4C1D-AC97-22DFD8A422E1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AllHostedService", "AllHostedService\AllHostedService.csproj", "{92A114D8-1A79-4C1D-AC97-22DFD8A422E1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HangfireAPI", "HangfireAPI\HangfireAPI.csproj", "{194F6D40-74CD-453F-A6E1-6F03FE9D3313}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -81,6 +83,10 @@ Global
 		{92A114D8-1A79-4C1D-AC97-22DFD8A422E1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{92A114D8-1A79-4C1D-AC97-22DFD8A422E1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{92A114D8-1A79-4C1D-AC97-22DFD8A422E1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{194F6D40-74CD-453F-A6E1-6F03FE9D3313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{194F6D40-74CD-453F-A6E1-6F03FE9D3313}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{194F6D40-74CD-453F-A6E1-6F03FE9D3313}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{194F6D40-74CD-453F-A6E1-6F03FE9D3313}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -90,6 +96,7 @@ Global
 		{071858FB-754A-412D-826F-FA194B795F08} = {AC673CDC-D0ED-45EE-AF08-9DF9F594A2E3}
 		{65C4FD77-6AD6-41FF-B8F2-AF95DF1E42FE} = {AC673CDC-D0ED-45EE-AF08-9DF9F594A2E3}
 		{92A114D8-1A79-4C1D-AC97-22DFD8A422E1} = {8FEFB15B-D5DE-479F-B6DA-5365244E5882}
+		{194F6D40-74CD-453F-A6E1-6F03FE9D3313} = {8FEFB15B-D5DE-479F-B6DA-5365244E5882}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A4A9070-08EB-4694-9C5F-7BAD8B5313D2}

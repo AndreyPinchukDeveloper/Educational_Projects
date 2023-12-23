@@ -8,12 +8,12 @@ namespace AllHostedService.Dashboard
     {
         //private readonly 
 
-        [HttpGet]
+        /*[HttpGet]
         public async Task<DashboardResult?> Get()
         {
             var encodeDashboard = await _cache.GetAsync(CacheKeys.Dashboard);
             var dashboard = JsonSerializer.Deserialize<DashboardResult>(Encoding.UTF8.GetString(encodeDashboard));
             return dashboard;
-        }
+        }*/
     }
 }

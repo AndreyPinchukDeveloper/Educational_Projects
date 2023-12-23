@@ -17,7 +17,7 @@ namespace AllHostedService
 
         public async Task RefreshDashboardCacheAsync()
         {
-            var rng = Random.Shared;
+            /*var rng = Random.Shared;
             var dashboardResult = new DashboardResult
             {
                 AverageSale = rng.Next(0, 100),
@@ -28,7 +28,7 @@ namespace AllHostedService
 
             await _cache.SetAsync(CacheKeys.Dashboard, encodeDashboard, new DistributedCacheEntryOption);
 
-            _logger.LogInformation("{cacheKey} cache refreshed", CacheKeys.Dashboard);
+            _logger.LogInformation("{cacheKey} cache refreshed", CacheKeys.Dashboard);*/
         }
     }
 }
