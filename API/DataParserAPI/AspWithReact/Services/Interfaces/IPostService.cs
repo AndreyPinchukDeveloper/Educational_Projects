@@ -10,5 +10,5 @@ namespace AspWithReact.Services.Interfaces
         PostModel Get(int id);
         List<PostModel> GetAll();
         void Delete(int id);
-    }|
+    }
 }
