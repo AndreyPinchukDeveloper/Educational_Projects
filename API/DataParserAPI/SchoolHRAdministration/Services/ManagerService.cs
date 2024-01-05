@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HRAdministrationAPI;
+using SchoolHRAdministration.Enums;
+using SchoolHRAdministration.Infrastructure.Factories;
 using SchoolHRAdministration.Models;
 
 namespace SchoolHRAdministration.Services
@@ -12,49 +14,19 @@ namespace SchoolHRAdministration.Services
     {
         public void SeedData(List<IEmployee> employees)
         {
-            IEmployee teacher1 = new Teacher()
-            {
-                Id = 1,
-                FirstName = "Andre",
-                LastName = "Great",
-                Salary = 50000
-            };
+            IEmployee teacher1 = EmployeeFactory.GetEmployeeInstance(EmployeeType.Teacher, 1, "John", "Better", 40000);
             employees.Add(teacher1);
 
-            IEmployee teacher2 = new Teacher()
-            {
-                Id = 2,
-                FirstName = "John",
-                LastName = "Great",
-                Salary = 50000
-            };
+            IEmployee teacher2 = EmployeeFactory.GetEmployeeInstance(EmployeeType.Teacher, 1, "Sara", "Snow", 40000);
             employees.Add(teacher2);
 
-            IEmployee headDepartment = new HeadOfDepartment()
-            {
-                Id = 3,
-                FirstName = "Bran",
-                LastName = "Great",
-                Salary = 100000
-            };
+            IEmployee headDepartment = EmployeeFactory.GetEmployeeInstance(EmployeeType.HeadOfDepartment, 1, "Andre", "Snow", 60000);
             employees.Add(headDepartment);
 
-            IEmployee deputyHeadMaster = new DeputyHeadMaster()
-            {
-                Id = 4,
-                FirstName = "Rohn",
-                LastName = "Great",
-                Salary = 80000
-            };
+            IEmployee deputyHeadMaster = EmployeeFactory.GetEmployeeInstance(EmployeeType.DeputyHeadMaster, 1, "Bill", "Terner", 70000);
             employees.Add(deputyHeadMaster);
 
-            IEmployee headMaster = new HeadMaster()
-            {
-                Id = 5,
-                FirstName = "Helga",
-                LastName = "Great",
-                Salary = 75000
-            };
+            IEmployee headMaster = EmployeeFactory.GetEmployeeInstance(EmployeeType.HeadMaster, 1, "Edvard", "Better", 100000);
             employees.Add(headMaster);
         }
     }
