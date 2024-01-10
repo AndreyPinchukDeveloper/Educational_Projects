@@ -43,7 +43,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AdvancedDelegates", "Advanc
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{84BC9BED-88B7-4168-8EDE-6D26F6B2CDA7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FieldValidatorAPI", "FieldValidatorAPI\FieldValidatorAPI.csproj", "{32269AB4-7CC6-4FCF-B2A6-A1EEEA539C6E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldValidatorAPI", "FieldValidatorAPI\FieldValidatorAPI.csproj", "{32269AB4-7CC6-4FCF-B2A6-A1EEEA539C6E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClanMembersApp", "ClanMembersApp\ClanMembersApp.csproj", "{A529BFCB-DEC9-4C8A-828E-9CCE8D668F2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -103,6 +105,10 @@ Global
 		{32269AB4-7CC6-4FCF-B2A6-A1EEEA539C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32269AB4-7CC6-4FCF-B2A6-A1EEEA539C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32269AB4-7CC6-4FCF-B2A6-A1EEEA539C6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A529BFCB-DEC9-4C8A-828E-9CCE8D668F2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A529BFCB-DEC9-4C8A-828E-9CCE8D668F2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A529BFCB-DEC9-4C8A-828E-9CCE8D668F2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A529BFCB-DEC9-4C8A-828E-9CCE8D668F2B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -118,6 +124,7 @@ Global
 		{DE272038-26B8-48EC-A928-667E0CA47C58} = {AF90809E-B287-496F-A430-4B30D248E5DE}
 		{84BC9BED-88B7-4168-8EDE-6D26F6B2CDA7} = {AF90809E-B287-496F-A430-4B30D248E5DE}
 		{32269AB4-7CC6-4FCF-B2A6-A1EEEA539C6E} = {84BC9BED-88B7-4168-8EDE-6D26F6B2CDA7}
+		{A529BFCB-DEC9-4C8A-828E-9CCE8D668F2B} = {84BC9BED-88B7-4168-8EDE-6D26F6B2CDA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {6A4A9070-08EB-4694-9C5F-7BAD8B5313D2}
