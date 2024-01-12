@@ -45,7 +45,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FieldValidatorAPI", "FieldValidatorAPI\FieldValidatorAPI.csproj", "{32269AB4-7CC6-4FCF-B2A6-A1EEEA539C6E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClanMembersApp", "ClanMembersApp\ClanMembersApp.csproj", "{A529BFCB-DEC9-4C8A-828E-9CCE8D668F2B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClanMembersApp", "ClanMembersApp\ClanMembersApp.csproj", "{A529BFCB-DEC9-4C8A-828E-9CCE8D668F2B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -90,19 +90,15 @@ Global
 		{194F6D40-74CD-453F-A6E1-6F03FE9D3313}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{194F6D40-74CD-453F-A6E1-6F03FE9D3313}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8DBE5097-CF8C-4778-979B-2162991226D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8DBE5097-CF8C-4778-979B-2162991226D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8DBE5097-CF8C-4778-979B-2162991226D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8DBE5097-CF8C-4778-979B-2162991226D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D029636-E2F1-48B6-9B97-E3DD47EAFCB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D029636-E2F1-48B6-9B97-E3DD47EAFCB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D029636-E2F1-48B6-9B97-E3DD47EAFCB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9D029636-E2F1-48B6-9B97-E3DD47EAFCB7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DE272038-26B8-48EC-A928-667E0CA47C58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DE272038-26B8-48EC-A928-667E0CA47C58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DE272038-26B8-48EC-A928-667E0CA47C58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE272038-26B8-48EC-A928-667E0CA47C58}.Release|Any CPU.Build.0 = Release|Any CPU
 		{32269AB4-7CC6-4FCF-B2A6-A1EEEA539C6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{32269AB4-7CC6-4FCF-B2A6-A1EEEA539C6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32269AB4-7CC6-4FCF-B2A6-A1EEEA539C6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32269AB4-7CC6-4FCF-B2A6-A1EEEA539C6E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A529BFCB-DEC9-4C8A-828E-9CCE8D668F2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
