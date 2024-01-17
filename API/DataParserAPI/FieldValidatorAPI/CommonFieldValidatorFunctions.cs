@@ -12,7 +12,7 @@ namespace FieldValidatorAPI
     public delegate bool DateValidDelegate(string fieldValue, out DateTime validDate);
     public delegate bool PatternMatchValidDelegate(string fieldValue, string pattern);
     public delegate bool CompareFieldsValidDelegate(string fieldValue, string fieldValCompare);
-    sealed class CommonFieldValidatorFunctions
+    public class CommonFieldValidatorFunctions
     {
 
         private static RequiredValidDelegate _requiredValidDelegate = null;
