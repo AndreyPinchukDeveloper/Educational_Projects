@@ -44,17 +44,19 @@ namespace ClanMembersApp.Validators
 
         public void InitialiseValidatorDelegates()
         {
-            _fieldValidatorDelegate = CommonFieldValidatorFunctions.RequiredValidDelegate;
-            _requiredValidDelegate = ;
-            _stringLengthValidDelegate = 
-            _dateValidDelegate = ;
-            _patternMatchValidDelegate = 
-            _compareFieldsValidDelegate =
-            _emailExistsDelegate = 
+            _fieldValidatorDelegate = new FieldValidatorDelegate(ValidField);
 
-
-
-
+            _requiredValidDelegate = CommonFieldValidatorFunctions.RequiredValidDelegate;
+            _stringLengthValidDelegate = CommonFieldValidatorFunctions.StringLengthValidDelegate;
+            _dateValidDelegate = CommonFieldValidatorFunctions.DateValidDelegate;
+            _patternMatchValidDelegate = CommonFieldValidatorFunctions.PatternMatchValidDelegate;
+            _compareFieldsValidDelegate = CommonFieldValidatorFunctions.CompareFieldsValidDelegate;
         }   
+
+        private bool ValidField(int fieldIndex, string fieldValue, string[] fieldArray, out string fieldInvalidMessage)
+        {
+            fieldInvalidMessage = "";
+            return (fieldInvalidMessage == "");
+        }
     }       
 }           
