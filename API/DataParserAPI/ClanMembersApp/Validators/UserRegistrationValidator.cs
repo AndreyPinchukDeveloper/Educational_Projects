@@ -56,6 +56,34 @@ namespace ClanMembersApp.Validators
         private bool ValidField(int fieldIndex, string fieldValue, string[] fieldArray, out string fieldInvalidMessage)
         {
             fieldInvalidMessage = "";
+            FieldConstants.UserRegistrationField userRegistrationField = (FieldConstants.UserRegistrationField)fieldIndex;
+            switch(userRegistrationField)
+            {
+                case FieldConstants.UserRegistrationField.EmailAddress:
+                    fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_patternMatchValidDelegate(fieldValue, RegularExpressionValidationPatterns.Email_Address_RegEx_Pattern)) ? $"You must enter a valid email address:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : fieldInvalidMessage;
+                    break;
+                case FieldConstants.UserRegistrationField.FirstName:
+                    fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_stringLengthValidDelegate(fieldValue, FIRST_NAME_MIN_LENGTH, FIRST_NAME_MAX_LENGTH)) ? $"The length for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)} must be between {FIRST_NAME_MIN_LENGTH} and {FIRST_NAME_MAX_LENGTH}{Environment.NewLine}" : fieldInvalidMessage;
+                    break;
+                case FieldConstants.UserRegistrationField.LastName:
+                    fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_stringLengthValidDelegate(fieldValue, LAST_NAME_MIN_LENGTH, LAST_NAME_MAX_LENGTH)) ? $"The length for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)} must be between {LAST_NAME_MIN_LENGTH} and {LAST_NAME_MAX_LENGTH}{Environment.NewLine}" : fieldInvalidMessage;
+                    break;
+                case FieldConstants.UserRegistrationField.Password:
+                    fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_patternMatchValidDelegate(fieldValue, RegularExpressionValidationPatterns.Strong_Password_RegEx_Pattern)) ? $"Your password must contain at least 1 small-case letter, 1 capital letter, 1 special character and the length should be between 6 - 10 characters {Environment.NewLine}" : fieldInvalidMessage;
+                    break;
+                case FieldConstants.UserRegistrationField.PasswordToCompare:
+                    fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_compareFieldsValidDelegate(fieldValue, fieldValue[(int)FieldConstants.UserRegistrationField.Password])) ? $"Your entry did not match your password{Environment.NewLine}" : fieldInvalidMessage;
+                    break;
+                case FieldConstants.UserRegistrationField.DateOfBirth:
+                    fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_compareFieldsValidDelegate(fieldValue, fieldValue[(int)FieldConstants.UserRegistrationField.Password])) ? $"Your entry did not match your password{Environment.NewLine}" : fieldInvalidMessage;
+                    break;
+            }
             return (fieldInvalidMessage == "");
         }
     }       

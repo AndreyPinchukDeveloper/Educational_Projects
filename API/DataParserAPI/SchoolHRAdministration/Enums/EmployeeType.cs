@@ -11,6 +11,6 @@ namespace SchoolHRAdministration.Enums
          Teacher,
          HeadOfDepartment,
          DeputyHeadMaster,
-         HeadMaster
+         HeadMaster,
     }
 }
