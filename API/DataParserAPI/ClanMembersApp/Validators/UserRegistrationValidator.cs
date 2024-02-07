@@ -61,7 +61,7 @@ namespace ClanMembersApp.Validators
             {
                 case FieldConstants.UserRegistrationField.EmailAddress:
                     fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
-                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_patternMatchValidDelegate(fieldValue, RegularExpressionValidationPatterns.Email_Address_RegEx_Pattern)) ? $"You must enter a valid email address:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : fieldInvalidMessage;
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_patternMatchValidDelegate(fieldValue, RegularExpressionValidationPatterns.Email_Address_RegEx_Pattern)) ? $"You must enter valid email address:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : fieldInvalidMessage;
                     break;
                 case FieldConstants.UserRegistrationField.FirstName:
                     fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
@@ -81,8 +81,27 @@ namespace ClanMembersApp.Validators
                     break;
                 case FieldConstants.UserRegistrationField.DateOfBirth:
                     fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
-                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_compareFieldsValidDelegate(fieldValue, fieldValue[(int)FieldConstants.UserRegistrationField.Password])) ? $"Your entry did not match your password{Environment.NewLine}" : fieldInvalidMessage;
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_dateValidDelegate(fieldValue, out DateTime validDateTime)) ? $"You did not enter valid date !" : fieldInvalidMessage;
                     break;
+                case FieldConstants.UserRegistrationField.PhoneNumber:
+                    fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_patternMatchValidDelegate(fieldValue, RegularExpressionValidationPatterns.Uk_PhoneNumber_RegEx_Pattern)) ? $"You did not enter valid phone number !" : fieldInvalidMessage;
+                    break;
+                case FieldConstants.UserRegistrationField.AddressFirstLine:
+                    fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    break;
+                case FieldConstants.UserRegistrationField.AddressSecondLine:
+                    fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    break;
+                case FieldConstants.UserRegistrationField.AddressCity:
+                    fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    break;
+                case FieldConstants.UserRegistrationField.PostCode:
+                    fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_patternMatchValidDelegate(fieldValue, RegularExpressionValidationPatterns.Uk_Post_Code_RegEx_Pattern)) ? $"You did not enter valid post code !" : fieldInvalidMessage;
+                    break;
+                default:
+                    throw new ArgumentException("This field does not exists");
             }
             return (fieldInvalidMessage == "");
         }
