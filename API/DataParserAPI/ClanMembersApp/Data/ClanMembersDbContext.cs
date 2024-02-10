@@ -16,6 +16,6 @@ namespace ClanMembersApp.Data
             base.OnConfiguring(optionsBuilder);
         }
 
-        public DbSet<UserModels> Users { get; set; }
+        public DbSet<UserModel> Users { get; set; }
     }
 }

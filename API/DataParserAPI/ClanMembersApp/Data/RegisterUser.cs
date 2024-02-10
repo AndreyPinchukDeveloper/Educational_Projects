@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ClanMembershipApplication.Models;
 using ClanMembersApp.Validators;
 
 namespace ClanMembersApp.Data
@@ -21,9 +20,8 @@ namespace ClanMembersApp.Data
                     EmailAddress = fields[(int)FieldConstants.UserRegistrationField.EmailAddress],
                     FirstName = fields[(int)FieldConstants.UserRegistrationField.FirstName],
                     LastName = fields[(int)FieldConstants.UserRegistrationField.LastName],
-                    MiddleName = fields[(int)FieldConstants.UserRegistrationField.MiddleName],
                     Password = fields[(int)FieldConstants.UserRegistrationField.Password],
-                    BirthDay = fields[(int)FieldConstants.UserRegistrationField.BirthDay],
+                    BirthDay = DateTime.Parse(fields[(int)FieldConstants.UserRegistrationField.DateOfBirth]),
                     PhoneNumber = fields[(int)FieldConstants.UserRegistrationField.PhoneNumber],
                     AddressFirstLine = fields[(int)FieldConstants.UserRegistrationField.AddressFirstLine],
                     AddressSecondLine = fields[(int)FieldConstants.UserRegistrationField.AddressSecondLine],

@@ -23,7 +23,7 @@ namespace ClanMembersApp.Validators
         private DateValidDelegate _dateValidDelegate = null;
         private PatternMatchValidDelegate _patternMatchValidDelegate = null;
         private CompareFieldsValidDelegate _compareFieldsValidDelegate = null;
-        private EmailExistsDelegate _emailExistsDelegate = null;
+        //private EmailExistsDelegate _emailExistsDelegate = null;
 
         private string[] _fieldArray = null;
         public string[] FieldArray
@@ -77,7 +77,7 @@ namespace ClanMembersApp.Validators
                     break;
                 case FieldConstants.UserRegistrationField.PasswordToCompare:
                     fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
-                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_compareFieldsValidDelegate(fieldValue, fieldValue[(int)FieldConstants.UserRegistrationField.Password])) ? $"Your entry did not match your password{Environment.NewLine}" : fieldInvalidMessage;
+                    fieldInvalidMessage = (fieldInvalidMessage == "" && !_compareFieldsValidDelegate(fieldValue, fieldArray[(int)FieldConstants.UserRegistrationField.Password])) ? $"Your entry did not match your password{Environment.NewLine}" : fieldInvalidMessage;
                     break;
                 case FieldConstants.UserRegistrationField.DateOfBirth:
                     fieldInvalidMessage = (!_requiredValidDelegate(fieldValue)) ? $"You must enter a value for field:{Enum.GetName(typeof(FieldConstants.UserRegistrationField), userRegistrationField)}{Environment.NewLine}" : "";
